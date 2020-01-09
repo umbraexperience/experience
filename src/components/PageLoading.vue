@@ -9,7 +9,14 @@
         width="40"
         height="40"
       >
-        <circle cx="50" cy="50" r="40" stroke="white" stroke-width="6" />
+        <circle
+          class="svg-circle"
+          cx="50"
+          cy="50"
+          r="45"
+          stroke="white"
+          stroke-width="6"
+        />
       </svg>
       <h2>The sphere will guide your interactions</h2>
     </div>
@@ -41,11 +48,43 @@
 
 <script>
 export default {
-  name: "PageLoading"
+  name: "PageLoading",
+  mounted() {
+    /*     this.$anime({
+      targets: ".svg-circle",
+      strokeDashoffset: [this.$anime.setDashoffset, 0],
+
+      easing: "easeInOutQuad",
+      duration: 1500,
+      loop: true
+    }); */
+  }
 };
 </script>
 
 <style scoped>
+.svg-circle {
+  transform-origin: 50% 50%;
+  animation: 2s ease-in-out infinite both dash;
+}
+
+@keyframes dash {
+  0% {
+    transform: scale(0);
+    opacity: 0;
+  }
+
+  50% {
+    transform: scale(0.7);
+    opacity: 1;
+  }
+
+  100% {
+    transform: scale(1);
+    opacity: 0;
+  }
+}
+
 h2 {
   filter: blur(0.065rem);
 }

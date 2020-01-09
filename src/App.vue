@@ -25,15 +25,44 @@
       <transition name="fade" appear>
         <div class="bottom-input" v-if="state.screen === 'register'">
           <div class="input-group">
-            <input type="text" placeholder="Name" v-model="name" />
+            <input
+              type="text"
+              placeholder="Name"
+              class="input-name"
+              v-model="name"
+            />
             <input
               type="number"
               min="1900"
               max="2020"
               placeholder="Year of birth"
+              class="input-year"
               v-model="year_birth"
             />
-            <input type="text" placeholder="Language" v-model="language" />
+
+            <div class="select-language">
+              <div>
+                <input
+                  type="radio"
+                  id="contactChoice1"
+                  name="contact"
+                  value="ES"
+                  v-model="language"
+                />
+                <label for="contactChoice1">ES</label>
+              </div>
+
+              <div class="language-right">
+                <input
+                  type="radio"
+                  id="contactChoice2"
+                  name="contact"
+                  value="EN"
+                  v-model="language"
+                />
+                <label for="contactChoice2">EN</label>
+              </div>
+            </div>
           </div>
         </div>
       </transition>
@@ -58,7 +87,7 @@ export default {
       fullscreen: false,
       name: "Santi",
       year_birth: "1997",
-      language: "",
+      language: "EN",
       state: { screen: "home" },
       sound1: "",
       sound2: "",
@@ -433,10 +462,6 @@ a {
 }
 
 input {
-  padding-left: 0.6rem;
-  margin-left: -0.3rem;
-  margin-top: 1rem;
-  width: 100%;
   background-color: transparent;
 
   border: transparent;
@@ -446,10 +471,19 @@ input {
   filter: blur(0.07rem);
   font-size: 1.05rem;
   color: #b4b4b4;
+  color: white;
+}
+
+.input-name,
+.input-year {
+  padding-left: 0.6rem;
+  margin-left: -0.3rem;
+  width: 100%;
 }
 
 @media screen and (min-width: 640px) {
-  input {
+  .input-name,
+  .input-year {
     margin-left: 1rem;
   }
 }
@@ -473,6 +507,34 @@ input::-webkit-inner-spin-button {
 /* Firefox */
 input[type="number"] {
   -moz-appearance: textfield;
+}
+
+.select-language,
+.select-language div {
+  display: flex;
+}
+
+.select-language {
+  filter: blur(0.07rem);
+  margin-left: -0.3rem;
+  padding: 0.1rem 0;
+  padding-left: 0.7rem;
+  border-left: 2px solid #999999;
+  width: 100%;
+}
+
+.select-language .language-right {
+  margin-left: 1.5rem;
+}
+
+.select-language input {
+  display: none;
+}
+
+.select-language input:checked + label {
+  color: white;
+  margin-top: -0.15rem;
+  font-weight: bold;
 }
 
 .fade-enter-active,
