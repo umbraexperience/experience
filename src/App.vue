@@ -9,7 +9,7 @@
 
     <div class="popup-orientation"><p>Please rotate your device</p></div>
 
-    <div class="example h-full">
+    <div class="example h-full" ref="fullscreen">
       <transition name="fade" mode="out-in" appear>
         <PageHome
           v-if="state.screen === 'home' || state.screen === 'register'"
@@ -77,9 +77,6 @@ import PageHome from "@/components/PageHome";
 import PageLoading from "@/components/PageLoading";
 import PageExperience from "@/components/PageExperience";
 
-import * as PIXI from "pixi.js";
-// import { OldFilmFilter } from "@pixi/filter-old-film";
-
 export default {
   name: "app",
   data: function() {
@@ -96,8 +93,7 @@ export default {
   },
   components: { PageHome, PageLoading, PageExperience },
   mounted() {
-    this.filmgrain();
-    // this.drawCanvas();
+    // this.filmgrain();
 
     if (window.matchMedia("(orientation: portrait)").matches) {
       // you're in PORTRAIT mode
@@ -137,10 +133,16 @@ export default {
 
   methods: {
     enterFullscreen() {
-      this.$fullscreen.enter(this.$el.querySelector(".example"), {
-        wrap: false,
-        background: "#000"
-      });
+      if (document.fullscreenEnabled) {
+        console.log("You can fullscreen");
+
+        this.$refs.fullscreen.requestFullscreen();
+      }
+
+      // this.$fullscreen.enter(this.$el.querySelector(".example"), {
+      //   wrap: false,
+      //   background: "#000"
+      // });
     },
     fullscreenChange(fullscreen) {
       this.fullscreen = fullscreen;
@@ -171,35 +173,6 @@ export default {
       } else if (this.state.screen === "register") {
         this.register();
       }
-    },
-    drawCanvas() {
-      let cvs = document.getElementById("pixiApp");
-      //Create a Pixi Application
-      const app = new PIXI.Application({
-        antialias: true,
-        transparent: true,
-        resolution: window.devicePixelRatio,
-        autoResize: true,
-        resizeTo: window
-      });
-
-      cvs.appendChild(app.view);
-      app.renderer.backgroundColor = 0x061639;
-
-      const basicText = new PIXI.Text("Basic text in pixi");
-      basicText.x = 50;
-      basicText.y = 100;
-
-      // Draw a green rectangle
-      const rect = new PIXI.Graphics()
-        .beginFill(0x00ff00)
-        .drawRect(40, 40, 200, 200);
-
-      // Add a blur filter
-      rect.filters = [new PIXI.filters.BlurFilter()];
-
-      // Display rectangle
-      app.stage.addChild(rect);
     },
     filmgrain() {
       var viewWidth,
@@ -315,6 +288,8 @@ body {
   -webkit-tap-highlight-color: rgba(0, 0, 0, 0);
   -webkit-tap-highlight-color: transparent;
   transition: transform 1.4s ease-in-out;
+  /*-webkit-touch-callout: none; /* prevent callout to copy image, etc when tap to hold */
+  /*-webkit-user-select: none; /* prevent copy paste, to allow, change 'none' to 'text' */
 }
 
 body {
@@ -446,7 +421,7 @@ a {
 }
 
 .input-group {
-  margin: 0 auto;
+  margin-left: 20%;
   display: flex;
   flex-direction: column;
   justify-content: center;
@@ -455,6 +430,7 @@ a {
 }
 @media screen and (min-width: 640px) {
   .input-group {
+    margin: 0 auto;
     flex-direction: row;
     justify-content: space-between;
     max-width: 40rem;
@@ -472,6 +448,12 @@ input {
   font-size: 1.05rem;
   color: #b4b4b4;
   color: white;
+}
+
+@media screen and (max-width: 640px) {
+  input {
+    margin-bottom: 1rem;
+  }
 }
 
 .input-name,

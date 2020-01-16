@@ -49,16 +49,7 @@
 <script>
 export default {
   name: "PageLoading",
-  mounted() {
-    /*     this.$anime({
-      targets: ".svg-circle",
-      strokeDashoffset: [this.$anime.setDashoffset, 0],
-
-      easing: "easeInOutQuad",
-      duration: 1500,
-      loop: true
-    }); */
-  }
+  mounted() {}
 };
 </script>
 

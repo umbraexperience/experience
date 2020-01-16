@@ -13,18 +13,23 @@
       Sorry, your browser doesn't support embedded videos.
     </video>
 
-    <div class="title-container w-full noselect">
-      <div>
-        <h2 class="title font-light absolute animation2" ref="element2">
-          An inmersive experience to find yourself.
-        </h2>
-      </div>
-      <div>
-        <h3 class="sub-title absolute font-regular animation" ref="element">
-          <span>Coming Soon</span>
-        </h3>
-      </div>
-    </div>
+    <transition name="fade">
+      <div
+        class="title-container w-full noselect"
+        v-if="this.$parent.state.screen == 'home'"
+      >
+        <div>
+          <h2 class="title font-light absolute animation2" ref="element2">
+            An inmersive experience to find yourself.
+          </h2>
+        </div>
+        <div>
+          <h3 class="sub-title absolute font-regular animation" ref="element">
+            <span>Coming Soon</span>
+          </h3>
+        </div>
+      </div></transition
+    >
     <div class="bottom noselect">
       <span
         href="https://paypal.me/pools/c/8kxzH2J8F0"
@@ -41,6 +46,8 @@
 export default {
   name: "PageHome",
   mounted() {
+    console.log(this.$parent.state.screen);
+
     this.$refs.element2.innerHTML = this.$refs.element2.textContent.replace(
       /\S/g,
       "<span class='letter'>$&</span>"
@@ -92,7 +99,7 @@ export default {
   align-items: center;
 }
 .w-video {
-  margin-top: 3rem;
+  margin-top: -3rem;
   width: 75%;
 }
 @media screen and (min-width: 650px) {
@@ -101,9 +108,12 @@ export default {
   }
 }
 
+.hidden {
+  display: none;
+}
+
 .absolute {
   position: absolute;
-
   left: 0;
   right: 0;
   margin: 0;
@@ -112,7 +122,6 @@ export default {
 
 .title-container {
   margin: 0;
-  margin-bottom: 20vh;
   padding: 0;
   position: relative;
   text-align: center;
