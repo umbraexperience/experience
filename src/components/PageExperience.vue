@@ -1,22 +1,36 @@
 <template>
   <div>
-    <div v-if="interaction1" class="titol-interaccio">
-      INTERACCIÓ 1
-    </div>
+    <div class="DEBUG">
+      <p>Video playing: {{ this.videoPlaying }}</p>
+      <button @click="ended()">NEXT VIDEO</button>
+      <div v-if="interaction1" class="titol-interaccio">
+        INTERACCIÓ 1
+      </div>
 
-    <div v-else-if="interaction2" class="titol-interaccio">
-      INTERACCIÓ 2
-    </div>
-    <div v-else-if="interaction3" class="titol-interaccio">
-      INTERACCIÓ 3
-    </div>
-    <div v-else-if="interaction4" class="titol-interaccio">
-      INTERACCIÓ 2
+      <div v-else-if="interaction2" class="titol-interaccio">
+        INTERACCIÓ 2
+      </div>
+      <div v-else-if="interaction3" class="titol-interaccio">
+        INTERACCIÓ 3
+      </div>
+      <div v-else-if="interaction4" class="titol-interaccio">
+        INTERACCIÓ 4
+      </div>
+      <div v-else-if="interaction5" class="titol-interaccio">
+        INTERACCIÓ 5
+      </div>
+      <div v-else-if="interaction6" class="titol-interaccio">
+        INTERACCIÓ 6
+      </div>
+      <div v-else-if="interaction7" class="titol-interaccio">
+        INTERACCIÓ 7
+      </div>
     </div>
 
     <div class="video-container" :class="{ paused: pausedVideo }">
       <vue-plyr
         ref="video6"
+        v-on:timeupdate="timeupdate6()"
         :options="{
           controls: [''],
           clickToPlay: false,
@@ -189,9 +203,15 @@ export default {
 
       if (this.videoPlaying === 2) {
         this.interaction2 = true;
-      } else if (this.videoPlaying === 4) {
+      } else if (this.videoPlaying === 3) {
         this.interaction2 = false;
+      } else if (this.videoPlaying === 4) {
         this.interaction3 = true;
+      } else if (this.videoPlaying === 5) {
+        this.interaction3 = false;
+        this.interaction4 = true;
+      } else if (this.videoPlaying === 6) {
+        this.interaction4 = false;
       }
     },
 
@@ -212,12 +232,31 @@ export default {
       // console.log(this.$refs.video1.player.currentTime);
       if (
         this.$refs.video1.player.currentTime >= 35 &&
-        this.$refs.video1.player.currentTime < 50
+        this.$refs.video1.player.currentTime <= 50
       ) {
         console.log("INTERACCIÓ 1");
         this.interaction1 = true;
       } else {
         this.interaction1 = false;
+      }
+    },
+    timeupdate6() {
+      if (
+        this.$refs.video6.player.currentTime >= 19 &&
+        this.$refs.video6.player.currentTime <= 23
+      ) {
+        console.log("INTERACCIÓ 5");
+        this.interaction5 = true;
+      } else if (
+        this.$refs.video6.player.currentTime >= 54 &&
+        this.$refs.video6.player.currentTime <= 67
+      ) {
+        console.log("INTERACCIÓ 6");
+        this.interaction5 = false;
+        this.interaction6 = true;
+      } else {
+        this.interaction5 = false;
+        this.interaction6 = false;
       }
     }
   }
