@@ -2,6 +2,7 @@
   <div>
     <div class="DEBUG">
       <p>Video playing: {{ this.videoPlaying }}</p>
+      <p>Seeked of next video: {{ this.seeked }}</p>
       <button @click="ended()">NEXT VIDEO</button>
       <div v-if="interaction1" class="titol-interaccio">
         INTERACCIÓ 1
@@ -25,6 +26,13 @@
       <div v-else-if="interaction7" class="titol-interaccio">
         INTERACCIÓ 7
       </div>
+    </div>
+
+    <div class="interaction1-zone" v-if="interaction1">
+      <div @mouseover="mousePosition(1)">ZONA 1</div>
+      <div @mouseover="mousePosition(2)">ZONA 2</div>
+      <div @mouseover="mousePosition(3)">ZONA 3</div>
+      <div @mouseover="mousePosition(4)">ZONA 4</div>
     </div>
 
     <div class="video-container" :class="{ paused: pausedVideo }">
@@ -190,7 +198,6 @@ export default {
   },
   methods: {
     ended() {
-      console.log("ended");
       this.videoCurrent.stop();
       this.videoCurrent.destroy();
 
@@ -258,6 +265,9 @@ export default {
         this.interaction5 = false;
         this.interaction6 = false;
       }
+    },
+    mousePosition(soundNum) {
+      this.$emit("my-event", soundNum);
     }
   }
 };
@@ -290,6 +300,31 @@ export default {
   transition: opacity 0.2s ease-in-out;
 }
 
+.interaction1-zone {
+  position: absolute;
+  left: 0;
+  right: 0;
+  top: 0;
+  bottom: 0;
+  min-height: 100%;
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.interaction1-zone div {
+  width: 48%;
+  height: 48%;
+  background-color: red;
+}
+
+.interaction1-zone div:nth-child(3),
+.interaction1-zone div:nth-child(4) {
+  margin-top: 2%;
+}
+
 /*
 video {
   object-fit: cover;
@@ -308,6 +343,7 @@ video {
 }
 
 .interactive-circle-button {
+  outline: none;
   border: none;
   margin: 0;
   padding: 0px;

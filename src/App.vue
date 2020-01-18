@@ -4,7 +4,6 @@
     v-touch:start="startHandler"
     v-touch:touchhold="touchHoldHandler"
   >
-    <div id="pixiApp" class="noselect"></div>
     <canvas id="canvas" class="noselect"></canvas>
 
     <div class="popup-orientation"><p>Please rotate your device</p></div>
@@ -19,6 +18,7 @@
         ></PageLoading>
         <PageExperience
           ref="experience"
+          @my-event="playInteractionSound"
           v-else-if="state.screen === 'experience'"
         ></PageExperience>
       </transition>
@@ -86,8 +86,8 @@ export default {
       year_birth: "1997",
       language: "EN",
       state: { screen: "home" },
-      sound1: "",
-      sound2: "",
+      soundHome: "",
+      soundLoading: "",
       holdSound: ""
     };
   },
@@ -105,16 +105,12 @@ export default {
       console.log("you're in LANDSCAPE mode");
     }
 
-    if (this.state.screen === "register") {
-      console.log("You are registering right?");
-    }
-
-    this.sound1 = new Howl({
+    this.soundHome = new Howl({
       src: ["sounds/begining_web.webm", "sounds/begining_web.mp3"],
       preload: true,
       loop: true
     });
-    this.sound2 = new Howl({
+    this.soundLoading = new Howl({
       src: ["sounds/loading_experience.webm", "sounds/loading_experience.mp3"],
       preload: true,
       loop: true
@@ -124,8 +120,25 @@ export default {
       preload: true
     });
 
-    this.sound1.play();
-    this.sound1.fade(0, 1, 2000);
+    this.soundEmpty1 = new Howl({
+      src: ["sounds/empty_1.mp3"],
+      preload: true
+    });
+    this.soundEmpty2 = new Howl({
+      src: ["sounds/empty_2.mp3"],
+      preload: true
+    });
+    this.soundEmpty3 = new Howl({
+      src: ["sounds/empty_3.mp3"],
+      preload: true
+    });
+    this.soundEmpty4 = new Howl({
+      src: ["sounds/empty_4.mp3"],
+      preload: true
+    });
+
+    this.soundHome.play();
+    this.soundHome.fade(0, 1, 2000);
 
     // Change global volume.
     // Howler.volume(0.5);
@@ -149,14 +162,14 @@ export default {
     },
     register: function() {
       if (this.name && this.year_birth && this.language) {
-        this.sound1.fade(1, 0, 2000);
+        this.soundHome.fade(1, 0, 2000);
         console.log("Form full");
         this.state.screen = "loadingExperience";
-        this.sound2.play();
-        this.sound2.fade(0, 1, 2000);
+        this.soundLoading.play();
+        this.soundLoading.fade(0, 1, 2000);
         setTimeout(() => {
           this.state.screen = "experience";
-          this.sound2.fade(1, 0, 1000);
+          this.soundLoading.fade(1, 0, 1000);
         }, 7000);
       }
     },
@@ -172,6 +185,24 @@ export default {
         this.state.screen = "register";
       } else if (this.state.screen === "register") {
         this.register();
+      }
+    },
+    playInteractionSound(soundNum) {
+      if (soundNum == 1) {
+        console.log("PARENT INTERACTION" + soundNum);
+        this.soundEmpty1.play();
+      }
+      if (soundNum == 2) {
+        console.log("PARENT INTERACTION" + soundNum);
+        this.soundEmpty2.play();
+      }
+      if (soundNum == 3) {
+        console.log("PARENT INTERACTION" + soundNum);
+        this.soundEmpty3.play();
+      }
+      if (soundNum == 4) {
+        console.log("PARENT INTERACTION" + soundNum);
+        this.soundEmpty4.play();
       }
     },
     filmgrain() {
