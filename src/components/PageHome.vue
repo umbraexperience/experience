@@ -101,6 +101,7 @@ export default {
 .w-video {
   margin-top: -3rem;
   width: 75%;
+  pointer-events: none;
 }
 @media screen and (min-width: 650px) {
   .w-video {

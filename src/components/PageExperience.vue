@@ -29,10 +29,10 @@
     </div>
 
     <div class="interaction1-zone" v-if="interaction1">
-      <div @mouseover="mousePosition(1)">ZONA 1</div>
-      <div @mouseover="mousePosition(2)">ZONA 2</div>
-      <div @mouseover="mousePosition(3)">ZONA 3</div>
-      <div @mouseover="mousePosition(4)">ZONA 4</div>
+      <div @mouseover="mousePosition(1)"></div>
+      <div @mouseover="mousePosition(2)"></div>
+      <div @mouseover="mousePosition(3)"></div>
+      <div @mouseover="mousePosition(4)"></div>
     </div>
 
     <div class="video-container" :class="{ paused: pausedVideo }">
@@ -238,8 +238,8 @@ export default {
     timeupdate() {
       // console.log(this.$refs.video1.player.currentTime);
       if (
-        this.$refs.video1.player.currentTime >= 35 &&
-        this.$refs.video1.player.currentTime <= 50
+        this.$refs.video1.player.currentTime >= 46 &&
+        this.$refs.video1.player.currentTime <= 50.5
       ) {
         console.log("INTERACCIÓ 1");
         this.interaction1 = true;
@@ -317,7 +317,7 @@ export default {
 .interaction1-zone div {
   width: 48%;
   height: 48%;
-  background-color: red;
+  /* background-color: red; */
 }
 
 .interaction1-zone div:nth-child(3),

@@ -77,6 +77,10 @@ import PageHome from "@/components/PageHome";
 import PageLoading from "@/components/PageLoading";
 import PageExperience from "@/components/PageExperience";
 
+document.oncontextmenu = function() {
+  return false;
+};
+
 export default {
   name: "app",
   data: function() {
