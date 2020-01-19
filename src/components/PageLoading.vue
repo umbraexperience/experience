@@ -1,25 +1,28 @@
 <template>
-  <div class="flex-col height-50">
-    <h1 class="hidden">Loading</h1>
-    <div>
-      <svg
-        viewBox="0 0 100 100"
-        xmlns="http://www.w3.org/2000/svg"
-        class="circle"
-        width="40"
-        height="40"
-      >
-        <circle
-          class="svg-circle"
-          cx="50"
-          cy="50"
-          r="45"
-          stroke="white"
-          stroke-width="6"
-        />
-      </svg>
-      <h2>The sphere will guide your interactions</h2>
+  <div class="h-full">
+    <div class="flex-col">
+      <h1 class="hidden">Loading</h1>
+      <div>
+        <svg
+          viewBox="0 0 100 100"
+          xmlns="http://www.w3.org/2000/svg"
+          class="circle"
+          width="40"
+          height="40"
+        >
+          <circle
+            class="svg-circle"
+            cx="50"
+            cy="50"
+            r="45"
+            stroke="white"
+            stroke-width="6"
+          />
+        </svg>
+        <h2>The sphere will guide your interactions</h2>
+      </div>
     </div>
+
     <div class="headphones-warning">
       <svg
         xmlns="http://www.w3.org/2000/svg"
@@ -54,6 +57,10 @@ export default {
 </script>
 
 <style scoped>
+.circle {
+  filter: blur(0.08rem);
+}
+
 .svg-circle {
   transform-origin: 50% 50%;
   animation: 2s ease-in-out infinite both dash;
@@ -79,12 +86,6 @@ export default {
 h2 {
   filter: blur(0.065rem);
 }
-p {
-  filter: blur(0.05rem);
-}
-svg {
-  filter: blur(0.065rem);
-}
 
 h2 {
   margin-top: 0.5rem;
@@ -93,18 +94,38 @@ h2 {
   height: 100%;
   display: flex;
   flex-direction: column;
-  justify-content: space-between;
+  justify-content: center;
 }
-.height-50 {
-  transform: translateY(45vh);
-  height: 55%;
-}
+
 .headphones-warning {
-  margin-bottom: 2.5rem;
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  transform: scale(0.8);
+}
+
+.headphones-warning .headphones-text {
+  filter: blur(0.07rem);
+}
+
+.headphones-warning svg {
+  filter: blur(0.08rem);
+}
+
+@media screen and (min-width: 1000px) {
+  .headphones-warning {
+    transform: scale(1);
+    margin-bottom: 2rem;
+  }
 }
 
 .headphones-warning svg {
   margin-bottom: 0.5rem;
+}
+
+h2 {
+  font-size: 1.2rem;
 }
 
 .headphones-text p {

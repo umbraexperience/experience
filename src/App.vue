@@ -25,22 +25,20 @@
       <transition name="fade" appear>
         <div class="bottom-input" v-if="state.screen === 'register'">
           <div class="input-group">
-            <input
-              type="text"
-              placeholder="Name"
-              class="input-name"
-              v-model="name"
-            />
-            <input
-              type="number"
-              min="1900"
-              max="2020"
-              placeholder="Year of birth"
-              class="input-year"
-              v-model="year_birth"
-            />
+            <div class="input-name">
+              <input type="text" placeholder="Name" v-model="name" />
+            </div>
+            <div class="input-year">
+              <input
+                type="number"
+                min="1900"
+                max="2020"
+                placeholder="Year of birth"
+                v-model="year_birth"
+              />
+            </div>
 
-            <div class="select-language">
+            <div class="input-language">
               <div>
                 <input
                   type="radio"
@@ -53,14 +51,16 @@
               </div>
 
               <div class="language-right">
-                <input
-                  type="radio"
-                  id="contactChoice2"
-                  name="contact"
-                  value="EN"
-                  v-model="language"
-                />
-                <label for="contactChoice2">EN</label>
+                <div>
+                  <input
+                    type="radio"
+                    id="contactChoice2"
+                    name="contact"
+                    value="EN"
+                    v-model="language"
+                  />
+                  <label for="contactChoice2">EN</label>
+                </div>
               </div>
             </div>
           </div>
@@ -456,60 +456,55 @@ a {
 }
 
 .input-group {
-  margin-left: 20%;
   display: flex;
   flex-direction: column;
   justify-content: center;
   width: 100%;
-  max-width: 300px;
+  max-width: 30rem;
+  filter: blur(0.07rem);
 }
+
 @media screen and (min-width: 640px) {
   .input-group {
     margin: 0 auto;
     flex-direction: row;
     justify-content: space-between;
     max-width: 40rem;
+    padding-left: 8rem;
   }
+}
+
+.input-group > div {
+  width: 33%;
+}
+
+.input-group .input-name input,
+.input-group .input-year input {
+  padding-left: 0.8rem;
+  border-left: 2px solid #999999;
+  width: 100%;
 }
 
 input {
   background-color: transparent;
-
   border: transparent;
-  color: white;
-  border-left: 2px solid #999999;
-
-  filter: blur(0.07rem);
   font-size: 1.05rem;
-  color: #b4b4b4;
   color: white;
+  outline-color: transparent;
 }
 
-@media screen and (max-width: 640px) {
-  input {
-    margin-bottom: 1rem;
-  }
-}
-
-.input-name,
-.input-year {
-  padding-left: 0.6rem;
-  margin-left: -0.3rem;
-  width: 100%;
-}
-
-@media screen and (min-width: 640px) {
-  .input-name,
-  .input-year {
-    margin-left: 1rem;
-  }
+input:invalid {
+  color: rgb(255, 181, 181);
+  box-shadow: none;
+  outline: none;
 }
 
 input::placeholder {
   color: #999999;
 }
 
-input:focus {
+.input-group .input-name input:focus,
+.input-group .input-year input:focus {
   outline: none;
   border-left: 2px solid white;
 }
@@ -520,38 +515,46 @@ input::-webkit-inner-spin-button {
   -webkit-appearance: none;
   margin: 0;
 }
-
 /* Firefox */
 input[type="number"] {
   -moz-appearance: textfield;
 }
 
-.select-language,
-.select-language div {
+.input-language {
   display: flex;
+  width: 100%;
+  align-items: center;
+  border-left: 2px solid #999999;
+  padding-left: 0.8rem;
 }
 
-.select-language {
-  filter: blur(0.07rem);
-  margin-left: -0.3rem;
-  padding: 0.1rem 0;
-  padding-left: 0.7rem;
-  border-left: 2px solid #999999;
-  width: 100%;
+.input-language * {
+  margin: 0;
+  padding: 0;
+}
+
+.input-language > div {
+  margin-top: 0.1rem;
+  height: 100%;
+  display: flex;
+  align-items: center;
+}
+
+.input-language > div:nth-child(2) {
+  margin-left: 2rem;
+}
+
+.input-language input {
+  display: none;
 }
 
 .select-language .language-right {
   margin-left: 1.5rem;
 }
 
-.select-language input {
-  display: none;
-}
-
-.select-language input:checked + label {
+.input-language input:checked + label {
   color: white;
-  margin-top: -0.15rem;
-  font-weight: bold;
+  text-shadow: 1px 0 0 currentColor;
 }
 
 .fade-enter-active,

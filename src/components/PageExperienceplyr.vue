@@ -4,7 +4,6 @@
       <p>Video playing: {{ this.videoPlaying }}</p>
       <p>Seeked of next video: {{ this.seeked }}</p>
       <button @click="ended()">NEXT VIDEO</button>
-
       <div v-if="interaction1" class="titol-interaccio">
         INTERACCIÓ 1
       </div>
@@ -37,58 +36,125 @@
     </div>
 
     <div class="video-container" :class="{ paused: pausedVideo }">
-      <video
-        ref="video1"
-        @timeupdate="timeupdate()"
-        @ended="ended()"
-        preload="auto"
-        :class="{ hide: videoPlaying !== 1 }"
-      >
-        <source src="" type="video/mp4" size="1080" />
-      </video>
-      <video
-        ref="video2"
-        @ended="ended()"
-        preload="auto"
-        :class="{ hide: videoPlaying !== 2 }"
-      >
-        <source src="" type="video/mp4" size="1080" />
-      </video>
-
-      <video
-        ref="video3"
-        @ended="ended()"
-        preload="auto"
-        :class="{ hide: videoPlaying !== 3 }"
-      >
-        <source src="" type="video/mp4" size="1080" />
-      </video>
-      <video
-        ref="video4"
-        @ended="ended()"
-        preload="auto"
-        :class="{ hide: videoPlaying !== 4 }"
-      >
-        <source src="" type="video/mp4" size="1080" />
-      </video>
-      <video
-        ref="video5"
-        @ended="ended()"
-        preload="auto"
-        :class="{ hide: videoPlaying !== 5 }"
-      >
-        <source src="" type="video/mp4" size="1080" />
-      </video>
-      <video
+      <vue-plyr
         ref="video6"
-        @ended="ended()"
-        preload="auto"
+        v-on:timeupdate="timeupdate6()"
+        :options="{
+          controls: [''],
+          clickToPlay: false,
+          fullscreen: { enabled: false }
+        }"
+        class="full-video"
         :class="{ hide: videoPlaying !== 6 }"
       >
-        <source src="" type="video/mp4" size="1080" />
-      </video>
-    </div>
+        <video preload="auto">
+          <source
+            src="@/assets/videos/006_Video.mp4"
+            type="video/mp4"
+            size="1080"
+          />
+        </video>
+      </vue-plyr>
+      <vue-plyr
+        ref="video5"
+        v-on:ended="ended()"
+        :options="{
+          controls: [''],
+          clickToPlay: false,
+          fullscreen: { enabled: false }
+        }"
+        class="full-video"
+        :class="{ hide: videoPlaying !== 5 }"
+      >
+        <video preload="auto">
+          <source
+            src="@/assets/videos/005_Video.mp4"
+            type="video/mp4"
+            size="1080"
+          />
+        </video>
+      </vue-plyr>
+      <vue-plyr
+        ref="video4"
+        v-on:ended="ended()"
+        :options="{
+          controls: [''],
+          clickToPlay: false,
+          fullscreen: { enabled: false }
+        }"
+        class="full-video"
+        :class="{ hide: videoPlaying !== 4 }"
+      >
+        <video preload="auto">
+          <source
+            src="@/assets/videos/004_Video.mp4"
+            type="video/mp4"
+            size="1080"
+          />
+        </video>
+      </vue-plyr>
 
+      <vue-plyr
+        ref="video3"
+        v-on:ended="ended()"
+        :options="{
+          controls: [''],
+          clickToPlay: false,
+          fullscreen: { enabled: false }
+        }"
+        class="full-video"
+        :class="{ hide: videoPlaying !== 3 }"
+      >
+        <video preload="auto">
+          <source
+            src="@/assets/videos/003_Video.mp4"
+            type="video/mp4"
+            size="1080"
+          />
+        </video>
+      </vue-plyr>
+
+      <vue-plyr
+        ref="video2"
+        v-on:ended="ended()"
+        :options="{
+          controls: [''],
+          clickToPlay: false,
+          fullscreen: { enabled: false }
+        }"
+        class="full-video"
+        :class="{ hide: videoPlaying !== 2 }"
+      >
+        <video preload="auto">
+          <source
+            src="@/assets/videos/002_Video.mp4"
+            type="video/mp4"
+            size="1080"
+          />
+        </video>
+      </vue-plyr>
+
+      <vue-plyr
+        v-on:ended="ended()"
+        v-on:timeupdate="timeupdate()"
+        ref="video1"
+        :options="{
+          clickToPlay: false,
+          controls: [''],
+          fullscreen: { enabled: false }
+        }"
+        class="full-video"
+        :class="{ hide: videoPlaying !== 1 }"
+      >
+        <video preload="auto">
+          <source
+            src="@/assets/videos/001_Video.mp4"
+            type="video/mp4"
+            size="1080"
+          />
+        </video>
+      </vue-plyr>
+    </div>
     <button @click="togglePlayPause()" class="interactive-circle-button">
       <svg
         viewBox="0 0 100 100"
@@ -119,26 +185,21 @@ export default {
     };
   },
   mounted() {
-    this.videoCurrent.src = "videos/00" + this.videoPlaying + "_Video.mp4";
-    this.videoCurrent.load();
     this.videoCurrent.play();
-
-    this.videoNext.src = "videos/00" + (this.videoPlaying + 1) + "_Video.mp4";
-    this.videoNext.load();
+    console.log(this.videoCurrent);
   },
   computed: {
     videoCurrent() {
-      return this.$refs["video" + this.videoPlaying];
+      return this.$refs["video" + this.videoPlaying].player;
     },
     videoNext() {
-      return this.$refs["video" + (this.videoPlaying + 1)];
+      return this.$refs["video" + (this.videoPlaying + 1)].player;
     }
   },
   methods: {
     ended() {
-      this.videoCurrent.pause();
-      this.videoCurrent.removeAttribute("src");
-      this.videoCurrent.load();
+      this.videoCurrent.stop();
+      this.videoCurrent.destroy();
 
       if (this.videoPlaying < 6) {
         this.videoPlaying++;
@@ -158,14 +219,6 @@ export default {
         } else if (this.videoPlaying === 6) {
           this.interaction4 = false;
         }
-
-        if (this.videoPlaying < 6) {
-          this.videoNext.src =
-            "videos/00" + (this.videoPlaying + 1) + "_Video.mp4";
-          this.videoNext.load();
-        }
-      } else if (this.videoPlaying === 6) {
-        console.log("EXPERIENCE ENDED");
       }
     },
 
@@ -174,21 +227,19 @@ export default {
         // console.log("PAUSE");
         // console.log(this.videoPlaying);
         // console.log(this.videoCurrent.paused);
-
+        this.videoCurrent.togglePlay();
         if (this.videoCurrent.paused) {
-          this.pausedVideo = false;
-          this.videoCurrent.play();
-        } else {
           this.pausedVideo = true;
-          this.videoCurrent.pause();
+        } else {
+          this.pausedVideo = false;
         }
       }
     },
     timeupdate() {
       // console.log(this.$refs.video1.player.currentTime);
       if (
-        this.$refs.video1.currentTime >= 46 &&
-        this.$refs.video1.currentTime <= 50.5
+        this.$refs.video1.player.currentTime >= 46 &&
+        this.$refs.video1.player.currentTime <= 50.5
       ) {
         console.log("INTERACCIÓ 1");
         this.interaction1 = true;
@@ -232,26 +283,21 @@ export default {
 }
 
 .video-container {
-  width: 100%;
-  height: 100%;
   position: absolute;
   top: 0;
   left: 0;
   right: 0;
   bottom: 0;
   z-index: -1;
-  transition: opacity 0.2s ease-in-out;
 }
-
-.paused {
-  opacity: 0.15;
-}
-
-video {
+.plyr__video-wrapper video {
+  min-height: 100vh;
   width: 100%;
-  height: 100%;
   object-fit: cover;
-  pointer-events: none;
+}
+
+.video-container {
+  transition: opacity 0.2s ease-in-out;
 }
 
 .interaction1-zone {
@@ -278,6 +324,19 @@ video {
 .interaction1-zone div:nth-child(4) {
   margin-top: 2%;
 }
+
+/*
+video {
+  object-fit: cover;
+  width: 100%;
+  height: 100%;
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  z-index: -1;
+} */
 
 .paused {
   opacity: 0.15;
