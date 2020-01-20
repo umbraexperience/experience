@@ -14,6 +14,13 @@
       </div>
       <div v-else-if="interaction3" class="titol-interaccio">
         INTERACCIÓ 3
+        <button @click="this.scrollToTop" class="button-1">Anar a dalt</button>
+        <button @click="this.scrollToMiddle" class="button-2">
+          Anar al mig
+        </button>
+        <button @click="this.scrollToBottom" class="button-3">
+          Anar a baix
+        </button>
       </div>
       <div v-else-if="interaction4" class="titol-interaccio">
         INTERACCIÓ 4
@@ -39,6 +46,7 @@
     <div class="video-container" :class="{ paused: pausedVideo }">
       <video
         ref="video1"
+        class="video-normal-size"
         @timeupdate="timeupdate()"
         @ended="ended()"
         preload="auto"
@@ -48,6 +56,7 @@
       </video>
       <video
         ref="video2"
+        class="video-normal-size"
         @ended="ended()"
         preload="auto"
         :class="{ hide: videoPlaying !== 2 }"
@@ -57,22 +66,29 @@
 
       <video
         ref="video3"
+        class="video-normal-size"
         @ended="ended()"
         preload="auto"
         :class="{ hide: videoPlaying !== 3 }"
       >
         <source src="" type="video/mp4" size="1080" />
       </video>
-      <video
-        ref="video4"
-        @ended="ended()"
-        preload="auto"
-        :class="{ hide: videoPlaying !== 4 }"
-      >
-        <source src="" type="video/mp4" size="1080" />
-      </video>
+
+      <div class="vertical-scroll-container">
+        <video
+          ref="video4"
+          @timeupdate="timeupdate()"
+          @ended="ended()"
+          preload="auto"
+          :class="{ hide: videoPlaying !== 4 }"
+        >
+          <source src="" type="video/mp4" size="1080" />
+        </video>
+      </div>
+
       <video
         ref="video5"
+        class="video-normal-size"
         @ended="ended()"
         preload="auto"
         :class="{ hide: videoPlaying !== 5 }"
@@ -81,6 +97,7 @@
       </video>
       <video
         ref="video6"
+        class="video-normal-size"
         @ended="ended()"
         preload="auto"
         :class="{ hide: videoPlaying !== 6 }"
@@ -152,6 +169,10 @@ export default {
           this.interaction2 = false;
         } else if (this.videoPlaying === 4) {
           this.interaction3 = true;
+
+          setTimeout(() => {
+            this.scrollToMiddleLoad();
+          });
         } else if (this.videoPlaying === 5) {
           this.interaction3 = false;
           this.interaction4 = true;
@@ -187,6 +208,7 @@ export default {
     timeupdate() {
       // console.log(this.$refs.video1.player.currentTime);
       if (
+        this.videoPlaying === 1 &&
         this.$refs.video1.currentTime >= 46 &&
         this.$refs.video1.currentTime <= 50.5
       ) {
@@ -195,15 +217,26 @@ export default {
       } else {
         this.interaction1 = false;
       }
+
+      if (
+        this.videoPlaying === 4 &&
+        this.$refs.video4.currentTime >= 5 &&
+        this.$refs.video4.currentTime <= 10
+      ) {
+        console.log("VERTICAL");
+      }
     },
+
     timeupdate6() {
       if (
+        this.videoPlaying == 6 &&
         this.$refs.video6.player.currentTime >= 19 &&
         this.$refs.video6.player.currentTime <= 23
       ) {
         console.log("INTERACCIÓ 5");
         this.interaction5 = true;
       } else if (
+        this.videoPlaying == 6 &&
         this.$refs.video6.player.currentTime >= 54 &&
         this.$refs.video6.player.currentTime <= 67
       ) {
@@ -217,6 +250,30 @@ export default {
     },
     mousePosition(soundNum) {
       this.$emit("my-event", soundNum);
+    },
+    scrollToMiddleLoad() {
+      window.scrollTo({
+        top: 800
+      });
+    },
+    scrollToTop() {
+      window.scrollTo({
+        top: 0,
+        behavior: "smooth"
+      });
+    },
+    scrollToMiddle() {
+      window.scrollTo({
+        top: this.$refs.video4.scrollHeight / 3,
+        behavior: "smooth"
+      });
+      console.log(this.$refs.video4.scrollHeight / 3);
+    },
+    scrollToBottom() {
+      window.scrollTo({
+        top: (this.$refs.video4.scrollHeight / 3) * 2,
+        behavior: "smooth"
+      });
     }
   }
 };
@@ -229,6 +286,10 @@ export default {
 
 .hide {
   display: none;
+}
+
+.DEBUG {
+  position: fixed;
 }
 
 .video-container {
@@ -248,10 +309,18 @@ export default {
 }
 
 video {
+  pointer-events: none;
+  width: 100%;
+}
+
+.video-normal-size {
   width: 100%;
   height: 100%;
   object-fit: cover;
-  pointer-events: none;
+}
+
+.vertical-scroll-container {
+  height: 100%;
 }
 
 .interaction1-zone {
@@ -288,7 +357,7 @@ video {
   border: none;
   margin: 0;
   padding: 0px;
-  position: absolute;
+  position: fixed;
   bottom: 1rem;
   left: 0;
   right: 0;
