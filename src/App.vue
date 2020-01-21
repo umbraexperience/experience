@@ -388,6 +388,14 @@ video:focus {
   color: transparent;
 }
 
+video::-internal-media-controls-overlay-cast-button {
+  display: none;
+}
+
+video {
+  pointer-events: none;
+}
+
 .animation2 .letter,
 .animation .letter,
 .animation3 .letter {

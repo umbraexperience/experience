@@ -43,6 +43,12 @@
       <div @mouseover="mousePosition(4)"></div>
     </div>
 
+    <div class="interaction3-zone" v-if="interaction3">
+      <div @mouseover="this.scrollToTop">ZONE 1 UP</div>
+      <!-- <div @mouseover="this.scrollToMiddle">ZONE 2 MIDDLE</div> -->
+      <div @mouseover="this.scrollToBottom">ZONE 3 DOWN</div>
+    </div>
+
     <div class="video-container" :class="{ paused: pausedVideo }">
       <video
         ref="video1"
@@ -168,13 +174,10 @@ export default {
         } else if (this.videoPlaying === 3) {
           this.interaction2 = false;
         } else if (this.videoPlaying === 4) {
-          this.interaction3 = true;
-
           setTimeout(() => {
             this.scrollToMiddleLoad();
           });
         } else if (this.videoPlaying === 5) {
-          this.interaction3 = false;
           this.interaction4 = true;
         } else if (this.videoPlaying === 6) {
           this.interaction4 = false;
@@ -220,10 +223,12 @@ export default {
 
       if (
         this.videoPlaying === 4 &&
-        this.$refs.video4.currentTime >= 5 &&
-        this.$refs.video4.currentTime <= 10
+        this.$refs.video4.currentTime >= 2 &&
+        this.$refs.video4.currentTime <= 11
       ) {
-        console.log("VERTICAL");
+        this.interaction3 = true;
+      } else {
+        this.interaction3 = false;
       }
     },
 
@@ -257,22 +262,50 @@ export default {
       });
     },
     scrollToTop() {
+      const scrollElement =
+        window.document.scrollingElement ||
+        window.document.body ||
+        window.document.documentElement;
+      this.$anime({
+        targets: scrollElement,
+        scrollTop: 0,
+        duration: 2300,
+        easing: "easeInOutQuad"
+      });
+    },
+    /*     scrollToTop() {
       window.scrollTo({
         top: 0,
         behavior: "smooth"
       });
-    },
+    }, */
     scrollToMiddle() {
-      window.scrollTo({
-        top: this.$refs.video4.scrollHeight / 3,
-        behavior: "smooth"
+      const scrollElement =
+        window.document.scrollingElement ||
+        window.document.body ||
+        window.document.documentElement;
+      this.$anime({
+        targets: scrollElement,
+        scrollTop:
+          window.document.scrollingElement.scrollHeight / 3 ||
+          window.document.documentElement.scrollHeight / 3,
+        duration: 2300,
+        easing: "easeInOutQuad"
       });
-      console.log(this.$refs.video4.scrollHeight / 3);
     },
+
     scrollToBottom() {
-      window.scrollTo({
-        top: (this.$refs.video4.scrollHeight / 3) * 2,
-        behavior: "smooth"
+      const scrollElement =
+        window.document.scrollingElement ||
+        window.document.body ||
+        window.document.documentElement;
+      this.$anime({
+        targets: scrollElement,
+        scrollTop:
+          (window.document.scrollingElement.scrollHeight * 2) / 3 ||
+          (window.document.documentElement.scrollHeight * 2) / 3,
+        duration: 2300,
+        easing: "easeInOutQuad"
       });
     }
   }
@@ -309,7 +342,6 @@ export default {
 }
 
 video {
-  pointer-events: none;
   width: 100%;
 }
 
@@ -346,6 +378,24 @@ video {
 .interaction1-zone div:nth-child(3),
 .interaction1-zone div:nth-child(4) {
   margin-top: 2%;
+}
+
+.interaction3-zone {
+  position: fixed;
+  left: 0;
+  right: 0;
+  top: 0;
+  bottom: 0;
+  min-height: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+
+.interaction3-zone div {
+  width: 20%;
+  height: 25%;
+  background-color: red;
 }
 
 .paused {
