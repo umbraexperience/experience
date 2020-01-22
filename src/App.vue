@@ -26,7 +26,14 @@
         <div class="bottom-input" v-if="state.screen === 'register'">
           <div class="input-group">
             <div class="input-name">
-              <input type="text" placeholder="Name" v-model="name" />
+              <input
+                type="text"
+                placeholder="Name"
+                v-model="name"
+                minlength="2"
+                maxlength="15"
+                required
+              />
             </div>
             <div class="input-year">
               <input
@@ -35,6 +42,7 @@
                 max="2020"
                 placeholder="Year of birth"
                 v-model="year_birth"
+                required
               />
             </div>
 
@@ -112,7 +120,12 @@ export default {
     this.soundHome = new Howl({
       src: ["sounds/begining_web.webm", "sounds/begining_web.mp3"],
       preload: true,
-      loop: true
+      loop: true,
+      onplayerror: function() {
+        this.soundHome.once("unlock", function() {
+          this.soundHome.play();
+        });
+      }
     });
     this.soundLoading = new Howl({
       src: ["sounds/loading_experience.webm", "sounds/loading_experience.mp3"],

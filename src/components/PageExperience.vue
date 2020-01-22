@@ -80,17 +80,15 @@
         <source src="" type="video/mp4" size="1080" />
       </video>
 
-      <div class="vertical-scroll-container">
-        <video
-          ref="video4"
-          @timeupdate="timeupdate()"
-          @ended="ended()"
-          preload="auto"
-          :class="{ hide: videoPlaying !== 4 }"
-        >
-          <source src="" type="video/mp4" size="1080" />
-        </video>
-      </div>
+      <video
+        ref="video4"
+        @timeupdate="timeupdate()"
+        @ended="ended()"
+        preload="auto"
+        :class="{ hide: videoPlaying !== 4 }"
+      >
+        <source src="" type="video/mp4" size="1080" />
+      </video>
 
       <video
         ref="video5"
@@ -125,6 +123,8 @@
 </template>
 
 <script>
+var isScrolling = false;
+
 export default {
   name: "PageExperience",
   data: function() {
@@ -175,7 +175,7 @@ export default {
           this.interaction2 = false;
         } else if (this.videoPlaying === 4) {
           setTimeout(() => {
-            this.scrollToMiddleLoad();
+            this.scrollToMiddle();
           });
         } else if (this.videoPlaying === 5) {
           this.interaction4 = true;
@@ -223,8 +223,8 @@ export default {
 
       if (
         this.videoPlaying === 4 &&
-        this.$refs.video4.currentTime >= 2 &&
-        this.$refs.video4.currentTime <= 11
+        this.$refs.video4.currentTime >= 1.2 &&
+        this.$refs.video4.currentTime <= 10
       ) {
         this.interaction3 = true;
       } else {
@@ -266,30 +266,32 @@ export default {
         window.document.scrollingElement ||
         window.document.body ||
         window.document.documentElement;
-      this.$anime({
-        targets: scrollElement,
-        scrollTop: 0,
-        duration: 2300,
-        easing: "easeInOutQuad"
-      });
+
+      if (isScrolling === false) {
+        isScrolling = true;
+        this.$anime({
+          targets: scrollElement,
+          scrollTop: 0,
+          duration: 2550,
+          easing: "easeInOutQuad"
+        }).finished.then(function() {
+          isScrolling = false;
+        });
+      }
     },
-    /*     scrollToTop() {
-      window.scrollTo({
-        top: 0,
-        behavior: "smooth"
-      });
-    }, */
+
     scrollToMiddle() {
       const scrollElement =
         window.document.scrollingElement ||
         window.document.body ||
         window.document.documentElement;
+
       this.$anime({
         targets: scrollElement,
         scrollTop:
           window.document.scrollingElement.scrollHeight / 3 ||
           window.document.documentElement.scrollHeight / 3,
-        duration: 2300,
+        duration: 1,
         easing: "easeInOutQuad"
       });
     },
@@ -299,14 +301,20 @@ export default {
         window.document.scrollingElement ||
         window.document.body ||
         window.document.documentElement;
-      this.$anime({
-        targets: scrollElement,
-        scrollTop:
-          (window.document.scrollingElement.scrollHeight * 2) / 3 ||
-          (window.document.documentElement.scrollHeight * 2) / 3,
-        duration: 2300,
-        easing: "easeInOutQuad"
-      });
+
+      if (isScrolling === false) {
+        isScrolling = true;
+        this.$anime({
+          targets: scrollElement,
+          scrollTop:
+            (window.document.scrollingElement.scrollHeight * 2) / 3 ||
+            (window.document.documentElement.scrollHeight * 2) / 3,
+          duration: 2550,
+          easing: "easeInOutQuad"
+        }).finished.then(function() {
+          isScrolling = false;
+        });
+      }
     }
   }
 };
@@ -351,10 +359,6 @@ video {
   object-fit: cover;
 }
 
-.vertical-scroll-container {
-  height: 100%;
-}
-
 .interaction1-zone {
   position: absolute;
   left: 0;
@@ -393,9 +397,9 @@ video {
 }
 
 .interaction3-zone div {
-  width: 20%;
+  width: 100%;
   height: 25%;
-  background-color: red;
+  /* background-color: red; */
 }
 
 .paused {
