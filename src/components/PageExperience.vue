@@ -43,6 +43,13 @@
       <div @mouseover="mousePosition(4)"></div>
     </div>
 
+    <div class="interaction2-zone" v-if="interaction2">
+      <div
+        @mouseover="showVideo2Overlay = true"
+        @mouseout="showVideo2Overlay = false"
+      ></div>
+    </div>
+
     <div class="interaction3-zone" v-if="interaction3">
       <div @mouseover="this.scrollToTop">ZONE 1 UP</div>
       <!-- <div @mouseover="this.scrollToMiddle">ZONE 2 MIDDLE</div> -->
@@ -59,10 +66,31 @@
         :class="{ hide: videoPlaying !== 1 }"
       >
         <source src="" type="video/mp4" size="1080" />
+        <!--  <track
+          label="English"
+          kind="subtitles"
+          srclang="en"
+          src="captions/video1.vtt"
+          default
+        /> -->
       </video>
+
+      <transition name="fade-overlay">
+        <video
+          ref="video2_2"
+          class="video-normal-size video2 video2_2"
+          preload="auto"
+          muted
+          :class="{ hide: videoPlaying !== 2 }"
+          v-show="showVideo2Overlay === true"
+        >
+          <source src="" type="video/mp4" size="1080" />
+        </video>
+      </transition>
+
       <video
         ref="video2"
-        class="video-normal-size"
+        class="video-normal-size video2"
         @ended="ended()"
         preload="auto"
         :class="{ hide: videoPlaying !== 2 }"
@@ -134,6 +162,7 @@ export default {
       seeked: "",
       interaction1: false,
       interaction2: false,
+      showVideo2Overlay: false,
       interaction3: false,
       interaction4: false,
       interaction5: false,
@@ -148,6 +177,8 @@ export default {
 
     this.videoNext.src = "videos/00" + (this.videoPlaying + 1) + "_Video.mp4";
     this.videoNext.load();
+
+    this.video2Overlay.src = "videos/002_Video_2.mp4";
   },
   computed: {
     videoCurrent() {
@@ -155,6 +186,9 @@ export default {
     },
     videoNext() {
       return this.$refs["video" + (this.videoPlaying + 1)];
+    },
+    video2Overlay() {
+      return this.$refs.video2_2;
     }
   },
   methods: {
@@ -163,11 +197,18 @@ export default {
       this.videoCurrent.removeAttribute("src");
       this.videoCurrent.load();
 
+      if (this.videoPlaying === 2) {
+        this.video2Overlay.removeAttribute("src");
+        this.video2Overlay.load();
+      }
+
       if (this.videoPlaying < 6) {
         this.videoPlaying++;
         this.seeked = this.videoCurrent.buffered;
-
         this.videoCurrent.play();
+        if (this.videoPlaying === 2) {
+          this.video2Overlay.play();
+        }
 
         if (this.videoPlaying === 2) {
           this.interaction2 = true;
@@ -353,10 +394,33 @@ video {
   width: 100%;
 }
 
+video::cue {
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  font-size: 1.4rem;
+  margin-bottom: 3rem;
+  background-color: transparent;
+}
+
 .video-normal-size {
   width: 100%;
   height: 100%;
   object-fit: cover;
+}
+
+.video2 {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  z-index: 1;
+}
+
+.video2_2 {
+  z-index: 2;
 }
 
 .interaction1-zone {
@@ -382,6 +446,25 @@ video {
 .interaction1-zone div:nth-child(3),
 .interaction1-zone div:nth-child(4) {
   margin-top: 2%;
+}
+
+.interaction2-zone {
+  position: fixed;
+  left: 0;
+  right: 0;
+  top: 0;
+  bottom: 0;
+  min-height: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+}
+
+.interaction2-zone div {
+  margin-right: 5%;
+  width: 30%;
+  height: 55%;
+  /* background-color: red; */
 }
 
 .interaction3-zone {
@@ -434,5 +517,14 @@ video {
 }
 .interactive-circle-button .circle:hover {
   fill-opacity: 1;
+}
+
+.fade-overlay-enter-active,
+.fade-overlay-leave-active {
+  transition: opacity 0.6s;
+}
+.fade-overlay-enter,
+.fade-overlay-leave-to {
+  opacity: 0;
 }
 </style>
