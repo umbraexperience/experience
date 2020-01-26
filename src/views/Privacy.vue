@@ -87,9 +87,8 @@ p {
   font-family: "Tiempos Headline Regular", Times, serif;
   font-size: 1.3rem;
   text-align: left;
-  line-height: 1, 5rem;
-  filter: blur(0.05rem);
-  color: #f5f9fb;
+  line-height: 1.2rem;
+  filter: blur(0.04rem);
 }
 
 .title {

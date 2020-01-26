@@ -159,6 +159,7 @@ export default {
   width: 100%; /* full width */
   height: 380px; /* height of carousel */
   margin-right: 10px;
+  will-change: transform;
 }
 .flickity {
   margin-top: 5rem;
@@ -182,9 +183,10 @@ export default {
 }
 
 .apartat {
-  font-size: 4.7rem;
+  color: #2e2e31;
+  font-size: 4.2rem;
   font-weight: 500;
-  opacity: 40%;
+  opacity: 70%;
   filter: blur(0.17rem);
   text-align: left;
   max-width: 30rem;
@@ -203,9 +205,10 @@ export default {
 }
 
 .apartat2 {
-  font-size: 4.7rem;
+  color: #2e2e31;
+  font-size: 4.2rem;
   font-weight: 500;
-  opacity: 40%;
+  opacity: 70%;
   filter: blur(0.17rem);
   text-align: right;
   padding-left: 1rem;
@@ -231,14 +234,12 @@ export default {
     font-size: 1.75rem;
     filter: blur(0.1rem);
     margin-left: 2rem;
-    opacity: 60%;
   }
 
   .apartat2 {
     font-size: 1.75rem;
     filter: blur(0.1rem);
     margin-right: 2rem;
-    opacity: 60%;
   }
 
   .descripcio {
