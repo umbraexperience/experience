@@ -60,9 +60,6 @@ export default {
 </script>
 
 <style scoped>
-* {
-  border: 2px solid red;
-}
 .privacy {
   height: 100%;
   display: flex;
@@ -114,9 +111,6 @@ p {
 }
 
 @media screen and (max-width: 399px) {
-  * {
-    border: 2px solid greenyellow;
-  }
   .title {
     font-size: 2.2rem;
     margin-top: 3.1rem;

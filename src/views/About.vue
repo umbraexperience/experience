@@ -4,7 +4,7 @@
     <flickity class="flickity" ref="flickity" :options="flickityOptions">
       <div class="carousel-cell">
         <div class="contingut">
-          <div class="cell-title apartat">Quienes somos</div>
+          <div class="apartat">Quienes somos</div>
           <div class="descripcio">
             <p>
               Umbra es un proyecto de final de grado formado por siete
@@ -17,7 +17,7 @@
       </div>
       <div class="carousel-cell">
         <div class="contingut">
-          <div class="cell-title apartat2">El proyecto</div>
+          <div class="apartat2">El proyecto</div>
           <div class="descripcio2">
             <p>
               Umbra es un proyecto transmedia formado por una narración online
@@ -29,7 +29,7 @@
       </div>
       <div class="carousel-cell">
         <div class="contingut">
-          <div class="cell-title apartat">La narrativa</div>
+          <div class="apartat">La narrativa</div>
           <div class="descripcio">
             <p>
               La narración online trata la temática de los datos de una forma
@@ -44,7 +44,7 @@
       </div>
       <div class="carousel-cell">
         <div class="contingut">
-          <div class="cell-title apartat2">Los datos</div>
+          <div class="apartat2">Los datos</div>
           <div class="descripcio2">
             <p>
               Para calcular el valor de los tus datos, hemos tenido en cuenta
@@ -89,12 +89,10 @@ export default {
 
 <style>
 .flickity-page-dots {
+  bottom: 11.5rem;
   transform: rotate(90deg);
-  position: absolute;
-  right: 0;
-  top: 0;
+  margin-left: 35rem;
 }
-
 /* white circles */
 .flickity-page-dots .dot {
   width: 11px;
@@ -116,13 +114,18 @@ export default {
     margin-left: 0rem;
   }
 }
+
+@media screen and (max-width: 650px) {
+  .flickity-page-dots {
+    transform: rotate(0deg);
+    margin-left: 0rem;
+  }
+}
 </style>
 
 <style scoped>
 .about {
-  font-family: serif;
   align-items: center;
-  font-family: "Tiempos Headline Light", Times, serif;
   margin: 0 auto;
   flex-direction: column;
   justify-content: center;
@@ -138,7 +141,6 @@ export default {
 }
 
 .title {
-  font-family: "Tiempos Headline Regular", Times, serif;
   font-size: 3.15rem;
   font-weight: 500;
   text-align: left;
@@ -155,6 +157,7 @@ export default {
 
 .carousel-cell {
   width: 100%; /* full width */
+  height: 380px; /* height of carousel */
   margin-right: 10px;
 }
 .flickity {
@@ -177,12 +180,16 @@ export default {
   padding-left: 1rem;
   padding-right: 1rem;
 }
-.apartat {
-  text-align: left;
-}
 
-.apartat2 {
-  text-align: right;
+.apartat {
+  font-size: 4.7rem;
+  font-weight: 500;
+  opacity: 40%;
+  filter: blur(0.17rem);
+  text-align: left;
+  max-width: 30rem;
+  padding-left: 1rem;
+  padding-right: 1rem;
 }
 
 .descripcio {
@@ -191,6 +198,16 @@ export default {
   margin-top: -3.2rem;
   font-size: 1.15rem;
   filter: blur(0.04rem);
+  padding-left: 1rem;
+  padding-right: 1rem;
+}
+
+.apartat2 {
+  font-size: 4.7rem;
+  font-weight: 500;
+  opacity: 40%;
+  filter: blur(0.17rem);
+  text-align: right;
   padding-left: 1rem;
   padding-right: 1rem;
 }
@@ -214,12 +231,14 @@ export default {
     font-size: 1.75rem;
     filter: blur(0.1rem);
     margin-left: 2rem;
+    opacity: 60%;
   }
 
   .apartat2 {
     font-size: 1.75rem;
     filter: blur(0.1rem);
     margin-right: 2rem;
+    opacity: 60%;
   }
 
   .descripcio {
@@ -234,11 +253,6 @@ export default {
     padding-left: 2rem;
   }
 
-  .flickity-page-dots {
-    bottom: -3rem;
-    transform: rotate(0deg);
-    margin-left: 0rem;
-  }
   .carousel-cell {
     height: 390px;
   }
