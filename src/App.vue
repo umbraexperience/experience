@@ -51,7 +51,7 @@ body {
   font-family: "Tiempos Headline";
   src: local("Tiempos Headline Medium"),
     url("./assets/fonts/TiemposHeadline-Medium.woff2") format("woff2");
-  font-weight: 400;
+  font-weight: 500;
 }
 
 .font-light {

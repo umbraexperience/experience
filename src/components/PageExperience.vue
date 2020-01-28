@@ -56,6 +56,11 @@
       <div @mouseover="this.scrollToBottom">ZONE 3 DOWN</div>
     </div>
 
+    <div class="interaction4-zone" v-if="interaction4">
+      <div @mouseover="scrollToLeft()">LEFT</div>
+      <div @mouseover="scrollToRigth()">RIGHT</div>
+    </div>
+
     <div class="video-container" :class="{ paused: pausedVideo }">
       <video
         ref="video1"
@@ -66,13 +71,13 @@
         :class="{ hide: videoPlaying !== 1 }"
       >
         <source src="" type="video/mp4" size="1080" />
-        <!--  <track
+        <track
           label="English"
           kind="subtitles"
           srclang="en"
           src="captions/video1.vtt"
           default
-        /> -->
+        />
       </video>
 
       <transition name="fade-overlay">
@@ -120,7 +125,7 @@
 
       <video
         ref="video5"
-        class="video-normal-size"
+        class="video-pano"
         @ended="ended()"
         preload="auto"
         :class="{ hide: videoPlaying !== 5 }"
@@ -220,6 +225,9 @@ export default {
           });
         } else if (this.videoPlaying === 5) {
           this.interaction4 = true;
+          setTimeout(() => {
+            this.scrollToCenter();
+          });
         } else if (this.videoPlaying === 6) {
           this.interaction4 = false;
         }
@@ -356,6 +364,51 @@ export default {
           isScrolling = false;
         });
       }
+    },
+    scrollToLeft() {
+      const scrollElement =
+        window.document.scrollingElement ||
+        window.document.body ||
+        window.document.documentElement;
+
+      console.log(scrollElement.scrollWidth);
+
+      this.$anime({
+        targets: scrollElement,
+        scrollLeft: (-scrollElement.scrollWidth * 2) / 3,
+        duration: 5500,
+        easing: "easeInOutQuad"
+      });
+    },
+    scrollToCenter() {
+      const scrollElement =
+        window.document.scrollingElement ||
+        window.document.body ||
+        window.document.documentElement;
+
+      console.log(scrollElement.scrollWidth);
+
+      this.$anime({
+        targets: scrollElement,
+        scrollLeft: scrollElement.scrollWidth / 4,
+        duration: 1,
+        easing: "easeInOutQuad"
+      });
+    },
+    scrollToRigth() {
+      const scrollElement =
+        window.document.scrollingElement ||
+        window.document.body ||
+        window.document.documentElement;
+
+      console.log(scrollElement.scrollWidth);
+
+      this.$anime({
+        targets: scrollElement,
+        scrollLeft: (scrollElement.scrollWidth * 2) / 3,
+        duration: 5500,
+        easing: "easeInOutQuad"
+      });
     }
   }
 };
@@ -395,19 +448,25 @@ video {
 }
 
 video::cue {
-  position: fixed;
-  bottom: 0;
-  left: 0;
-  right: 0;
-  font-size: 1.4rem;
-  margin-bottom: 3rem;
+  font-size: 1.3rem;
   background-color: transparent;
+  transform: translateY(200px);
+  line-height: 8;
+  font-family: "Tiempos Headline", Times, serif;
+  font-weight: 400;
+  color: #b4b4b4;
+  filter: blur(0.08rem);
 }
 
 .video-normal-size {
   width: 100%;
   height: 100%;
   object-fit: cover;
+}
+
+.video-pano {
+  height: 100%;
+  width: auto;
 }
 
 .video2 {
@@ -467,7 +526,8 @@ video::cue {
   /* background-color: red; */
 }
 
-.interaction3-zone {
+.interaction3-zone,
+.interaction4-zone {
   position: fixed;
   left: 0;
   right: 0;
@@ -475,14 +535,23 @@ video::cue {
   bottom: 0;
   min-height: 100%;
   display: flex;
-  flex-direction: column;
   justify-content: space-between;
+}
+
+.interaction3-zone {
+  flex-direction: column;
 }
 
 .interaction3-zone div {
   width: 100%;
   height: 25%;
   /* background-color: red; */
+}
+
+.interaction4-zone div {
+  width: 25%;
+  height: 100%;
+  background-color: red;
 }
 
 .paused {

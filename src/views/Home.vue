@@ -296,6 +296,12 @@ export default {
 </script>
 
 <style>
+html,
+body,
+.home {
+  height: 100%;
+  overflow: hidden;
+}
 .popup-orientation {
   display: none;
   position: absolute;

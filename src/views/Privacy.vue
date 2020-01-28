@@ -1,11 +1,11 @@
 <template>
   <div class="privacy">
     <div class="container">
-      <h1 class="title">
+      <h1 class="title font-regular">
         Terms & Privacy
       </h1>
       <div class="textspace">
-        <div class="text">
+        <div class="text font-regular">
           <p>
             La presente Política de Privacidad establece los términos en que
             umbra usa y protege la información que es proporcionada por sus
@@ -79,12 +79,11 @@ p {
 }
 
 .text {
-  max-height: 55vh;
+  max-height: 51vh;
   overflow-y: auto;
   margin-left: 10%;
   margin-right: 10%;
 
-  font-family: "Tiempos Headline Regular", Times, serif;
   font-size: 1.3rem;
   text-align: left;
   line-height: 1.2rem;
@@ -92,7 +91,6 @@ p {
 }
 
 .title {
-  font-family: "Tiempos Headline Regular", Times, serif;
   font-size: 3.15rem;
   font-weight: 500;
   text-align: left !important;
