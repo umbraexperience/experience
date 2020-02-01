@@ -1,112 +1,78 @@
 <template>
   <div>
     <div class="container">
-      <div class="espaivideo">
-        <video
-          width="100%"
-          height="auto"
-          autoplay
-          loop
-          preload="auto"
-          autobuffer
-          muted
-        >
+      <div class="video-container">
+        <video autoplay loop preload="auto" autobuffer muted>
           <source src="/videos/worldend.mp4" type="video/mp4" />
         </video>
       </div>
-      <div class="container2">
-        <div class="grid-container">
-          <div class="informacio">Santi Cros,</div>
-          <div class="informacio">22 años,</div>
-          <div class="informacio">Barcelona</div>
-        </div>
-        <div class="flex-container">
-          <div class="preu">200.500€</div>
-        </div>
+      <div class="text-container">
+        <p class="font-light">
+          <span><slot name="name"></slot>,</span>
+          <span><slot name="age"></slot> años,</span>
+          <span><slot name="city"></slot></span>
+        </p>
+        <p class="price font-medium"><slot name="price"></slot></p>
       </div>
     </div>
   </div>
 </template>
 
 <script>
-export default {};
+export default {
+  data() {
+    return {};
+  }
+};
 </script>
 
 <style scoped>
-html,
-body {
-  max-width: 100%;
-}
-body {
-  background-color: #000000;
-}
-body * {
-  color: #b4b4b4;
-}
-
 * {
+  /* border: 2px solid red; */
 }
-
-video::-internal-media-controls-overlay-cast-button {
-  display: none;
+video {
+  object-fit: cover;
+  height: 75%;
+  max-width: 100%;
+  margin-bottom: 1rem;
 }
-
-#app {
-  font-family: serif;
-  height: 100%;
-  font-family: "Tiempos Headline Light", Times, serif;
-  transition: filter 2s ease-in-out;
+.container {
   display: flex;
   flex-direction: column;
+}
+
+.video-container {
+  display: flex;
   justify-content: center;
   align-items: center;
-  margin: auto;
-  position: absolute;
-  top: 0;
-  left: 0;
-  bottom: 0;
-  right: 0;
+  height: 50vh;
+  max-width: 100vw;
 }
 
-.container {
-  margin-top: -5rem;
-}
-
-.espaivideo {
-  margin-top: -2rem;
-  width: 100%;
-  height: auto;
-}
-
-.grid-container {
-  text-align: center;
-  filter: blur(0.07rem);
+.text-container {
   font-size: 1.3rem;
-  display: flex;
-  grid-template-columns: repeat(3, 1fr);
-  margin-top: -6rem;
-  justify-content: center !important;
+  filter: blur(0.06rem);
 }
 
-.flex-container {
-  text-align: center;
-  filter: blur(0.07rem);
-  display: flex;
-  margin-top: 1rem;
-  justify-content: center;
-  font-size: 1.8rem;
-  font-weight: 900;
-  font-family: "Tiempos Headline Light", Times, serif;
+.text-container .price {
+  font-size: 2.4rem;
 }
 
-.informacio {
-  padding-left: 0.3rem;
-}
-/*HOLA SANTI, AQUI VOLIA FER ALLO QUE SEMPRE FEM AL FIGMA DE POSSAR-LI UN COLOR DE FONS AMB BLUR, PERÒ NO HE SIGUT CAPAÇ XD */
-
-@media screen and (max-width: 750px) and (min-width: 300px) {
-  .grid-container {
-    margin-top: 0rem;
+@media screen and (min-width: 900px) {
+  .video-container {
+    height: 100vh;
   }
+  .text-container {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    margin-bottom: 1.5rem;
+  }
+}
+
+.text-container p {
+  margin: 0;
+  margin-bottom: 0.3rem;
 }
 </style>

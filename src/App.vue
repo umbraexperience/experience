@@ -92,9 +92,6 @@ body {
   margin: 0 auto;
 }
 
-#nav a {
-}
-
 #nav a.router-link-exact-active {
   color: white;
 }

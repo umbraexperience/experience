@@ -14,12 +14,18 @@
         ></PageLoading>
         <PageExperience
           ref="experience"
-          @my-event="playInteractionSound"
+          @my-event="playInteractionSound()"
+          @experience-ended="endExperience()"
           v-else-if="state.screen === 'experience'"
         ></PageExperience>
-        <PageExperienceEnd
-          v-else-if="state.screen === 'experienceEnd'"
-        ></PageExperienceEnd>
+        <PageExperienceEnd v-else-if="state.screen === 'experienceEnd'">
+          <template v-slot:name> {{ name }}</template>
+          <template v-slot:age>
+            {{ new Date().getFullYear() - 1 - year_birth }}
+          </template>
+          <template v-slot:city> {{ city }}</template>
+          <template v-slot:price>{{ (85 - 22) * 5000 }} €</template>
+        </PageExperienceEnd>
       </transition>
       <transition name="fade" appear>
         <div class="bottom-input" v-if="state.screen === 'register'">
@@ -96,10 +102,11 @@ export default {
       name: "Santi",
       year_birth: "1997",
       language: "EN",
-      state: { screen: "experienceEnd" },
+      state: { screen: "home" },
       soundHome: "",
       soundLoading: "",
-      holdSound: ""
+      holdSound: "",
+      city: ""
     };
   },
   components: { PageHome, PageLoading, PageExperience, PageExperienceEnd },
@@ -156,6 +163,8 @@ export default {
     this.soundHome.play();
     this.soundHome.fade(0, 1, 2000);
 
+    this.getLocation();
+
     // Change global volume.
     // Howler.volume(0.5);
   },
@@ -189,6 +198,15 @@ export default {
         }, 7000);
       }
     },
+    async getLocation() {
+      try {
+        const response = await this.$axios.get("https://freegeoip.app/json/");
+
+        this.city = response.data.city;
+      } catch (error) {
+        console.error(error);
+      }
+    },
     startHandler() {
       // console.log("started click");
     },
@@ -220,6 +238,9 @@ export default {
         // console.log("PARENT INTERACTION" + soundNum);
         this.soundEmpty4.play();
       }
+    },
+    endExperience() {
+      this.state.screen = "experienceEnd";
     },
     filmgrain() {
       var viewWidth,

@@ -249,6 +249,7 @@ export default {
         }
       } else if (this.videoPlaying === 6) {
         // console.log("EXPERIENCE ENDED");
+        this.$emit("experience-ended");
       }
     },
 
@@ -459,13 +460,14 @@ video {
 
 video::cue {
   font-size: 1.3rem;
-  background-color: transparent;
-  transform: translateY(200px);
-  /*line-height: 8; */
+  background-color: rgba(0, 0, 0, 0) !important;
   font-family: "Tiempos Headline", Times, serif;
   font-weight: 400;
   color: #b4b4b4;
-  filter: blur(0.08rem);
+}
+
+video::-webkit-media-text-track-display-backdrop {
+  background-color: rgba(0, 0, 0, 0) !important;
 }
 
 /* video::cue {
