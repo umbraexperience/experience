@@ -13,6 +13,7 @@ const routes = [
   {
     path: "/about",
     name: "about",
+    meta: { showNav: true },
     // route level code-splitting
     // this generates a separate chunk (about.[hash].js) for this route
     // which is lazy-loaded when the route is visited.
@@ -22,6 +23,7 @@ const routes = [
   {
     path: "/credits",
     name: "credits",
+    meta: { showNav: true },
     // route level code-splitting
     // this generates a separate chunk (about.[hash].js) for this route
     // which is lazy-loaded when the route is visited.
@@ -31,6 +33,7 @@ const routes = [
   {
     path: "/privacy",
     name: "privacy",
+    meta: { showNav: true },
     // route level code-splitting
     // this generates a separate chunk (about.[hash].js) for this route
     // which is lazy-loaded when the route is visited.

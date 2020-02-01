@@ -2,7 +2,9 @@
   <div class="credits">
     <div class="flex-container">
       <div v-for="member in team" :key="member.id" class="person">
-        <img src="@/assets/aniol.png" class="foto" />
+        <div class="photo">
+          <img src="@/assets/aniol.png" />
+        </div>
         <h2 class="name font-medium">{{ member.name }}</h2>
         <h2 class="role font-medium">{{ member.role }}</h2>
       </div>
@@ -32,13 +34,13 @@ export default {
   data() {
     return {
       team: [
-        { id: 0, name: "Marc Vila", role: "Developer", img: "" },
+        { id: 0, name: "Marc Vila", role: "VFX & 3D", img: "" },
         { id: 1, name: "Santi Cros", role: "Developer", img: "" },
-        { id: 2, name: "Abel Martínez", role: "Developer", img: "" },
+        { id: 2, name: "Abel Martínez", role: "VFX & 3D", img: "" },
         { id: 3, name: "Adrià Crehuet", role: "Developer", img: "" },
-        { id: 4, name: "Afra Ramió", role: "Developer", img: "" },
-        { id: 5, name: "Aniol Maeso", role: "Developer", img: "" },
-        { id: 6, name: "Marta Gallego", role: "Developer", img: "" }
+        { id: 4, name: "Afra Ramió", role: "Sound", img: "" },
+        { id: 5, name: "Aniol Maeso", role: "Video", img: "" },
+        { id: 6, name: "Marta Gallego", role: "Design", img: "" }
       ],
 
       mecenes: [
@@ -82,6 +84,7 @@ export default {
 }
 .credits {
   height: 100%;
+  overflow-y: auto;
 }
 
 .flex-container::after {
@@ -180,6 +183,12 @@ h1 {
 .person {
   width: 100%;
   margin-top: 8rem;
+}
+
+.person .photo {
+  width: 250px;
+  height: 300px;
+  margin: 0 auto;
 }
 
 .person .name {

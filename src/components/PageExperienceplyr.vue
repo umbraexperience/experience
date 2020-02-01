@@ -186,7 +186,7 @@ export default {
   },
   mounted() {
     this.videoCurrent.play();
-    console.log(this.videoCurrent);
+    // console.log(this.videoCurrent);
   },
   computed: {
     videoCurrent() {
@@ -241,7 +241,7 @@ export default {
         this.$refs.video1.player.currentTime >= 46 &&
         this.$refs.video1.player.currentTime <= 50.5
       ) {
-        console.log("INTERACCIÓ 1");
+        // console.log("INTERACCIÓ 1");
         this.interaction1 = true;
       } else {
         this.interaction1 = false;
@@ -252,13 +252,13 @@ export default {
         this.$refs.video6.player.currentTime >= 19 &&
         this.$refs.video6.player.currentTime <= 23
       ) {
-        console.log("INTERACCIÓ 5");
+        // console.log("INTERACCIÓ 5");
         this.interaction5 = true;
       } else if (
         this.$refs.video6.player.currentTime >= 54 &&
         this.$refs.video6.player.currentTime <= 67
       ) {
-        console.log("INTERACCIÓ 6");
+        // console.log("INTERACCIÓ 6");
         this.interaction5 = false;
         this.interaction6 = true;
       } else {

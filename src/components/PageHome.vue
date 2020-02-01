@@ -46,7 +46,7 @@
 export default {
   name: "PageHome",
   mounted() {
-    console.log(this.$parent.state.screen);
+    // console.log(this.$parent.state.screen);
 
     this.$refs.element2.innerHTML = this.$refs.element2.textContent.replace(
       /\S/g,

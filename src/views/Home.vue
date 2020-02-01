@@ -17,6 +17,9 @@
           @my-event="playInteractionSound"
           v-else-if="state.screen === 'experience'"
         ></PageExperience>
+        <PageExperienceEnd
+          v-else-if="state.screen === 'experienceEnd'"
+        ></PageExperienceEnd>
       </transition>
       <transition name="fade" appear>
         <div class="bottom-input" v-if="state.screen === 'register'">
@@ -80,6 +83,7 @@ import { Howl, Howler } from "howler";
 import PageHome from "@/components/PageHome";
 import PageLoading from "@/components/PageLoading";
 import PageExperience from "@/components/PageExperience";
+import PageExperienceEnd from "@/components/PageExperienceEnd";
 
 document.oncontextmenu = function() {
   return false;
@@ -92,24 +96,24 @@ export default {
       name: "Santi",
       year_birth: "1997",
       language: "EN",
-      state: { screen: "home" },
+      state: { screen: "experienceEnd" },
       soundHome: "",
       soundLoading: "",
       holdSound: ""
     };
   },
-  components: { PageHome, PageLoading, PageExperience },
+  components: { PageHome, PageLoading, PageExperience, PageExperienceEnd },
   mounted() {
     // this.filmgrain();
 
     if (window.matchMedia("(orientation: portrait)").matches) {
       // you're in PORTRAIT mode
-      console.log("you're in PORTRAIT mode");
+      // console.log("you're in PORTRAIT mode");
     }
 
     if (window.matchMedia("(orientation: landscape)").matches) {
       // you're in LANDSCAPE mode
-      console.log("you're in LANDSCAPE mode");
+      // console.log("you're in LANDSCAPE mode");
     }
 
     this.soundHome = new Howl({
@@ -133,19 +137,19 @@ export default {
     });
 
     this.soundEmpty1 = new Howl({
-      src: ["sounds/empty_1.mp3"],
+      src: ["sounds/empty_1.wav"],
       preload: true
     });
     this.soundEmpty2 = new Howl({
-      src: ["sounds/empty_2.mp3"],
+      src: ["sounds/empty_2.wav"],
       preload: true
     });
     this.soundEmpty3 = new Howl({
-      src: ["sounds/empty_3.mp3"],
+      src: ["sounds/empty_3.wav"],
       preload: true
     });
     this.soundEmpty4 = new Howl({
-      src: ["sounds/empty_4.mp3"],
+      src: ["sounds/empty_4.wav"],
       preload: true
     });
 
@@ -159,7 +163,7 @@ export default {
   methods: {
     enterFullscreen() {
       if (document.fullscreenEnabled) {
-        console.log("You can fullscreen");
+        // console.log("You can fullscreen");
 
         this.$refs.fullscreen.requestFullscreen();
       }
@@ -175,7 +179,7 @@ export default {
     register: function() {
       if (this.name && this.year_birth && this.language) {
         this.soundHome.fade(1, 0, 2000);
-        console.log("Form full");
+        // console.log("Form full");
         this.state.screen = "loadingExperience";
         this.soundLoading.play();
         this.soundLoading.fade(0, 1, 2000);
@@ -186,10 +190,10 @@ export default {
       }
     },
     startHandler() {
-      console.log("started click");
+      // console.log("started click");
     },
     touchHoldHandler() {
-      console.log("longpress");
+      // console.log("longpress");
       this.holdSound.play();
 
       if (this.state.screen === "home") {
@@ -201,19 +205,19 @@ export default {
     },
     playInteractionSound(soundNum) {
       if (soundNum == 1) {
-        console.log("PARENT INTERACTION" + soundNum);
+        // console.log("PARENT INTERACTION" + soundNum);
         this.soundEmpty1.play();
       }
       if (soundNum == 2) {
-        console.log("PARENT INTERACTION" + soundNum);
+        // console.log("PARENT INTERACTION" + soundNum);
         this.soundEmpty2.play();
       }
       if (soundNum == 3) {
-        console.log("PARENT INTERACTION" + soundNum);
+        // console.log("PARENT INTERACTION" + soundNum);
         this.soundEmpty3.play();
       }
       if (soundNum == 4) {
-        console.log("PARENT INTERACTION" + soundNum);
+        // console.log("PARENT INTERACTION" + soundNum);
         this.soundEmpty4.play();
       }
     },
@@ -347,10 +351,6 @@ h6 {
 video:focus {
   background: transparent;
   color: transparent;
-}
-
-video::-internal-media-controls-overlay-cast-button {
-  display: none;
 }
 
 video {

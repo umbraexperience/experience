@@ -1,9 +1,8 @@
 <template>
   <div id="app">
-    <div id="nav">
-      <router-link to="/">Home</router-link> |
-      <router-link to="/about">About</router-link> |
-      <router-link to="/credits">Credits</router-link> |
+    <div id="nav" v-if="$route.meta.showNav === true">
+      <router-link to="/about">About</router-link>
+      <router-link to="/credits">Credits</router-link>
       <router-link to="/privacy">Privacy</router-link>
     </div>
     <router-view />
@@ -87,6 +86,10 @@ body {
   right: 0;
   position: fixed;
   padding: 30px;
+  display: flex;
+  justify-content: space-between;
+  max-width: 15rem;
+  margin: 0 auto;
 }
 
 #nav a {
@@ -94,6 +97,10 @@ body {
 
 #nav a.router-link-exact-active {
   color: white;
+}
+
+video::-internal-media-controls-overlay-cast-button {
+  display: none;
 }
 
 .fade-enter-active,

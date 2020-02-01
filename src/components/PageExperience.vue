@@ -148,6 +148,16 @@
         viewBox="0 0 100 100"
         xmlns="http://www.w3.org/2000/svg"
         class="circle"
+        :class="{
+          'circle-animation':
+            (interaction1 && !pausedVideo) ||
+            (interaction2 && !pausedVideo) ||
+            (interaction3 && !pausedVideo) ||
+            (interaction4 && !pausedVideo) ||
+            (interaction5 && !pausedVideo) ||
+            (interaction6 && !pausedVideo) ||
+            (interaction7 && !pausedVideo)
+        }"
       >
         <circle cx="50" cy="50" r="40" stroke-width="6" />
       </svg>
@@ -238,7 +248,7 @@ export default {
           this.videoNext.load();
         }
       } else if (this.videoPlaying === 6) {
-        console.log("EXPERIENCE ENDED");
+        // console.log("EXPERIENCE ENDED");
       }
     },
 
@@ -264,7 +274,7 @@ export default {
         this.$refs.video1.currentTime >= 46 &&
         this.$refs.video1.currentTime <= 50.5
       ) {
-        console.log("INTERACCIÓ 1");
+        // console.log("INTERACCIÓ 1");
         this.interaction1 = true;
       } else {
         this.interaction1 = false;
@@ -287,14 +297,14 @@ export default {
         this.$refs.video6.player.currentTime >= 19 &&
         this.$refs.video6.player.currentTime <= 23
       ) {
-        console.log("INTERACCIÓ 5");
+        // console.log("INTERACCIÓ 5");
         this.interaction5 = true;
       } else if (
         this.videoPlaying == 6 &&
         this.$refs.video6.player.currentTime >= 54 &&
         this.$refs.video6.player.currentTime <= 67
       ) {
-        console.log("INTERACCIÓ 6");
+        // console.log("INTERACCIÓ 6");
         this.interaction5 = false;
         this.interaction6 = true;
       } else {
@@ -371,7 +381,7 @@ export default {
         window.document.body ||
         window.document.documentElement;
 
-      console.log(scrollElement.scrollWidth);
+      // console.log(scrollElement.scrollWidth);
 
       this.$anime({
         targets: scrollElement,
@@ -386,7 +396,7 @@ export default {
         window.document.body ||
         window.document.documentElement;
 
-      console.log(scrollElement.scrollWidth);
+      // console.log(scrollElement.scrollWidth);
 
       this.$anime({
         targets: scrollElement,
@@ -401,7 +411,7 @@ export default {
         window.document.body ||
         window.document.documentElement;
 
-      console.log(scrollElement.scrollWidth);
+      // console.log(scrollElement.scrollWidth);
 
       this.$anime({
         targets: scrollElement,
@@ -451,12 +461,20 @@ video::cue {
   font-size: 1.3rem;
   background-color: transparent;
   transform: translateY(200px);
-  line-height: 8;
+  /*line-height: 8; */
   font-family: "Tiempos Headline", Times, serif;
   font-weight: 400;
   color: #b4b4b4;
   filter: blur(0.08rem);
 }
+
+/* video::cue {
+  background: transparent;
+}
+
+video::-webkit-media-text-track-display {
+  background: transparent;
+} */
 
 .video-normal-size {
   width: 100%;
@@ -572,6 +590,7 @@ video::cue {
   background-color: transparent;
   transform: scale(1);
   transition: transform 0.35s ease-in-out;
+
   filter: blur(0.08rem);
   margin: 0 auto;
 }
@@ -595,5 +614,24 @@ video::cue {
 .fade-overlay-enter,
 .fade-overlay-leave-to {
   opacity: 0;
+}
+
+.interactive-circle-button .circle.circle-animation {
+  transform-origin: 50% 50%;
+  animation: 2s ease-in-out infinite both dash;
+}
+
+@keyframes dash {
+  0% {
+    transform: scale(1);
+  }
+
+  50% {
+    transform: scale(0.7);
+  }
+
+  100% {
+    transform: scale(1);
+  }
 }
 </style>

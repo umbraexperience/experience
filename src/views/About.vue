@@ -7,10 +7,13 @@
           <div class="apartat">Quienes somos</div>
           <div class="descripcio">
             <p>
-              Umbra es un proyecto de final de grado formado por siete
-              estudiantes de la Universidad de Girona (ERAM) con perfiles
-              distintos, que van des de el ámbito audiovisual (vídeo, sonido,
-              ...), hasta el multimedia (programación, 3D,...).
+              Umbra es un proyecto grupal de final del grado de Audiovisuales y
+              Multimedia de la Universidad de Girona (ERAM). Formado por siete
+              estudiantes con perfiles distintos, que van desde el ámbito
+              audiovisual (vídeo, 3D, diseño, sonido, ...), hasta el multimedia
+              (programación, diseño web,...). Nuestra motivación para hacer este
+              proyecto surgió de la posibilidad de unir ambos àmbitos en un
+              formato revelador.
             </p>
           </div>
         </div>
@@ -20,9 +23,10 @@
           <div class="apartat2">El proyecto</div>
           <div class="descripcio2">
             <p>
-              Umbra es un proyecto transmedia formado por una narración online
-              interactiva, una instalación a modo de presentación y un spot
-              promocional.
+              Umbra está formado por una narración online interactiva, una
+              instalación a modo de presentación y un teaser promocional. Estos
+              tres medios permiten que la plataforma principal (web) se
+              visualice con un amplio conocimiento previo del proyecto.
             </p>
           </div>
         </div>
@@ -36,7 +40,7 @@
               abstracta y sutil, para ser más concretos, habla sobre el control
               de los datos en un futuro cercano y su importancia. El objetivo
               final del proyecto, consiste en crear una reflexión al espectador
-              y conscienciarlo, sobre la trascendencia de los datos, al mismo
+              y concienciarlo, sobre la trascendencia de los datos, al mismo
               tiempo que se entretiene con la narración creada.
             </p>
           </div>
@@ -47,16 +51,14 @@
           <div class="apartat2">Los datos</div>
           <div class="descripcio2">
             <p>
-              Para calcular el valor de los tus datos, hemos tenido en cuenta
+              Para calcular el valor de los datos, hemos tenido en cuenta
               distintos factores, el primero de ellos es la edad, juntamente con
               las decisiones que se tomaban durante la narración. El otro
               elemento ha sido un conjunto de estudios científicos, donde su
               objetivo era hacer una estimación de cual seria el valor que
               tendrían los datos dentro de unos años. En función de la
-              investigación, los datos cambiaban entre ellos, debido a que a día
-              de hoy, es bastante complicado predecir como evolucionará este
-              mundo. Aun así, los estudios utilizados para llevar a término los
-              calculas de Umbra han sido ESTUDIO 1 y ESTUDIO 2.
+              investigación, los datos cambiaban entre ellos, debido a que a
+              día.
             </p>
           </div>
         </div>
@@ -124,6 +126,9 @@ export default {
 </style>
 
 <style scoped>
+/* * {
+  border: 2px solid red;
+} */
 .about {
   align-items: center;
   margin: 0 auto;
@@ -231,27 +236,29 @@ export default {
   }
 
   .apartat {
-    font-size: 1.75rem;
+    font-size: 1.85rem;
     filter: blur(0.1rem);
-    margin-left: 2rem;
+    margin-left: 1rem;
   }
 
   .apartat2 {
-    font-size: 1.75rem;
+    font-size: 1.85rem;
     filter: blur(0.1rem);
-    margin-right: 2rem;
+    margin-right: 1rem;
   }
 
   .descripcio {
     font-size: 1rem;
     margin-top: -2rem;
     padding-right: 2rem;
+    margin-left: 2rem;
   }
 
   .descripcio2 {
     font-size: 1rem;
     margin-top: -2rem;
     padding-left: 2rem;
+    margin-right: 2rem;
   }
 
   .carousel-cell {
