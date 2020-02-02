@@ -12,13 +12,10 @@
         <PageLoading
           v-else-if="state.screen === 'loadingExperience'"
         ></PageLoading>
-        <!--         <PageExperience
-          ref="experience"
-          @my-event="playInteractionSound()"
-          @experience-ended="endExperience()"
-        ></PageExperience> -->
         <PageExperienceTest
-          @experience-ended="endExperience()"
+          ref="experience"
+          v-on:interaction-sound="playInteractionSound"
+          v-on:experience-ended="endExperience()"
           v-else-if="state.screen === 'experience'"
         ></PageExperienceTest>
         <PageExperienceEnd v-else-if="state.screen === 'experienceEnd'">
@@ -106,7 +103,7 @@ export default {
       name: "Santi",
       year_birth: "1997",
       language: "EN",
-      state: { screen: "home" },
+      state: { screen: "experience" },
       soundHome: "",
       soundLoading: "",
       holdSound: "",
@@ -235,19 +232,19 @@ export default {
     },
     playInteractionSound(soundNum) {
       if (soundNum == 1) {
-        // console.log("PARENT INTERACTION" + soundNum);
+        console.log("PARENT INTERACTION" + soundNum);
         this.soundEmpty1.play();
       }
       if (soundNum == 2) {
-        // console.log("PARENT INTERACTION" + soundNum);
+        console.log("PARENT INTERACTION" + soundNum);
         this.soundEmpty2.play();
       }
       if (soundNum == 3) {
-        // console.log("PARENT INTERACTION" + soundNum);
+        console.log("PARENT INTERACTION" + soundNum);
         this.soundEmpty3.play();
       }
       if (soundNum == 4) {
-        // console.log("PARENT INTERACTION" + soundNum);
+        console.log("PARENT INTERACTION" + soundNum);
         this.soundEmpty4.play();
       }
     },

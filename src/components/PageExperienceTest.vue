@@ -24,8 +24,34 @@
             Off
           </li>
         </ul>
+
+        <p>Click the circle to continue</p>
       </div>
     </transition>
+
+    <div class="interaction1-zone" v-if="interactionNum === 1">
+      <div @mouseover="mousePosition(1)"></div>
+      <div @mouseover="mousePosition(2)"></div>
+      <div @mouseover="mousePosition(3)"></div>
+      <div @mouseover="mousePosition(4)"></div>
+    </div>
+
+    <div class="interaction2-zone" v-if="interactionNum === 2">
+      <div
+        @mouseover="showVideo2Overlay = true"
+        @mouseout="showVideo2Overlay = false"
+      ></div>
+    </div>
+
+    <div class="interaction3-zone" v-if="interactionNum === 3">
+      <div @mousemove="verticalScroll('up')">ZONE 1 UP</div>
+      <div @mousemove="verticalScroll('down')">ZONE 3 DOWN</div>
+    </div>
+
+    <div class="interaction4-zone" v-if="interactionNum === 4">
+      <div @mousemove="horizontalScroll('left')">LEFT</div>
+      <div @mousemove="horizontalScroll('right')">RIGHT</div>
+    </div>
 
     <div
       class="video-container heightfull"
@@ -34,9 +60,10 @@
       <vue-plyr
         @ended="videoEnd()"
         @play="videoPaused = false"
+        @timeupdate="timeCheck(6)"
         ref="video6"
         :options="playerOptions"
-        class="heightfull video-container"
+        class="heightfull video-container normal-video-size"
         v-show="this.videoPlaying <= 6"
         v-if="this.videoPlaying <= 6"
       >
@@ -47,20 +74,23 @@
         @play="videoPaused = false"
         ref="video5"
         :options="playerOptions"
-        class="heightfull video-container"
+        class="video5 heightfull video-container"
         v-show="this.videoPlaying <= 5"
         v-if="this.videoPlaying <= 6"
+        id="video5"
       >
         <video preload="auto" class="heightfull"></video>
       </vue-plyr>
       <vue-plyr
         @ended="videoEnd()"
         @play="videoPaused = false"
+        @timeupdate="timeCheck(4)"
         ref="video4"
         :options="playerOptions"
-        class="heightfull video-container"
+        class="video4 heightfull video-container"
         v-show="this.videoPlaying <= 4"
         v-if="this.videoPlaying <= 5"
+        id="video4"
       >
         <video preload="auto" class="heightfull"></video>
       </vue-plyr>
@@ -69,18 +99,31 @@
         @play="videoPaused = false"
         ref="video3"
         :options="playerOptions"
-        class="heightfull video-container"
+        class="heightfull video-container normal-video-size"
         v-show="this.videoPlaying <= 3"
         v-if="this.videoPlaying <= 4"
       >
         <video preload="auto" class="heightfull"></video>
       </vue-plyr>
+
+      <transition name="fade-overlay">
+        <vue-plyr
+          ref="video2_2"
+          :options="playerOptions"
+          class="video2_2 heightfull video-container normal-video-size"
+          muted
+          v-if="this.videoPlaying <= 3"
+          v-show="showVideo2Overlay === true"
+        >
+          <video preload="auto" class="heightfull"></video>
+        </vue-plyr>
+      </transition>
       <vue-plyr
         @ended="videoEnd()"
         @play="videoPaused = false"
         ref="video2"
         :options="playerOptions"
-        class="heightfull video-container"
+        class="heightfull video-container normal-video-size"
         v-show="this.videoPlaying <= 2"
         v-if="this.videoPlaying <= 3"
       >
@@ -89,9 +132,10 @@
       <vue-plyr
         @ended="videoEnd()"
         @play="videoPaused = false"
+        @timeupdate="timeCheck(1)"
         ref="video1"
         :options="playerOptions"
-        class="heightfull video-container"
+        class="heightfull video-container normal-video-size"
         v-show="this.videoPlaying === 1"
         v-if="this.videoPlaying <= 2"
       >
@@ -113,28 +157,32 @@
       </vue-plyr>
     </div>
 
-    <button @click="pauseButton()" class="interactive-circle-button">
-      <svg
-        viewBox="0 0 100 100"
-        xmlns="http://www.w3.org/2000/svg"
-        class="circle"
-        :class="{
-          'circle-animation': interactionNum !== null && !videoPaused
-        }"
-      >
-        <circle cx="50" cy="50" r="40" stroke-width="6" />
-      </svg>
-    </button>
+    <div class="bottom-circle-container">
+      <button @click="pauseButton()" class="interactive-circle-button">
+        <svg
+          viewBox="0 0 100 100"
+          xmlns="http://www.w3.org/2000/svg"
+          class="circle"
+          :class="{
+            'circle-animation': interactionNum !== null && !videoPaused
+          }"
+        >
+          <circle cx="50" cy="50" r="40" stroke-width="6" />
+        </svg>
+      </button>
+    </div>
   </div>
 </template>
 
 <script>
+var isScrolling = false;
 export default {
   data() {
     return {
       videoPlaying: 1,
       videoPaused: false,
       interactionNum: null,
+      showVideo2Overlay: false,
       playerOptions: {
         controls: [""],
         captions: { active: true, language: "auto", update: false }
@@ -156,6 +204,9 @@ export default {
     },
     player2() {
       return this.$refs.video2.player;
+    },
+    player2Overlay() {
+      return this.$refs.video2_2.player;
     }
   },
   mounted() {
@@ -174,6 +225,18 @@ export default {
         }
       ]
     };
+
+    this.player2Overlay.source = {
+      type: "video",
+      title: "Video2",
+      sources: [
+        {
+          src: "/videos/002_Video_2.mp4",
+          type: "video/mp4",
+          size: 1080
+        }
+      ]
+    };
   },
   methods: {
     pauseButton() {
@@ -186,15 +249,47 @@ export default {
         console.log("PLAY STARTED");
       } catch (error) {
         console.log("AUTOPLAY PREVENTED", error);
+        this.videoPaused = true;
       }
     },
     videoEnd() {
+      this.interactionNum = null;
       if (this.videoPlaying < 6) {
         this.videoPlaying++;
         this.currentPlayer.play();
         this.previousPlayer.pause();
 
         this.previousPlayer.destroy();
+
+        if (this.videoPlaying === 2) {
+          this.interactionNum = 2;
+        } else if (this.videoPlaying === 3) {
+          this.$refs.video2_2.player.destroy();
+        } else if (this.videoPlaying === 4) {
+          const video4Height = document
+            .getElementById("video4")
+            .getElementsByTagName("video")[0].scrollHeight;
+
+          const containerHeight = document.getElementById("video4")
+            .scrollHeight;
+
+          document
+            .getElementById("video4")
+            .getElementsByTagName("video")[0].style.transform =
+            "translateY(" + -(video4Height - containerHeight) / 2 + "px)";
+        } else if (this.videoPlaying === 5) {
+          const video5Width = document
+            .getElementById("video5")
+            .getElementsByTagName("video")[0].scrollWidth;
+
+          const containerWidth = document.getElementById("video5").scrollWidth;
+
+          document
+            .getElementById("video5")
+            .getElementsByTagName("video")[0].style.transform =
+            "translateX(" + -(video5Width - containerWidth) / 2 + "px)";
+          this.interactionNum = 4;
+        }
 
         if (this.videoPlaying < 6) {
           console.log("loading video" + (this.videoPlaying + 1));
@@ -219,7 +314,105 @@ export default {
         }, 100);
       }
     },
-    finish() {}
+    timeCheck(video) {
+      console.log("timecheck", video);
+      if (
+        video === 1 &&
+        this.currentPlayer.currentTime >= 46 &&
+        this.currentPlayer.currentTime <= 50.5
+      ) {
+        this.interactionNum = 1;
+      } else if (
+        video === 4 &&
+        this.currentPlayer.currentTime >= 1.2 &&
+        this.currentPlayer.currentTime <= 9
+      ) {
+        this.interactionNum = 3;
+      } else if (
+        video === 6 &&
+        this.currentPlayer.currentTime >= 19 &&
+        this.currentPlayer.currentTime <= 23
+      ) {
+        this.interactionNum = 5;
+      } else if (
+        video === 6 &&
+        this.currentPlayer.currentTime >= 54 &&
+        this.currentPlayer.currentTime <= 67
+      ) {
+        this.interactionNum = 6;
+      } else {
+        this.interactionNum = null;
+      }
+    },
+    mousePosition(soundNum) {
+      console.log("PLAY SOUND", soundNum);
+      this.$emit("interaction-sound", soundNum);
+    },
+    verticalScroll(position) {
+      if (isScrolling === false) {
+        const video4Height = document
+          .getElementById("video4")
+          .getElementsByTagName("video")[0].scrollHeight;
+
+        const containerHeight = document.getElementById("video4").scrollHeight;
+
+        if (position == "up") {
+          console.log("SCROLL TO TOP");
+          isScrolling = true;
+          this.$anime({
+            targets: ".video4 video",
+            translateY: 0,
+            duration: 3550,
+            easing: "easeInOutQuad"
+          }).finished.then(function() {
+            isScrolling = false;
+          });
+        } else if (position == "down") {
+          console.log("SCROLL TO BOTTOM");
+          isScrolling = true;
+          this.$anime({
+            targets: ".video4 video",
+            translateY: -(video4Height - containerHeight),
+            duration: 3550,
+            easing: "easeInOutQuad"
+          }).finished.then(function() {
+            isScrolling = false;
+          });
+        }
+      }
+    },
+    horizontalScroll(position) {
+      const video5Width = document
+        .getElementById("video5")
+        .getElementsByTagName("video")[0].scrollWidth;
+
+      const containerWidth = document.getElementById("video5").scrollWidth;
+      if (isScrolling === false) {
+        if (position == "left") {
+          console.log("SCROLL TO LEFT");
+          isScrolling = true;
+          this.$anime({
+            targets: ".video5 video",
+            translateX: 0,
+            duration: 3550,
+            easing: "easeInOutQuad"
+          }).finished.then(function() {
+            isScrolling = false;
+          });
+        } else if (position == "right") {
+          console.log("SCROLL TO RIGHT");
+          isScrolling = true;
+          this.$anime({
+            targets: ".video5 video",
+            translateX: -(video5Width - containerWidth),
+            duration: 3550,
+            easing: "easeInOutQuad"
+          }).finished.then(function() {
+            isScrolling = false;
+          });
+        }
+      }
+    }
   }
 };
 </script>
@@ -227,7 +420,7 @@ export default {
 <style>
 .DEBUG {
   position: fixed;
-  z-index: 2;
+  z-index: 6;
 }
 .video-container {
   position: absolute;
@@ -287,12 +480,37 @@ export default {
   background: transparent !important;
   filter: blur(0.04rem);
 }
+
 .plyr__video-wrapper {
   height: 100%;
 }
+
 .plyr video {
-  height: 100% !important;
+  width: 100%;
+  min-height: 100%;
+}
+
+.video2_2 {
+  z-index: 2;
+}
+
+.video5 .plyr video {
+  min-height: 100%;
+  width: auto;
+}
+
+.normal-video-size .plyr video {
   object-fit: cover;
+}
+
+.bottom-circle-container {
+  width: 100%;
+  height: 2.2rem;
+  position: fixed;
+  bottom: 1rem;
+  left: 0;
+  right: 0;
+  z-index: 50;
 }
 
 .interactive-circle-button {
@@ -300,30 +518,21 @@ export default {
   border: none;
   margin: 0;
   padding: 0px;
-  position: fixed;
-  bottom: 1rem;
-  left: 0;
-  right: 0;
+  background-color: transparent;
+}
+
+.interactive-circle-button .circle {
   width: 2.2rem;
   height: 2.2rem;
-  z-index: 50;
-  background-color: transparent;
-  transform: scale(1);
   transition: transform 0.35s ease-in-out;
-
   filter: blur(0.08rem);
-  margin: 0 auto;
-}
-
-.interactive-circle-button:hover {
-  transform: scale(1.2);
-}
-.interactive-circle-button .circle {
   stroke: white;
   fill: white;
   fill-opacity: 0;
+  transform-origin: 50% 50%;
 }
-.interactive-circle-button .circle:hover {
+.interactive-circle-button:hover .circle {
+  transform: scale(1.3);
   fill-opacity: 1;
 }
 
@@ -337,7 +546,6 @@ export default {
 }
 
 .interactive-circle-button .circle.circle-animation {
-  transform-origin: 50% 50%;
   animation: 2s ease-in-out infinite both dash;
 }
 
@@ -353,6 +561,71 @@ export default {
   100% {
     transform: scale(1);
   }
+}
+
+.interaction1-zone,
+.interaction2-zone,
+.interaction3-zone,
+.interaction4-zone {
+  position: fixed;
+  left: 0;
+  right: 0;
+  top: 0;
+  bottom: 0;
+  min-height: 100%;
+  display: flex;
+  z-index: 5;
+}
+
+.interaction1-zone {
+  flex-wrap: wrap;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.interaction1-zone div {
+  width: 48%;
+  height: 48%;
+  /* background-color: red; */
+}
+
+.interaction1-zone div:nth-child(3),
+.interaction1-zone div:nth-child(4) {
+  margin-top: 2%;
+}
+
+.interaction2-zone {
+  align-items: center;
+  justify-content: flex-end;
+}
+
+.interaction2-zone div {
+  margin-right: 5%;
+  width: 30%;
+  height: 55%;
+  /* background-color: red; */
+  opacity: 0.6;
+}
+
+.interaction3-zone,
+.interaction4-zone {
+  justify-content: space-between;
+}
+
+.interaction3-zone {
+  flex-direction: column;
+}
+
+.interaction3-zone div {
+  width: 100%;
+  height: 25%;
+  /* background-color: red; */
+}
+
+.interaction4-zone div {
+  width: 25%;
+  height: 100%;
+  /* background-color: red; */
 }
 
 .pause-enter-active,
