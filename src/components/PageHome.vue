@@ -20,7 +20,7 @@
       >
         <div>
           <h2 class="title font-light absolute animation2" ref="element2">
-            An inmersive experience to find yourself.
+            {{ $t("home.slogan") }}
           </h2>
         </div>
         <div>
@@ -28,15 +28,15 @@
             <span>Coming Soon</span>
           </h3>
         </div>
-      </div></transition
-    >
+      </div>
+    </transition>
     <div class="bottom noselect">
       <span
         href="https://paypal.me/pools/c/8kxzH2J8F0"
         class="animation3 regular"
         ref="element3"
       >
-        Hold anywhere to continue
+        {{ $t("home.holdContinue") }}
       </span>
     </div>
   </div>

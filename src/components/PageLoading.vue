@@ -19,7 +19,7 @@
             stroke-width="6"
           />
         </svg>
-        <h2>The sphere will guide your interactions</h2>
+        <h2>{{ $t("loading.sphereWarning") }}</h2>
       </div>
     </div>
 
@@ -42,8 +42,8 @@
         ></path>
       </svg>
       <div class="headphones-text">
-        <p>For best experience</p>
-        <p>Use headphones</p>
+        <p>{{ $t("loading.bestExperience") }}</p>
+        <p>{{ $t("loading.useHeadphones") }}</p>
       </div>
     </div>
   </div>

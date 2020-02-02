@@ -1,0 +1,50 @@
+{
+  "languageNames": { "english": "Inglés", "spanish": "Español" },
+  "home": {
+    "slogan": "Una experiencia inmersiva para encontrarte.",
+    "holdContinue": "Mantén presionado en cualquier sitio para continuar",
+    "register": {
+      "name": "Nombre",
+      "birth": "Año de nacimiento"
+    }
+  },
+  "loading": {
+    "sphereWarning": "La esfera guiará tus interacciones",
+    "bestExperience": "Para mejor experiencia",
+    "useHeadphones": "Utiliza auriculares"
+  },
+  "experience": {
+    "pauseMenu": {
+      "title": "Experiencia parada",
+      "languagesTitle": "Subtítulos",
+      "off": "No",
+      "circleAdvice": "Clica el círculo para continuar"
+    }
+  },
+  "end": {
+    "years": "años"
+  },
+  "about": {
+    "title": "Sobre el proyecto",
+    "us": {
+      "title": "Quienes somos",
+      "description": "Umbra es un proyecto grupal de final del grado de Audiovisuales y Multimedia de la Universidad de Girona (ERAM). Formado por sieteestudiantes con perfiles distintos, que van desde el ámbitoaudiovisual (vídeo, 3D, diseño, sonido, ...), hasta el multimedia(programación, diseño web,...). Nuestra motivación para hacer esteproyecto surgió de la posibilidad de unir ambos àmbitos en unformato revelador."
+    },
+    "project": {
+      "title": "El proyecto",
+      "description": "Umbra está formado por una narración online interactiva, unainstalación a modo de presentación y un teaser promocional. Estostres medios permiten que la plataforma principal (web) sevisualice con un amplio conocimiento previo del proyecto."
+    },
+    "narrative": {
+      "title": "La narrativa",
+      "description": "La narración online trata la temática de los datos de una formaabstracta y sutil, para ser más concretos, habla sobre el controlde los datos en un futuro cercano y su importancia. El objetivofinal del proyecto, consiste en crear una reflexión al espectadory concienciarlo, sobre la trascendencia de los datos, al mismotiempo que se entretiene con la narración creada."
+    },
+    "data": {
+      "title": "Tus datos",
+      "description": "Para calcular el valor de los datos, hemos tenido en cuentadistintos factores, el primero de ellos es la edad, juntamente conlas decisiones que se tomaban durante la narración. El otroelemento ha sido un conjunto de estudios científicos, donde suobjetivo era hacer una estimación de cual seria el valor quetendrían los datos dentro de unos años. En función de lainvestigación, los datos cambiaban entre ellos."
+    }
+  },
+  "credits": {
+    "acknowledgements": "Agradecimientos"
+  },
+  "privacy": {}
+}

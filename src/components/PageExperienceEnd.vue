@@ -9,7 +9,7 @@
       <div class="text-container">
         <p class="font-light">
           <span><slot name="name"></slot>,</span>
-          <span><slot name="age"></slot> años,</span>
+          <span><slot name="age"></slot> {{ $t("end.years") }},</span>
           <span><slot name="city"></slot></span>
         </p>
         <p class="price font-medium"><slot name="price"></slot></p>

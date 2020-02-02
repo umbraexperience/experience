@@ -11,7 +11,7 @@
     </div>
 
     <div class="crowfunding">
-      <h1 class="gracies">Agradecimientos</h1>
+      <h1 class="gracies">{{ $t("credits.acknowledgements") }}</h1>
       <div class="grid-container">
         <div v-for="mecena in mecenes" :key="mecena.id" class="paypal">
           {{ mecena.name }}
@@ -71,8 +71,8 @@ export default {
         { id: 24, name: "Enrique Cros" },
         { id: 25, name: "Marta Peiró" },
         { id: 26, name: "Joan Maeso" },
-        { id: 25, name: "Jordi Cros" },
-        { id: 26, name: "Mª Josefa Herrero" }
+        { id: 27, name: "Jordi Cros" },
+        { id: 28, name: "Mª Josefa Herrero" }
       ]
     };
   }

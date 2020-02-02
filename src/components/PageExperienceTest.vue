@@ -11,21 +11,22 @@
     <transition name="pause">
       <div class="pause-section" v-show="videoPaused">
         <img src="@/assets/logo.png" alt="umbra logo" />
-        <h2>Experience paused</h2>
-        <h3>Subtitles language</h3>
+        <h2>{{ $t("experience.pauseMenu.title") }}</h2>
+        <h3>{{ $t("experience.pauseMenu.languagesTitle") }}</h3>
+
         <ul>
           <li>
-            English
+            {{ $t("languageNames.english") }}
           </li>
           <li>
-            Spanish
+            {{ $t("languageNames.spanish") }}
           </li>
           <li>
-            Off
+            {{ $t("experience.pauseMenu.off") }}
           </li>
         </ul>
 
-        <p>Click the circle to continue</p>
+        <p>{{ $t("experience.pauseMenu.circleAdvice") }}</p>
       </div>
     </transition>
 
@@ -185,7 +186,11 @@ export default {
       showVideo2Overlay: false,
       playerOptions: {
         controls: [""],
-        captions: { active: true, language: "auto", update: false }
+        captions: {
+          active: true,
+          language: this.$root.$i18n.locale,
+          update: false
+        }
       }
     };
   },

@@ -1,64 +1,45 @@
 <template>
   <div class="about">
-    <div class="container"><h1 class="title">About the project</h1></div>
+    <div class="container">
+      <h1 class="title">{{ $t("about.title") }}</h1>
+    </div>
     <flickity class="flickity" ref="flickity" :options="flickityOptions">
       <div class="carousel-cell">
         <div class="contingut">
-          <div class="apartat">Quienes somos</div>
+          <div class="apartat">{{ $t("about.us.title") }}</div>
           <div class="descripcio">
             <p>
-              Umbra es un proyecto grupal de final del grado de Audiovisuales y
-              Multimedia de la Universidad de Girona (ERAM). Formado por siete
-              estudiantes con perfiles distintos, que van desde el ámbito
-              audiovisual (vídeo, 3D, diseño, sonido, ...), hasta el multimedia
-              (programación, diseño web,...). Nuestra motivación para hacer este
-              proyecto surgió de la posibilidad de unir ambos àmbitos en un
-              formato revelador.
+              {{ $t("about.us.description") }}
             </p>
           </div>
         </div>
       </div>
       <div class="carousel-cell">
         <div class="contingut">
-          <div class="apartat2">El proyecto</div>
+          <div class="apartat2">{{ $t("about.project.title") }}</div>
           <div class="descripcio2">
             <p>
-              Umbra está formado por una narración online interactiva, una
-              instalación a modo de presentación y un teaser promocional. Estos
-              tres medios permiten que la plataforma principal (web) se
-              visualice con un amplio conocimiento previo del proyecto.
+              {{ $t("about.project.description") }}
             </p>
           </div>
         </div>
       </div>
       <div class="carousel-cell">
         <div class="contingut">
-          <div class="apartat">La narrativa</div>
+          <div class="apartat">{{ $t("about.narrative.title") }}</div>
           <div class="descripcio">
             <p>
-              La narración online trata la temática de los datos de una forma
-              abstracta y sutil, para ser más concretos, habla sobre el control
-              de los datos en un futuro cercano y su importancia. El objetivo
-              final del proyecto, consiste en crear una reflexión al espectador
-              y concienciarlo, sobre la trascendencia de los datos, al mismo
-              tiempo que se entretiene con la narración creada.
+              {{ $t("about.narrative.description") }}
             </p>
           </div>
         </div>
       </div>
       <div class="carousel-cell">
         <div class="contingut">
-          <div class="apartat2">Los datos</div>
+          <div class="apartat2">{{ $t("about.data.title") }}</div>
           <div class="descripcio2">
             <p>
-              Para calcular el valor de los datos, hemos tenido en cuenta
-              distintos factores, el primero de ellos es la edad, juntamente con
-              las decisiones que se tomaban durante la narración. El otro
-              elemento ha sido un conjunto de estudios científicos, donde su
-              objetivo era hacer una estimación de cual seria el valor que
-              tendrían los datos dentro de unos años. En función de la
-              investigación, los datos cambiaban entre ellos, debido a que a
-              día.
+              {{ $t("about.data.description") }}
             </p>
           </div>
         </div>

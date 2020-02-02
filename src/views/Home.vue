@@ -27,13 +27,14 @@
           <template v-slot:price>{{ (85 - 22) * 5000 }} €</template>
         </PageExperienceEnd>
       </transition>
+
       <transition name="fade" appear>
         <div class="bottom-input" v-if="state.screen === 'register'">
           <div class="input-group">
             <div class="input-name">
               <input
                 type="text"
-                placeholder="Name"
+                :placeholder="$t('home.register.name')"
                 v-model="name"
                 minlength="2"
                 maxlength="15"
@@ -45,7 +46,7 @@
                 type="number"
                 min="1900"
                 max="2020"
-                placeholder="Year of birth"
+                :placeholder="$t('home.register.birth')"
                 v-model="year_birth"
                 required
               />
@@ -57,7 +58,7 @@
                   type="radio"
                   id="contactChoice1"
                   name="contact"
-                  value="ES"
+                  value="es"
                   v-model="language"
                 />
                 <label for="contactChoice1">ES</label>
@@ -69,7 +70,7 @@
                     type="radio"
                     id="contactChoice2"
                     name="contact"
-                    value="EN"
+                    value="en"
                     v-model="language"
                   />
                   <label for="contactChoice2">EN</label>
@@ -102,8 +103,8 @@ export default {
     return {
       name: "Santi",
       year_birth: "1997",
-      language: "EN",
-      state: { screen: "experience" },
+      language: "es",
+      state: { screen: "home" },
       soundHome: "",
       soundLoading: "",
       holdSound: "",
@@ -196,6 +197,7 @@ export default {
     },
     register: function() {
       if (this.name && this.year_birth && this.language) {
+        this.$root.$i18n.locale = this.language;
         this.soundHome.fade(1, 0, 2000);
         // console.log("Form full");
         this.state.screen = "loadingExperience";
