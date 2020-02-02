@@ -12,12 +12,15 @@
         <PageLoading
           v-else-if="state.screen === 'loadingExperience'"
         ></PageLoading>
-        <PageExperience
+        <!--         <PageExperience
           ref="experience"
           @my-event="playInteractionSound()"
           @experience-ended="endExperience()"
+        ></PageExperience> -->
+        <PageExperienceTest
+          @experience-ended="endExperience()"
           v-else-if="state.screen === 'experience'"
-        ></PageExperience>
+        ></PageExperienceTest>
         <PageExperienceEnd v-else-if="state.screen === 'experienceEnd'">
           <template v-slot:name> {{ name }}</template>
           <template v-slot:age>
@@ -88,7 +91,8 @@
 import { Howl, Howler } from "howler";
 import PageHome from "@/components/PageHome";
 import PageLoading from "@/components/PageLoading";
-import PageExperience from "@/components/PageExperience";
+// import PageExperience from "@/components/PageExperience";
+import PageExperienceTest from "@/components/PageExperienceTest";
 import PageExperienceEnd from "@/components/PageExperienceEnd";
 
 document.oncontextmenu = function() {
@@ -109,7 +113,13 @@ export default {
       city: ""
     };
   },
-  components: { PageHome, PageLoading, PageExperience, PageExperienceEnd },
+  components: {
+    PageHome,
+    PageLoading,
+    // PageExperience,
+    PageExperienceTest,
+    PageExperienceEnd
+  },
   mounted() {
     // this.filmgrain();
 
@@ -122,6 +132,8 @@ export default {
       // you're in LANDSCAPE mode
       // console.log("you're in LANDSCAPE mode");
     }
+
+    // https://umbraexperience.s3.eu-west-3.amazonaws.com/begining_web.mp3
 
     this.soundHome = new Howl({
       src: ["sounds/begining_web.webm", "sounds/begining_web.mp3"],

@@ -96,10 +96,6 @@ body {
   color: white;
 }
 
-video::-internal-media-controls-overlay-cast-button {
-  display: none;
-}
-
 .fade-enter-active,
 .fade-leave-active {
   transition: opacity 2.6s;
