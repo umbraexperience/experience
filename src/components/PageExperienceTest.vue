@@ -191,7 +191,8 @@ export default {
           language: this.$root.$i18n.locale,
           update: false
         }
-      }
+      },
+      mediaUrl: ""
     };
   },
   computed: {
@@ -219,12 +220,19 @@ export default {
 
     // console.log((this.currentPlayer.language = "es"));
 
+    // /videos/002_Video.mp4
+    // https://umbraexperience.s3.eu-west-3.amazonaws.com/videos/002_Video.mp4
+
+    if (process.env.VUE_APP_MEDIA === "online") {
+      this.mediaUrl = process.env.VUE_APP_MEDIA_URL;
+    }
+
     this.player2.source = {
       type: "video",
       title: "Video2",
       sources: [
         {
-          src: "/videos/002_Video.mp4",
+          src: this.mediaUrl + "/videos/002_Video.mp4",
           type: "video/mp4",
           size: 1080
         }
@@ -236,7 +244,7 @@ export default {
       title: "Video2",
       sources: [
         {
-          src: "/videos/002_Video_2.mp4",
+          src: this.mediaUrl + "/videos/002_Video_2.mp4",
           type: "video/mp4",
           size: 1080
         }

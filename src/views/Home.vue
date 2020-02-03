@@ -112,7 +112,8 @@ export default {
       soundHome: "",
       soundLoading: "",
       holdSound: "",
-      city: ""
+      city: "",
+      test: process.env
     };
   },
   components: {
@@ -123,6 +124,7 @@ export default {
     PageExperienceEnd
   },
   async mounted() {
+    console.log(this.test);
     // this.filmgrain();
 
     if (window.matchMedia("(orientation: portrait)").matches) {

@@ -205,7 +205,6 @@ h1 {
 }
 
 .person:nth-child(even) .role {
-  margin-top: 8rem;
   transform: rotate(90deg);
   margin-left: 16.4rem;
 }
