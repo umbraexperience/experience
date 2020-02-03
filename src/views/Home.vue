@@ -154,19 +154,19 @@ export default {
     });
 
     this.soundEmpty1 = new Howl({
-      src: ["sounds/empty_1.wav"],
+      src: ["sounds/empty_1.webm", "sounds/empty_1.mp3"],
       preload: true
     });
     this.soundEmpty2 = new Howl({
-      src: ["sounds/empty_2.wav"],
+      src: ["sounds/empty_2.webm", "sounds/empty_2.mp3"],
       preload: true
     });
     this.soundEmpty3 = new Howl({
-      src: ["sounds/empty_3.wav"],
+      src: ["sounds/empty_3.webm", "sounds/empty_3.mp3"],
       preload: true
     });
     this.soundEmpty4 = new Howl({
-      src: ["sounds/empty_4.wav"],
+      src: ["sounds/empty_4.webm", "sounds/empty_4.mp3"],
       preload: true
     });
 
