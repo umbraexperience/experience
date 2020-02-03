@@ -249,11 +249,12 @@ h2 {
   }
 }
 
-@media screen and (max-width: 1200px) {
+@media screen and (min-width: 2500px) {
   .gracies {
     margin-top: 8rem;
     margin-left: 0;
     text-align: center;
   }
 }
+
 </style>

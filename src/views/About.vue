@@ -59,7 +59,7 @@ export default {
   data() {
     return {
       flickityOptions: {
-        autoPlay: true,
+        autoPlay: 9500,
         wrapAround: true,
         prevNextButtons: false
 
@@ -72,7 +72,7 @@ export default {
 
 <style>
 .flickity-page-dots {
-  bottom: 11.5rem;
+  bottom: 15rem;
   transform: rotate(90deg);
   margin-left: 35rem;
 }
@@ -90,6 +90,7 @@ export default {
   background: white;
 }
 
+
 @media screen and (max-width: 1150px) {
   .flickity-page-dots {
     bottom: 0rem;
@@ -99,11 +100,22 @@ export default {
 }
 
 @media screen and (max-width: 650px) {
+  .container {
+   margin-top:50rem;
+
+  }
+}
+
+@media screen and (max-width: 1200px) {
   .flickity-page-dots {
     transform: rotate(0deg);
     margin-left: 0rem;
+    margin-bottom:2rem;
+
   }
 }
+
+
 </style>
 
 <style scoped>
@@ -115,8 +127,6 @@ export default {
   margin: 0 auto;
   flex-direction: column;
   justify-content: center;
-  align-items: center;
-  overflow-y: hidden;
 }
 
 .container {
@@ -125,6 +135,7 @@ export default {
   margin: 0 auto;
   word-wrap: break-word;
 }
+
 
 .title {
   font-size: 3.15rem;
@@ -137,7 +148,6 @@ export default {
   width: 30rem;
   white-space: normal;
   word-wrap: break-word;
-
   max-width: 100%;
 }
 
@@ -172,7 +182,7 @@ export default {
   color: #2e2e31;
   font-size: 4.2rem;
   font-weight: 500;
-  opacity: 70%;
+  opacity: 80%;
   filter: blur(0.17rem);
   text-align: left;
   max-width: 30rem;
@@ -246,4 +256,28 @@ export default {
     height: 390px;
   }
 }
+
+@media screen and (min-width: 1350px) {
+  .container {
+    margin-top:9rem;
+  }
+}
+
+@media screen and (min-width: 1550px) {
+  .container {
+    margin-top:12rem;
+  }
+}
+
+@media screen and (min-width: 1750px) {
+  .container {
+    margin-top:15rem;
+  }
+}
+
+
+
+
+
+
 </style>
