@@ -85,6 +85,10 @@
 </template>
 
 <script>
+var soundHome;
+var soundLoading;
+var holdSound;
+
 // eslint-disable-next-line no-unused-vars
 import { Howl, Howler } from "howler";
 import PageHome from "@/components/PageHome";
@@ -118,7 +122,7 @@ export default {
     PageExperienceTest,
     PageExperienceEnd
   },
-  mounted() {
+  async mounted() {
     // this.filmgrain();
 
     if (window.matchMedia("(orientation: portrait)").matches) {
@@ -133,47 +137,22 @@ export default {
 
     // https://umbraexperience.s3.eu-west-3.amazonaws.com/begining_web.mp3
 
-    this.soundHome = new Howl({
+    soundHome = await new Howl({
       src: ["sounds/begining_web.webm", "sounds/begining_web.mp3"],
       preload: true,
-      loop: true,
-      onplayerror: function() {
-        this.soundHome.once("unlock", function() {
-          this.soundHome.play();
-        });
-      }
-    });
-    this.soundLoading = new Howl({
-      src: ["sounds/loading_experience.webm", "sounds/loading_experience.mp3"],
-      preload: true,
+      autoplay: true,
       loop: true
     });
-    this.holdSound = new Howl({
+    soundLoading = await new Howl({
+      src: ["sounds/loading_experience.webm", "sounds/loading_experience.mp3"],
+      preload: true
+    });
+    holdSound = await new Howl({
       src: ["sounds/hold.mp3"],
       preload: true
     });
 
-    this.soundEmpty1 = new Howl({
-      src: ["sounds/empty_1.webm", "sounds/empty_1.mp3"],
-      preload: true
-    });
-    this.soundEmpty2 = new Howl({
-      src: ["sounds/empty_2.webm", "sounds/empty_2.mp3"],
-      preload: true
-    });
-    this.soundEmpty3 = new Howl({
-      src: ["sounds/empty_3.webm", "sounds/empty_3.mp3"],
-      preload: true
-    });
-    this.soundEmpty4 = new Howl({
-      src: ["sounds/empty_4.webm", "sounds/empty_4.mp3"],
-      preload: true
-    });
-
-    this.soundHome.play();
-    this.soundHome.fade(0, 1, 2000);
-
-    this.getLocation();
+    soundHome.fade(0, 1, 3000);
 
     // Change global volume.
     // Howler.volume(0.5);
@@ -198,14 +177,39 @@ export default {
     register: function() {
       if (this.name && this.year_birth && this.language) {
         this.$root.$i18n.locale = this.language;
-        this.soundHome.fade(1, 0, 2000);
+        soundHome.fade(1, 0, 2000);
         // console.log("Form full");
         this.state.screen = "loadingExperience";
-        this.soundLoading.play();
-        this.soundLoading.fade(0, 1, 2000);
+        setTimeout(() => {
+          soundLoading.play();
+          soundLoading.fade(0, 1, 2000);
+        }, 500);
+
+        this.soundEmpty1 = new Howl({
+          src: ["sounds/empty_1.webm", "sounds/empty_1.mp3"],
+          preload: true
+        });
+        this.soundEmpty2 = new Howl({
+          src: ["sounds/empty_2.webm", "sounds/empty_2.mp3"],
+          preload: true
+        });
+        this.soundEmpty3 = new Howl({
+          src: ["sounds/empty_3.webm", "sounds/empty_3.mp3"],
+          preload: true
+        });
+        this.soundEmpty4 = new Howl({
+          src: ["sounds/empty_4.webm", "sounds/empty_4.mp3"],
+          preload: true
+        });
+
+        this.getLocation();
+
+        this.soundEnd = new Howl({
+          src: ["sounds/final.webm", "sounds/final.mp3"],
+          preload: true
+        });
         setTimeout(() => {
           this.state.screen = "experience";
-          this.soundLoading.fade(1, 0, 1000);
         }, 7000);
       }
     },
@@ -223,7 +227,7 @@ export default {
     },
     touchHoldHandler() {
       // console.log("longpress");
-      this.holdSound.play();
+      holdSound.play();
 
       if (this.state.screen === "home") {
         // this.enterFullscreen();
@@ -251,6 +255,8 @@ export default {
       }
     },
     endExperience() {
+      this.soundEnd.play();
+      this.soundEnd.fade(0, 1, 2000);
       this.state.screen = "experienceEnd";
     },
     filmgrain() {

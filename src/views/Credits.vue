@@ -34,13 +34,13 @@ export default {
   data() {
     return {
       team: [
-        { id: 0, name: "Marc Vila", role: "VFX & 3D", img: "" },
-        { id: 1, name: "Santi Cros", role: "Developer", img: "" },
-        { id: 2, name: "Abel Martínez", role: "VFX & 3D", img: "" },
-        { id: 3, name: "Adrià Crehuet", role: "Developer", img: "" },
-        { id: 4, name: "Afra Ramió", role: "Sound", img: "" },
-        { id: 5, name: "Aniol Maeso", role: "Video", img: "" },
-        { id: 6, name: "Marta Gallego", role: "Design", img: "" }
+        { id: 0, name: "Marc Vila", role: "Dir & VFX Lead", img: "" },
+        { id: 1, name: "Santi Cros", role: "Dir & Lead Developer", img: "" },
+        { id: 2, name: "Abel Martínez", role: "VFX & Design", img: "" },
+        { id: 3, name: "Adrià Crehuet", role: "Producer & Developer", img: "" },
+        { id: 4, name: "Afra Ramió", role: "Sound Director", img: "" },
+        { id: 5, name: "Aniol Maeso", role: "Audiovisual Director", img: "" },
+        { id: 6, name: "Marta Gallego", role: "Graphic Designer", img: "" }
       ],
 
       mecenes: [
@@ -192,21 +192,22 @@ h1 {
 }
 
 .person .name {
-  margin-top: -21rem;
+  margin-top: -20.5rem;
   margin-left: 3.5rem;
   font-size: 2.2rem;
 }
 
 .person .role {
-  margin-top: 11.5rem;
-  margin-left: -16.2rem;
-  font-size: 1.75rem;
+  margin-top: 10.5rem;
+  margin-left: -16.4rem;
+  font-size: 1.5rem;
   transform: rotate(-90deg);
 }
 
 .person:nth-child(even) .role {
+  margin-top: 8rem;
   transform: rotate(90deg);
-  margin-left: 16.2rem;
+  margin-left: 16.4rem;
 }
 
 .person:nth-child(even) .name {
