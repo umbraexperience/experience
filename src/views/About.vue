@@ -90,6 +90,11 @@ export default {
   background: white;
 }
 
+@media screen and (max-width: 650px) {
+  .container {
+    margin-top: 50rem;
+  }
+}
 
 @media screen and (max-width: 1150px) {
   .flickity-page-dots {
@@ -99,23 +104,13 @@ export default {
   }
 }
 
-@media screen and (max-width: 650px) {
-  .container {
-   margin-top:50rem;
-
-  }
-}
-
 @media screen and (max-width: 1200px) {
   .flickity-page-dots {
     transform: rotate(0deg);
     margin-left: 0rem;
-    margin-bottom:2rem;
-
+    margin-bottom: 2rem;
   }
 }
-
-
 </style>
 
 <style scoped>
@@ -135,7 +130,6 @@ export default {
   margin: 0 auto;
   word-wrap: break-word;
 }
-
 
 .title {
   font-size: 3.15rem;
@@ -259,25 +253,19 @@ export default {
 
 @media screen and (min-width: 1350px) {
   .container {
-    margin-top:9rem;
+    margin-top: 9rem;
   }
 }
 
 @media screen and (min-width: 1550px) {
   .container {
-    margin-top:12rem;
+    margin-top: 12rem;
   }
 }
 
 @media screen and (min-width: 1750px) {
   .container {
-    margin-top:15rem;
+    margin-top: 15rem;
   }
 }
-
-
-
-
-
-
 </style>
