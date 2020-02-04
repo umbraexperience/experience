@@ -24,6 +24,11 @@ body {
 *::-moz-selection {
   background-color: rgba(255, 255, 255, 0.15);
 }
+
+* {
+  cursor: url("./assets/cursor.svg"), pointer;
+}
+
 #app {
   font-family: serif;
   text-align: center;
@@ -90,10 +95,17 @@ body {
   justify-content: space-between;
   max-width: 15rem;
   margin: 0 auto;
+  z-index: 50;
+}
+
+#nav a {
+  opacity: 0.45;
+  color: white;
+  transition: all 0.35s ease-in-out;
 }
 
 #nav a.router-link-exact-active {
-  color: white;
+  opacity: 1;
 }
 
 .fade-enter-active,

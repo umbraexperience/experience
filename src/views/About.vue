@@ -253,7 +253,7 @@ export default {
 
 @media screen and (min-width: 1350px) {
   .container {
-    margin-top: 9rem;
+    margin-top: 8.5rem;
   }
 }
 

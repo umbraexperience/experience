@@ -23,11 +23,11 @@
             {{ $t("home.slogan") }}
           </h2>
         </div>
-        <div>
+        <!--         <div>
           <h3 class="sub-title absolute font-regular animation" ref="element">
             <span>Coming Soon</span>
           </h3>
-        </div>
+        </div> -->
       </div>
     </transition>
     <div class="bottom noselect">
@@ -52,10 +52,7 @@ export default {
       /\S/g,
       "<span class='letter'>$&</span>"
     );
-    this.$refs.element.innerHTML = this.$refs.element.textContent.replace(
-      /\S/g,
-      "<span class='letter'>$&</span>"
-    );
+
     this.$refs.element3.innerHTML = this.$refs.element3.textContent.replace(
       /\S/g,
       "<span class='letter'>$&</span>"

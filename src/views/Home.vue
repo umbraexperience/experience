@@ -103,8 +103,8 @@ export default {
     return {
       name: "Santi",
       year_birth: "1997",
-      language: "es",
-      state: { screen: "experience" },
+      language: "en",
+      state: { screen: "home" },
       holdSound: "",
       city: "",
       test: process.env
