@@ -44,6 +44,13 @@ export default {
       ],
 
       mecenes: [
+        { id: 37, name: "Pol Valverde" },
+        { id: 38, name: "Hans Ludwig" },
+        { id: 34, name: "Terenci Corominas" },
+        { id: 35, name: "David Gimbernat" },
+        { id: 35, name: "Pere Puigbert" },
+        { id: 36, name: "Arnau Gifreu" },
+        { id: 37, name: "Jordi Caralt" },
         { id: 0, name: "Enric Crehuet" },
         { id: 1, name: "Alfonso Ortega" },
         { id: 2, name: "Iván Cortés" },
@@ -72,7 +79,18 @@ export default {
         { id: 25, name: "Marta Peiró" },
         { id: 26, name: "Joan Maeso" },
         { id: 27, name: "Jordi Cros" },
-        { id: 28, name: "Mª Josefa Herrero" }
+        { id: 28, name: "Mª Josefa Herrero" },
+        { id: 29, name: "Montse Peiró" },
+        { id: 30, name: "Pau Pinós" },
+        { id: 31, name: "Roser Maeso" },
+        { id: 32, name: "Aina Alsina" },
+        { id: 33, name: "Aida Lozano" },
+        { id: 34, name: "Judith Portero" },
+        { id: 35, name: "Rubén Pubill" },
+        { id: 36, name: "Ona Calvo" }
+        
+    
+
       ]
     };
   }
