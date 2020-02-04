@@ -85,11 +85,10 @@ export default {
 
 h2 {
   filter: blur(0.065rem);
+  margin-top: 0.5rem;
+  font-size: 1.2rem;
 }
 
-h2 {
-  margin-top: 0.5rem;
-}
 .flex-col {
   height: 100%;
   display: flex;
@@ -122,10 +121,6 @@ h2 {
 
 .headphones-warning svg {
   margin-bottom: 0.5rem;
-}
-
-h2 {
-  font-size: 1.2rem;
 }
 
 .headphones-text p {

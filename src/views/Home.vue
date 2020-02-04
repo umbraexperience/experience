@@ -88,6 +88,11 @@
 var soundHome;
 var soundLoading;
 var holdSound;
+var soundEmpty1;
+var soundEmpty2;
+var soundEmpty3;
+var soundEmpty4;
+var soundEnd;
 
 // eslint-disable-next-line no-unused-vars
 import { Howl, Howler } from "howler";
@@ -124,7 +129,6 @@ export default {
     PageExperienceEnd
   },
   async mounted() {
-    console.log(this.test);
     // this.filmgrain();
 
     if (window.matchMedia("(orientation: portrait)").matches) {
@@ -150,7 +154,7 @@ export default {
       preload: true
     });
     holdSound = await new Howl({
-      src: ["sounds/hold.mp3"],
+      src: ["sounds/hold.webm", "sounds/hold.mp3"],
       preload: true
     });
 
@@ -187,26 +191,26 @@ export default {
           soundLoading.fade(0, 1, 2000);
         }, 500);
 
-        this.soundEmpty1 = new Howl({
+        soundEmpty1 = new Howl({
           src: ["sounds/empty_1.webm", "sounds/empty_1.mp3"],
           preload: true
         });
-        this.soundEmpty2 = new Howl({
+        soundEmpty2 = new Howl({
           src: ["sounds/empty_2.webm", "sounds/empty_2.mp3"],
           preload: true
         });
-        this.soundEmpty3 = new Howl({
+        soundEmpty3 = new Howl({
           src: ["sounds/empty_3.webm", "sounds/empty_3.mp3"],
           preload: true
         });
-        this.soundEmpty4 = new Howl({
+        soundEmpty4 = new Howl({
           src: ["sounds/empty_4.webm", "sounds/empty_4.mp3"],
           preload: true
         });
 
         this.getLocation();
 
-        this.soundEnd = new Howl({
+        soundEnd = new Howl({
           src: ["sounds/final.webm", "sounds/final.mp3"],
           preload: true
         });
@@ -221,7 +225,7 @@ export default {
 
         this.city = response.data.city;
       } catch (error) {
-        console.error(error);
+        // console.error(error);
       }
     },
     startHandler() {
@@ -240,25 +244,25 @@ export default {
     },
     playInteractionSound(soundNum) {
       if (soundNum == 1) {
-        console.log("PARENT INTERACTION" + soundNum);
-        this.soundEmpty1.play();
+        // console.log("PARENT INTERACTION" + soundNum);
+        soundEmpty1.play();
       }
       if (soundNum == 2) {
-        console.log("PARENT INTERACTION" + soundNum);
-        this.soundEmpty2.play();
+        // console.log("PARENT INTERACTION" + soundNum);
+        soundEmpty2.play();
       }
       if (soundNum == 3) {
-        console.log("PARENT INTERACTION" + soundNum);
-        this.soundEmpty3.play();
+        // console.log("PARENT INTERACTION" + soundNum);
+        soundEmpty3.play();
       }
       if (soundNum == 4) {
-        console.log("PARENT INTERACTION" + soundNum);
-        this.soundEmpty4.play();
+        // console.log("PARENT INTERACTION" + soundNum);
+        soundEmpty4.play();
       }
     },
     endExperience() {
-      this.soundEnd.play();
-      this.soundEnd.fade(0, 1, 2000);
+      soundEnd.play();
+      soundEnd.fade(0, 1, 2000);
       this.state.screen = "experienceEnd";
     },
     filmgrain() {

@@ -54,6 +54,14 @@
       <div @mousemove="horizontalScroll('right')">RIGHT</div>
     </div>
 
+    <div class="explanation-interaction">
+      <transition name="fade-overlay">
+        <p v-if="interactionNum !== null">
+          Move your mouse anywhere to interact
+        </p>
+      </transition>
+    </div>
+
     <div
       class="video-container heightfull"
       v-if="this.videoPlaying !== undefined"
@@ -259,10 +267,10 @@ export default {
     async playVideo() {
       try {
         await this.currentPlayer.play();
-        console.log("PLAY STARTED");
+        // console.log("PLAY STARTED");
       } catch (error) {
-        console.log("AUTOPLAY PREVENTED", error);
-        this.videoPaused = true;
+        // console.log("AUTOPLAY PREVENTED", error);
+        // this.videoPaused = true;
       }
     },
     videoEnd() {
@@ -305,7 +313,7 @@ export default {
         }
 
         if (this.videoPlaying < 6) {
-          console.log("loading video" + (this.videoPlaying + 1));
+          // console.log("loading video" + (this.videoPlaying + 1));
           this.nextPlayer.source = {
             type: "video",
             title: "Video" + (this.videoPlaying + 1),
@@ -328,7 +336,7 @@ export default {
       }
     },
     timeCheck(video) {
-      console.log("timecheck", video);
+      // console.log("timecheck", video);
       if (
         video === 1 &&
         this.currentPlayer.currentTime >= 46 &&
@@ -358,7 +366,7 @@ export default {
       }
     },
     mousePosition(soundNum) {
-      console.log("PLAY SOUND", soundNum);
+      // console.log("PLAY SOUND", soundNum);
       this.$emit("interaction-sound", soundNum);
     },
     verticalScroll(position) {
@@ -370,7 +378,7 @@ export default {
         const containerHeight = document.getElementById("video4").scrollHeight;
 
         if (position == "up") {
-          console.log("SCROLL TO TOP");
+          // console.log("SCROLL TO TOP");
           isScrolling = true;
           this.$anime({
             targets: ".video4 video",
@@ -381,7 +389,7 @@ export default {
             isScrolling = false;
           });
         } else if (position == "down") {
-          console.log("SCROLL TO BOTTOM");
+          // console.log("SCROLL TO BOTTOM");
           isScrolling = true;
           this.$anime({
             targets: ".video4 video",
@@ -402,7 +410,7 @@ export default {
       const containerWidth = document.getElementById("video5").scrollWidth;
       if (isScrolling === false) {
         if (position == "left") {
-          console.log("SCROLL TO LEFT");
+          // console.log("SCROLL TO LEFT");
           isScrolling = true;
           this.$anime({
             targets: ".video5 video",
@@ -413,7 +421,7 @@ export default {
             isScrolling = false;
           });
         } else if (position == "right") {
-          console.log("SCROLL TO RIGHT");
+          // console.log("SCROLL TO RIGHT");
           isScrolling = true;
           this.$anime({
             targets: ".video5 video",
@@ -574,6 +582,27 @@ export default {
   100% {
     transform: scale(1);
   }
+}
+
+.explanation-interaction {
+  position: fixed;
+  left: 0;
+  right: 0;
+  top: 0;
+  bottom: 0;
+  min-height: 100%;
+  display: flex;
+  z-index: 4;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+}
+
+.explanation-interaction p {
+  filter: blur(0.065rem);
+  margin-top: 0.5rem;
+  font-size: 1.2rem;
 }
 
 .interaction1-zone,
