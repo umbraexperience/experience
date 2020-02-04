@@ -85,15 +85,6 @@
 </template>
 
 <script>
-var soundHome;
-var soundLoading;
-var holdSound;
-var soundEmpty1;
-var soundEmpty2;
-var soundEmpty3;
-var soundEmpty4;
-var soundEnd;
-
 // eslint-disable-next-line no-unused-vars
 import { Howl, Howler } from "howler";
 import PageHome from "@/components/PageHome";
@@ -113,9 +104,7 @@ export default {
       name: "Santi",
       year_birth: "1997",
       language: "es",
-      state: { screen: "home" },
-      soundHome: "",
-      soundLoading: "",
+      state: { screen: "experience" },
       holdSound: "",
       city: "",
       test: process.env
@@ -143,22 +132,43 @@ export default {
 
     // https://umbraexperience.s3.eu-west-3.amazonaws.com/begining_web.mp3
 
-    soundHome = await new Howl({
+    this.soundHome = await new Howl({
       src: ["sounds/begining_web.webm", "sounds/begining_web.mp3"],
       preload: true,
       autoplay: true,
       loop: true
     });
-    soundLoading = await new Howl({
+    this.soundLoading = await new Howl({
       src: ["sounds/loading_experience.webm", "sounds/loading_experience.mp3"],
       preload: true
     });
-    holdSound = await new Howl({
+    this.holdSound = await new Howl({
       src: ["sounds/hold.webm", "sounds/hold.mp3"],
       preload: true
     });
+    this.soundEnd = new Howl({
+      src: ["sounds/final.webm", "sounds/final.mp3"],
+      preload: true
+    });
 
-    soundHome.fade(0, 1, 3000);
+    this.soundEmpty1 = new Howl({
+      src: ["sounds/empty_1.webm", "sounds/empty_1.mp3"],
+      preload: true
+    });
+    this.soundEmpty2 = new Howl({
+      src: ["sounds/empty_2.webm", "sounds/empty_2.mp3"],
+      preload: true
+    });
+    this.soundEmpty3 = new Howl({
+      src: ["sounds/empty_3.webm", "sounds/empty_3.mp3"],
+      preload: true
+    });
+    this.soundEmpty4 = new Howl({
+      src: ["sounds/empty_4.webm", "sounds/empty_4.mp3"],
+      preload: true
+    });
+
+    this.soundHome.fade(0, 1, 3000);
 
     // Change global volume.
     // Howler.volume(0.5);
@@ -183,37 +193,16 @@ export default {
     register: function() {
       if (this.name && this.year_birth && this.language) {
         this.$root.$i18n.locale = this.language;
-        soundHome.fade(1, 0, 2000);
+        this.soundHome.fade(1, 0, 2000);
         // console.log("Form full");
         this.state.screen = "loadingExperience";
         setTimeout(() => {
-          soundLoading.play();
-          soundLoading.fade(0, 1, 2000);
+          this.soundLoading.play();
+          this.soundLoading.fade(0, 1, 2000);
         }, 500);
-
-        soundEmpty1 = new Howl({
-          src: ["sounds/empty_1.webm", "sounds/empty_1.mp3"],
-          preload: true
-        });
-        soundEmpty2 = new Howl({
-          src: ["sounds/empty_2.webm", "sounds/empty_2.mp3"],
-          preload: true
-        });
-        soundEmpty3 = new Howl({
-          src: ["sounds/empty_3.webm", "sounds/empty_3.mp3"],
-          preload: true
-        });
-        soundEmpty4 = new Howl({
-          src: ["sounds/empty_4.webm", "sounds/empty_4.mp3"],
-          preload: true
-        });
 
         this.getLocation();
 
-        soundEnd = new Howl({
-          src: ["sounds/final.webm", "sounds/final.mp3"],
-          preload: true
-        });
         setTimeout(() => {
           this.state.screen = "experience";
         }, 7000);
@@ -233,7 +222,7 @@ export default {
     },
     touchHoldHandler() {
       // console.log("longpress");
-      holdSound.play();
+      this.holdSound.play();
 
       if (this.state.screen === "home") {
         // this.enterFullscreen();
@@ -245,24 +234,24 @@ export default {
     playInteractionSound(soundNum) {
       if (soundNum == 1) {
         // console.log("PARENT INTERACTION" + soundNum);
-        soundEmpty1.play();
+        this.soundEmpty1.play();
       }
       if (soundNum == 2) {
         // console.log("PARENT INTERACTION" + soundNum);
-        soundEmpty2.play();
+        this.soundEmpty2.play();
       }
       if (soundNum == 3) {
         // console.log("PARENT INTERACTION" + soundNum);
-        soundEmpty3.play();
+        this.soundEmpty3.play();
       }
       if (soundNum == 4) {
         // console.log("PARENT INTERACTION" + soundNum);
-        soundEmpty4.play();
+        this.soundEmpty4.play();
       }
     },
     endExperience() {
-      soundEnd.play();
-      soundEnd.fade(0, 1, 2000);
+      this.soundEnd.play();
+      this.soundEnd.fade(0, 1, 2000);
       this.state.screen = "experienceEnd";
     },
     filmgrain() {

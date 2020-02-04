@@ -56,8 +56,12 @@
 
     <div class="explanation-interaction">
       <transition name="fade-overlay">
-        <p v-if="interactionNum !== null">
-          Move your mouse anywhere to interact
+        <p v-if="intExplanationNum !== null">
+          {{
+            $t(
+              "experience.interactionExplanations.int" + this.intExplanationNum
+            )
+          }}
         </p>
       </transition>
     </div>
@@ -191,6 +195,7 @@ export default {
       videoPlaying: 1,
       videoPaused: false,
       interactionNum: null,
+      intExplanationNum: null,
       showVideo2Overlay: false,
       playerOptions: {
         controls: [""],
@@ -284,6 +289,11 @@ export default {
 
         if (this.videoPlaying === 2) {
           this.interactionNum = 2;
+          this.intExplanationNum = 2;
+
+          setTimeout(() => {
+            this.intExplanationNum = null;
+          }, 5000);
         } else if (this.videoPlaying === 3) {
           this.$refs.video2_2.player.destroy();
         } else if (this.videoPlaying === 4) {
@@ -310,6 +320,12 @@ export default {
             .getElementsByTagName("video")[0].style.transform =
             "translateX(" + -(video5Width - containerWidth) / 2 + "px)";
           this.interactionNum = 4;
+
+          this.intExplanationNum = 4;
+
+          setTimeout(() => {
+            this.intExplanationNum = null;
+          }, 5000);
         }
 
         if (this.videoPlaying < 6) {
@@ -343,12 +359,17 @@ export default {
         this.currentPlayer.currentTime <= 50.5
       ) {
         this.interactionNum = 1;
-      } else if (
-        video === 4 &&
-        this.currentPlayer.currentTime >= 1.2 &&
-        this.currentPlayer.currentTime <= 9
-      ) {
+        this.intExplanationNum = 1;
+        if (this.currentPlayer.currentTime > 49) {
+          this.intExplanationNum = null;
+        }
+      } else if (video === 4 && this.currentPlayer.currentTime <= 9) {
         this.interactionNum = 3;
+        this.intExplanationNum = 3;
+
+        if (this.currentPlayer.currentTime > 5) {
+          this.intExplanationNum = null;
+        }
       } else if (
         video === 6 &&
         this.currentPlayer.currentTime >= 19 &&
@@ -363,6 +384,7 @@ export default {
         this.interactionNum = 6;
       } else {
         this.interactionNum = null;
+        this.intExplanationNum = null;
       }
     },
     mousePosition(soundNum) {
@@ -441,7 +463,7 @@ export default {
 <style>
 .DEBUG {
   position: fixed;
-  z-index: 6;
+  z-index: 7;
 }
 .video-container {
   position: absolute;
@@ -616,7 +638,7 @@ export default {
   bottom: 0;
   min-height: 100%;
   display: flex;
-  z-index: 5;
+  z-index: 6;
 }
 
 .interaction1-zone {

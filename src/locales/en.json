@@ -19,6 +19,14 @@
       "languagesTitle": "Subtitles",
       "off": "Off",
       "circleAdvice": "Click the circle to continue"
+    },
+    "interactionExplanations": {
+      "int1": "Move your mouse anywhere to interact",
+      "int2": "Hover over the light to interact",
+      "int3": "Move your mouse to the top and bottom to interact",
+      "int4": "Move your mouse to the left or right to interact",
+      "int6": "Move your mouse anywhere to interact",
+      "int5": "Move your mouse anywhere to interact"
     }
   },
   "end": {
