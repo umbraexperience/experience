@@ -158,13 +158,13 @@
             label="English"
             kind="subtitles"
             srclang="en"
-            src="/captions/video1.vtt"
+            src="/captions/001_ensubs.vtt"
           />
           <track
             label="Spanish"
             kind="subtitles"
             srclang="es"
-            src="/captions/video1es.vtt"
+            src="/captions/001_essubs.vtt"
           />
         </video>
       </vue-plyr>
@@ -394,7 +394,9 @@ export default {
       ) {
         this.interactionNum = 1;
         this.intExplanationNum = 1;
+
         this.soundIntExplanation.play();
+
         if (this.currentPlayer.currentTime > 49) {
           this.intExplanationNum = null;
         }
@@ -524,19 +526,15 @@ export default {
   flex-direction: column;
   justify-content: center;
   align-items: center;
-
 }
 .pause-section img {
   max-width: 15rem;
   opacity: 0.9;
-  
 }
 .pause-section ul {
   padding: 0;
   margin: 0;
   display: flex;
-
-
 }
 .pause-section li {
   list-style-type: none;
@@ -551,17 +549,16 @@ export default {
 
 .pause-section p {
   filter: blur(0.06rem);
-  margin-top:1rem;
+  margin-top: 1rem;
 }
 
 .pause-section h2 {
   filter: blur(0.06rem);
-  margin-top:1rem;
+  margin-top: 1rem;
 }
 
 .pause-section h3 {
   filter: blur(0.06rem);
-  
 }
 
 .heightfull {
