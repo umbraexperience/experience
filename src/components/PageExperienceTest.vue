@@ -11,8 +11,8 @@
     <transition name="pause">
       <div class="pause-section" v-show="videoPaused">
         <img src="@/assets/logo.png" alt="umbra logo" />
-        <h2>{{ $t("experience.pauseMenu.title") }}</h2>
         <h3>{{ $t("experience.pauseMenu.languagesTitle") }}</h3>
+        <h3>{{ $t("experience.pauseMenu.languagesTitle2") }}</h3>
 
         <ul>
           <li>
@@ -528,7 +528,8 @@ export default {
   align-items: center;
 }
 .pause-section img {
-  max-width: 15rem;
+  max-width: 25rem;
+  width: 25rem;
   opacity: 0.9;
 }
 .pause-section ul {
@@ -548,11 +549,6 @@ export default {
 }
 
 .pause-section p {
-  filter: blur(0.06rem);
-  margin-top: 1rem;
-}
-
-.pause-section h2 {
   filter: blur(0.06rem);
   margin-top: 1rem;
 }
