@@ -489,21 +489,44 @@ export default {
   flex-direction: column;
   justify-content: center;
   align-items: center;
+
 }
 .pause-section img {
   max-width: 15rem;
   opacity: 0.9;
+  
 }
 .pause-section ul {
   padding: 0;
   margin: 0;
   display: flex;
+
+
 }
 .pause-section li {
   list-style-type: none;
   padding: 0;
-
   margin: 0 1rem;
+  filter: blur(0.05rem);
+}
+
+.pause-section li:hover {
+  filter: blur(0.08rem);
+}
+
+.pause-section p {
+  filter: blur(0.06rem);
+  margin-top:1rem;
+}
+
+.pause-section h2 {
+  filter: blur(0.06rem);
+  margin-top:1rem;
+}
+
+.pause-section h3 {
+  filter: blur(0.06rem);
+  
 }
 
 .heightfull {
