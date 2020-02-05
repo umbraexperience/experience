@@ -195,6 +195,7 @@ export default {
       videoPlaying: 1,
       videoPaused: false,
       interactionNum: null,
+      soundIntExplanation: "",
       intExplanationNum: null,
       showVideo2Overlay: false,
       playerOptions: {
@@ -249,6 +250,20 @@ export default {
           type: "video/mp4",
           size: 1080
         }
+      ],
+      tracks: [
+        {
+          kind: "subtitles",
+          label: "English",
+          srclang: "en",
+          src: "/captions/002_ensubs.vtt"
+        },
+        {
+          kind: "subtitles",
+          label: "Spanish",
+          srclang: "es",
+          src: "/captions/002_essubs.vtt"
+        }
       ]
     };
 
@@ -263,6 +278,11 @@ export default {
         }
       ]
     };
+
+    this.soundIntExplanation = new Howl({
+      src: ["sounds/interaction_advice.webm", "sounds/binteraction_advice.mp3"],
+      preload: true
+    });
   },
   methods: {
     pauseButton() {
@@ -339,6 +359,20 @@ export default {
                 type: "video/mp4",
                 size: 1080
               }
+            ],
+            tracks: [
+              {
+                kind: "subtitles",
+                label: "English",
+                srclang: "en",
+                src: "/captions/00" + (this.videoPlaying + 1) + "_ensubs.vtt"
+              },
+              {
+                kind: "subtitles",
+                label: "Spanish",
+                srclang: "es",
+                src: "/captions/00" + (this.videoPlaying + 1) + "_essubs.vtt"
+              }
             ]
           };
         }
@@ -360,6 +394,7 @@ export default {
       ) {
         this.interactionNum = 1;
         this.intExplanationNum = 1;
+        this.soundIntExplanation.play();
         if (this.currentPlayer.currentTime > 49) {
           this.intExplanationNum = null;
         }

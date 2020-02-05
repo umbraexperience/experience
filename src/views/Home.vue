@@ -29,7 +29,10 @@
       </transition>
 
       <transition name="fade" appear>
-        <div class="bottom-input" v-if="state.screen === 'register'">
+        <div
+          class="bottom-input padding-sides"
+          v-if="state.screen === 'register'"
+        >
           <div class="input-group">
             <div class="input-name">
               <input
@@ -436,9 +439,10 @@ a {
 
 .bottom-input {
   position: absolute;
-  bottom: 25%;
+  bottom: 18%;
   left: 0;
   right: 0;
+  padding-left: 2rem;
 }
 
 .input-group {
@@ -446,11 +450,27 @@ a {
   flex-direction: column;
   justify-content: center;
   width: 100%;
+
   max-width: 30rem;
   filter: blur(0.07rem);
 }
 
+.input-group > div {
+  margin-top: 1rem;
+}
+
+.input-group .input-name input,
+.input-group .input-year input {
+  padding-left: 0.8rem;
+  padding-top: 0.3rem;
+  padding-bottom: 0.3rem;
+  border-left: 2px solid #999999;
+}
+
 @media screen and (min-width: 640px) {
+  .bottom-input {
+    bottom: 25%;
+  }
   .input-group {
     margin: 0 auto;
     flex-direction: row;
@@ -458,17 +478,16 @@ a {
     max-width: 40rem;
     padding-left: 8rem;
   }
-}
 
-.input-group > div {
-  width: 33%;
-}
+  .input-group > div {
+    width: 33%;
+  }
 
-.input-group .input-name input,
-.input-group .input-year input {
-  padding-left: 0.8rem;
-  border-left: 2px solid #999999;
-  width: 100%;
+  .input-group .input-name input,
+  .input-group .input-year input {
+    padding-top: 0rem;
+    padding-bottom: 0rem;
+  }
 }
 
 input {
@@ -512,6 +531,15 @@ input[type="number"] {
   align-items: center;
   border-left: 2px solid #999999;
   padding-left: 0.8rem;
+  padding-top: 0.4rem;
+  padding-bottom: 0.4rem;
+}
+
+@media screen and (min-width: 640px) {
+  .input-language {
+    padding-top: 0;
+    padding-bottom: 0;
+  }
 }
 
 .input-language * {
