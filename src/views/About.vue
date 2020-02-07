@@ -6,10 +6,10 @@
     <flickity class="flickity" ref="flickity" :options="flickityOptions">
       <div class="carousel-cell">
         <div class="contingut">
-          <div class="apartat">{{ $t("about.us.title") }}</div>
+          <div class="apartat">{{ $t("about.narrative.title") }}</div>
           <div class="descripcio">
             <p>
-              {{ $t("about.us.description") }}
+              {{ $t("about.narrative.description") }}
             </p>
           </div>
         </div>
@@ -26,10 +26,10 @@
       </div>
       <div class="carousel-cell">
         <div class="contingut">
-          <div class="apartat">{{ $t("about.narrative.title") }}</div>
+          <div class="apartat">{{ $t("about.us.title") }}</div>
           <div class="descripcio">
             <p>
-              {{ $t("about.narrative.description") }}
+              {{ $t("about.us.description") }}
             </p>
           </div>
         </div>

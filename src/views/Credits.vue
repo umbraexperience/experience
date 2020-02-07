@@ -12,6 +12,11 @@
 
     <div class="crowfunding">
       <h1 class="gracies">{{ $t("credits.acknowledgements") }}</h1>
+       <div class="grid-container2">
+        <div v-for="special in specials" :key="special.id" class="especials">
+          {{ special.name }}
+        </div>
+      </div>     
       <div class="grid-container">
         <div v-for="mecena in mecenes" :key="mecena.id" class="paypal">
           {{ mecena.name }}
@@ -43,9 +48,12 @@ export default {
         { id: 6, name: "Marta Gallego", role: "Graphic Designer", img: "" }
       ],
 
+      specials: [
+        { id: 0, name: "Pol Valverde (Assistant interactive designer)" },
+        { id: 1, name: "Hans Ludwig (Soundtrack)" }
+      ],
+
       mecenes: [
-        { id: 0, name: "Pol Valverde" },
-        { id: 1, name: "Hans Ludwig" },
         { id: 2, name: "Terenci Corominas" },
         { id: 3, name: "David Gimbernat" },
         { id: 4, name: "Pere Puigbert" },
@@ -118,9 +126,27 @@ export default {
   margin-bottom: 5rem;
 }
 
+.grid-container2 {
+  display: grid;
+  grid-gap: 2rem 1rem;
+  grid-template-columns: repeat(2, 1fr);
+  justify-content: space-evenly;
+  width: 70%;
+  margin: 0 auto;
+  margin-top: 3rem;
+  margin-bottom: 3rem;
+}
+
+.especials {
+  font-weight: 500;
+  filter: blur(0.04rem);
+  font-size: 1.1rem;
+  opacity:0;
+}
+
 .paypal {
   font-family: "Tiempos Headline", Times, serif;
-  font-weight: 500;
+  font-weight: 400;
   filter: blur(0.04rem);
   opacity: 0;
 }
@@ -138,6 +164,7 @@ h1 {
 }
 
 .paypal:nth-child(odd),
+.especials:nth-child(odd),
 .logo:nth-child(odd) {
   -webkit-animation: color-change 14s infinite;
   -moz-animation: color-change 14s infinite;
@@ -147,6 +174,7 @@ h1 {
 }
 
 .paypal:nth-child(even),
+.especials:nth-child(even),
 .logo:nth-child(even) {
   -webkit-animation: color-change 14s infinite;
   -moz-animation: color-change 14s infinite;
@@ -167,7 +195,7 @@ h1 {
 }
 
 .logo {
-  width: 100%;
+  width: 140px;
   object-fit: contain;
   height: 8rem;
   opacity: 0%;

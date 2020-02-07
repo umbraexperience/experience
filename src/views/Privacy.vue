@@ -46,7 +46,7 @@
             Este proyecto no venderá, cederá ni distribuirá la información
             personal que es recopilada sin su consentimiento, salvo que sea
             requerido por un juez con un orden judicial.
-          </p>
+          </p> 
         </div>
       </div>
     </div>

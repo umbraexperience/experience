@@ -37,19 +37,19 @@
     "title": "About the project",
     "us": {
       "title": "Who we are",
-      "description": "Umbra es un proyecto grupal de final del grado de Audiovisuales y Multimedia de la Universidad de Girona (ERAM). Formado por sieteestudiantes con perfiles distintos, que van desde el ámbitoaudiovisual (vídeo, 3D, diseño, sonido, ...), hasta el multimedia(programación, diseño web,...). Nuestra motivación para hacer esteproyecto surgió de la posibilidad de unir ambos àmbitos en unformato revelador."
+      "description": "Umbra is a group project for the end of the degree, formed by a group of students with diverse profiles, ranging from audiovisual to multimedia. Our motivation to do this project came from the possibility of joining the different areas in an avant-garde format. "
     },
     "project": {
       "title": "The project",
-      "description": "Umbra está formado por una narración online interactiva, unainstalación a modo de presentación y un teaser promocional. Estostres medios permiten que la plataforma principal (web) sevisualice con un amplio conocimiento previo del proyecto."
+      "description": "Umbra consists of an interactive online storytelling, a presentation-like installation and a promotional teaser. These three media allow the main web platform to be visualized with a wide previous knowledge of the project. "
     },
     "narrative": {
       "title": "The narrative",
-      "description": "La narración online trata la temática de los datos de una formaabstracta y sutil, para ser más concretos, habla sobre el controlde los datos en un futuro cercano y su importancia. El objetivofinal del proyecto, consiste en crear una reflexión al espectadory concienciarlo, sobre la trascendencia de los datos, al mismotiempo que se entretiene con la narración creada."
+      "description": "The online narrative deals, in an abstract and subtle way, with the importance of data control in the near future, and the repercussions that these will generate in our daily lives. The aim of the project is to create a reflection and to make the viewer aware of the transcendence of the data, while enjoying the interactive."
     },
     "data": {
       "title": "Your data",
-      "description": "Para calcular el valor de los datos, hemos tenido en cuentadistintos factores, el primero de ellos es la edad, juntamente conlas decisiones que se tomaban durante la narración. El otroelemento ha sido un conjunto de estudios científicos, donde suobjetivo era hacer una estimación de cual seria el valor quetendrían los datos dentro de unos años. En función de lainvestigación, los datos cambiaban entre ellos."
+      "description": "To calculate the value of the data, we have taken into account different factors. The first of these is age, along with your current geoposition and we have also taken into account some decisions you have made during the narrative. From this information we have contrasted it with a set of scientific studies, where the objective was to make an estimate of what the value of the data would be in a few years time."
     }
   },
   "credits": {
