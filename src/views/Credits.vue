@@ -3,7 +3,9 @@
     <div class="flex-container">
       <div v-for="member in team" :key="member.id" class="person">
         <div class="photo">
-          <img src="@/assets/aniol.png" />
+          <img :src="'/images/' + member.img + '-02.jpg'" class="clar"/>
+          <img :src="'/images/' + member.img + '-01.jpg'" class="fosc"/>
+
         </div>
         <h2 class="name font-medium">{{ member.name }}</h2>
         <h2 class="role font-medium">{{ member.role }}</h2>
@@ -39,13 +41,13 @@ export default {
   data() {
     return {
       team: [
-        { id: 0, name: "Marc Vila", role: "Dir & VFX Lead", img: "" },
-        { id: 1, name: "Santi Cros", role: "Dir & Lead Developer", img: "" },
-        { id: 2, name: "Abel Martínez", role: "VFX & Design", img: "" },
-        { id: 3, name: "Adrià Crehuet", role: "Producer & Developer", img: "" },
-        { id: 4, name: "Afra Ramió", role: "Sound Director", img: "" },
-        { id: 5, name: "Aniol Maeso", role: "Audiovisual Director", img: "" },
-        { id: 6, name: "Marta Gallego", role: "Graphic Designer", img: "" }
+        { id: 0, name: "Marc Vila", role: "Dir & VFX Lead", img: "Marc" },
+        { id: 1, name: "Santi Cros", role: "Dir & Lead Developer", img: "Santi" },
+        { id: 2, name: "Abel Martínez", role: "VFX & Design", img: "Abel" },
+        { id: 3, name: "Adrià Crehuet", role: "Producer & Developer", img: "Adria" },
+        { id: 4, name: "Afra Ramió", role: "Sound Director", img: "Afra" },
+        { id: 5, name: "Aniol Maeso", role: "Audiovisual Director", img: "Aniol" },
+        { id: 6, name: "Marta Gallego", role: "Graphic Designer", img: "Marta" }
       ],
 
       specials: [
@@ -232,12 +234,38 @@ h1 {
   width: 250px;
   height: 300px;
   margin: 0 auto;
+  position: relative;
+}
+
+.person .photo img {
+  max-width: 100%;
+  position: absolute;
+  top:0;
+  left: 0;
+  bottom: 0;
+  right: 0;
+  transition:all 1s ease-in-out;
+
+}
+
+.person .photo img.clar {
+  opacity:0;
+}
+
+.person .photo:hover img.fosc {
+  opacity:0;
+
+}
+
+.person .photo:hover img.clar {
+  opacity:1;
 }
 
 .person .name {
   margin-top: -20.5rem;
   margin-left: 3.5rem;
   font-size: 2.2rem;
+
 }
 
 .person .role {
@@ -245,6 +273,7 @@ h1 {
   margin-left: -16.4rem;
   font-size: 1.5rem;
   transform: rotate(-90deg);
+
 }
 
 .person:nth-child(even) .role {
