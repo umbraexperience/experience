@@ -2,7 +2,7 @@
   <div class="privacy">
     <div class="container">
       <h1 class="title font-regular">
-        Terms & Privacy
+        <p v-html="($t('privacy.title'))" class="title"></p>
       </h1>
       <div class="textspace">
         <div class="text font-regular">

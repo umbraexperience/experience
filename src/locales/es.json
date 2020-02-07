@@ -55,5 +55,8 @@
   "credits": {
     "acknowledgements": "Agradecimientos"
   },
-  "privacy": {}
+  "privacy": {
+    "title": "Términos y Privacidad",
+    "description": "This Privacy Policy establishes the terms in which umbra uses and protects the information that is provided by its users when using its website. This project is committed to the security of its users’ data. When we ask you to fill in the personal information fields with which you can be identified by, that is only used in accordance with the following terms. <br><br> Our website can collect personal information, for example: Name, geographical location and year of birth. In order to provide the best possible user service, specifically to create a greater immersive experience and improve our work. We are highly committed to keeping your information secure. <br><br> A cookie refers to a file that is sent for the purpose of requesting permission to be stored on your computer. Upon acceptance, such a file is created and the cookies then serve to provide information regarding web traffic and to facilitate future visits to a recurring site. Our website does not use cookies to identify which pages are visited and how often. <br><br> This website contains links to other sites that may be of interest to you. Once you click on these links and leave our site, we no longer have control over the site to which you are redirected and therefore are not responsible for the terms or privacy practices of such other third party sites. Such sites are subject to their own privacy policies and you should check them to confirm that you agree with them.  <br><br> This project will not sell, give, or distribute personal information that is collected without your consent, unless required by a judge with a court order."
+  }
 }
