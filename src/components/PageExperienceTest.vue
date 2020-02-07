@@ -335,6 +335,9 @@ export default {
             .getElementsByTagName("video")[0].style.transform =
             "translateY(" + -(video4Height - containerHeight) / 2 + "px)";
         } else if (this.videoPlaying === 5) {
+          this.interactionNum = 4;
+          this.intExplanationNum = 4;
+
           const video5Width = document
             .getElementById("video5")
             .getElementsByTagName("video")[0].scrollWidth;
@@ -345,9 +348,12 @@ export default {
             .getElementById("video5")
             .getElementsByTagName("video")[0].style.transform =
             "translateX(" + -(video5Width - containerWidth) / 2 + "px)";
-          this.interactionNum = 4;
 
-          this.intExplanationNum = 4;
+          console.log(this.interactionNum);
+
+          setTimeout(() => {
+            console.log(this.interactionNum);
+          }, 2000);
 
           setTimeout(() => {
             this.intExplanationNum = null;
