@@ -21,7 +21,7 @@
         <PageExperienceEnd v-else-if="state.screen === 'experienceEnd'">
           <template v-slot:name> {{ name }}</template>
           <template v-slot:age>
-            {{ new Date().getFullYear() - 1 - year_birth }}
+            {{ age }}
           </template>
           <template v-slot:city> {{ city }}</template>
           <template v-slot:price>{{ (85 - 22) * 5000 }} €</template>
@@ -47,10 +47,10 @@
             <div class="input-year">
               <input
                 type="number"
-                min="1900"
-                max="2020"
-                :placeholder="$t('home.register.birth')"
-                v-model="year_birth"
+                min="13"
+                max="95"
+                :placeholder="$t('home.register.age')"
+                v-model="age"
                 required
               />
             </div>
@@ -105,9 +105,9 @@ export default {
   data: function() {
     return {
       name: "Santi",
-      year_birth: "1997",
+      age: "22",
       language: "en",
-      state: { screen: "experienceEnd" },
+      state: { screen: "home" },
       holdSound: "",
       city: "",
       test: process.env
@@ -120,9 +120,9 @@ export default {
     PageExperienceTest,
     PageExperienceEnd
   },
+
   async mounted() {
     // this.filmgrain();
-
     if (window.matchMedia("(orientation: portrait)").matches) {
       // you're in PORTRAIT mode
       // console.log("you're in PORTRAIT mode");
@@ -194,7 +194,7 @@ export default {
       this.fullscreen = fullscreen;
     },
     register: function() {
-      if (this.name && this.year_birth && this.language) {
+      if (this.name && this.age && this.language) {
         this.$root.$i18n.locale = this.language;
         this.soundHome.fade(1, 0, 2000);
         // console.log("Form full");
@@ -442,7 +442,12 @@ a {
   bottom: 18%;
   left: 0;
   right: 0;
-  padding-left: 2rem;
+}
+
+@media screen and (max-width: 640px) {
+  .bottom-input {
+    padding: 0 25%;
+  }
 }
 
 .input-group {
@@ -465,6 +470,7 @@ a {
   padding-top: 0.3rem;
   padding-bottom: 0.3rem;
   border-left: 2px solid #999999;
+  width: 100%;
 }
 
 @media screen and (min-width: 640px) {
@@ -476,7 +482,7 @@ a {
     flex-direction: row;
     justify-content: space-between;
     max-width: 40rem;
-    padding-left: 8rem;
+    padding-left: 10%;
   }
 
   .input-group > div {
@@ -487,6 +493,13 @@ a {
   .input-group .input-year input {
     padding-top: 0rem;
     padding-bottom: 0rem;
+    width: 100%;
+  }
+}
+
+@media screen and (min-width: 1200px) {
+  .input-group {
+    padding-left: 8rem;
   }
 }
 

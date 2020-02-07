@@ -5,7 +5,7 @@
     "holdContinue": "Mantén presionado en cualquier sitio para continuar",
     "register": {
       "name": "Nombre",
-      "birth": "Año de nacimiento"
+      "age": "Edad"
     }
   },
   "loading": {

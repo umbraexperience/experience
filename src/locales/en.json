@@ -5,7 +5,7 @@
     "holdContinue": "Hold anywhere to continue",
     "register": {
       "name": "Name",
-      "birth": "Year of birth"
+      "age": "Age"
     }
   },
   "loading": {
