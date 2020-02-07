@@ -11,22 +11,28 @@
     <transition name="pause">
       <div class="pause-section" v-show="videoPaused">
         <img src="@/assets/logo.png" alt="umbra logo" />
-        <h2>{{ $t("experience.pauseMenu.title") }}</h2>
-        <h3>{{ $t("experience.pauseMenu.languagesTitle") }}</h3>
+        <div class ="grid-container">
+          <h3>{{ $t("experience.pauseMenu.languagesTitle2") }}</h3>
+          <h3>{{ $t("experience.pauseMenu.languagesTitle") }}</h3>
+            <ul>
+              <li>
+                {{ $t("languageNames.english") }}
+              </li>
+              <li>
+                {{ $t("languageNames.spanish") }}
+              </li>
+            </ul>
 
-        <ul>
-          <li>
-            {{ $t("languageNames.english") }}
-          </li>
-          <li>
-            {{ $t("languageNames.spanish") }}
-          </li>
-          <li>
-            {{ $t("experience.pauseMenu.off") }}
-          </li>
-        </ul>
-
-        <p>{{ $t("experience.pauseMenu.circleAdvice") }}</p>
+            <ul>  
+              <li>
+                {{ $t("experience.pauseMenu.off") }}
+              </li>
+              <li>
+                {{ $t("experience.pauseMenu.on") }}
+              </li>
+            </ul>
+        </div>
+          <p class="instruccions">{{ $t("experience.pauseMenu.circleAdvice") }}</p>
       </div>
     </transition>
 
@@ -532,21 +538,43 @@ export default {
   flex-direction: column;
   justify-content: center;
   align-items: center;
+  
 }
+
+.grid-container {
+  display: grid;
+  flex-direction: row;
+  justify-items: center;
+  align-self: auto;
+  margin: 0 auto;
+  align-items: center;
+  grid-template-columns: repeat(2, 1fr);
+ 
+}
+
 .pause-section img {
-  max-width: 15rem;
+  max-width: 20rem;
+  height:auto;
   opacity: 0.9;
+  padding-top: 12rem;
+  
+  
 }
 .pause-section ul {
   padding: 0;
   margin: 0;
-  display: flex;
+  display: grid;
+  justify-content: center;
+  display: inline;
+
 }
 .pause-section li {
   list-style-type: none;
   padding: 0;
   margin: 0 1rem;
   filter: blur(0.05rem);
+  display: inline;
+
 }
 
 .pause-section li:hover {
@@ -558,13 +586,16 @@ export default {
   margin-top: 1rem;
 }
 
-.pause-section h2 {
-  filter: blur(0.06rem);
-  margin-top: 1rem;
-}
-
 .pause-section h3 {
   filter: blur(0.06rem);
+  padding-top:1rem;
+  
+}
+
+.instruccions {  
+  padding-top: 10rem;
+  
+  
 }
 
 .heightfull {

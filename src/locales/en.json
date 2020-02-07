@@ -15,9 +15,10 @@
   },
   "experience": {
     "pauseMenu": {
-      "title": "Experience paused",
       "languagesTitle": "Subtitles",
+      "languagesTitle2": "Language",
       "off": "Off",
+      "on": "On",
       "circleAdvice": "Click the circle to continue"
     },
     "interactionExplanations": {
