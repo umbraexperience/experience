@@ -242,7 +242,6 @@ export default {
     }
   },
   mounted() {
-    console.log(this.$root.$i18n.locale);
     this.playVideo();
 
     // console.log((this.currentPlayer.language = "es"));
@@ -410,6 +409,8 @@ export default {
       if (this.$refs["video" + (this.videoPlaying + 1)] != undefined) {
         this.nextPlayer.toggleCaptions(toState);
       }
+
+      console.log(window.localStorage.getItem("plyr"));
     },
     changeLanguage(lang) {
       this.$root.$i18n.locale = lang;
