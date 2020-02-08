@@ -196,6 +196,13 @@ export default {
     register: function() {
       if (this.name && this.age && this.language) {
         this.$root.$i18n.locale = this.language;
+        const settings = {
+          captions: "true",
+          language: this.$root.$i18n.locale
+        };
+
+        window.localStorage.setItem("plyr", JSON.stringify(settings));
+
         this.soundHome.fade(1, 0, 2000);
         // console.log("Form full");
         this.state.screen = "loadingExperience";
