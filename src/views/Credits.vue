@@ -51,7 +51,7 @@ export default {
       ],
 
       specials: [
-        { id: 0, name: "Pol Valverde (Assistant interactive designer)" },
+        { id: 0, name: "Pol Valverde (Interactive designer assistant)" },
         { id: 1, name: "Hans Ludwig (Soundtrack)" }
       ],
 
