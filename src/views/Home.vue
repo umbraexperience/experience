@@ -23,7 +23,7 @@
           <template v-slot:age>
             {{ age }}
           </template>
-          <template v-slot:city> {{ city }}</template>
+          <template v-slot:city> {{ city || "Girona" }}</template>
           <template v-slot:price>{{ (85 - 22) * 5000 }} €</template>
         </PageExperienceEnd>
       </transition>
@@ -111,7 +111,7 @@ export default {
       name: "Santi",
       age: "22",
       language: "en",
-      state: { screen: "home" },
+      state: { screen: "experienceEnd" },
       holdSound: "",
       city: "",
       test: process.env

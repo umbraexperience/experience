@@ -32,7 +32,10 @@
   },
   "end": {
     "years": "years",
-    "firsttext": "While you’ve been taking the experience, we’ve collected information about you. It is now common practice to analyze all your behaviour as this gives valuable data that allows to customise online services. At the same time, they generate a huge economic value for the companies that own them without our full knowledge."
+    "text1": "While you’ve been taking the experience, we’ve collected information about you.",
+    "text2": "It is now common practice to analyze all your behaviour as this gives companies valuable data that allows to customise online services and ensure a better experience.",
+    "text3": "However, at the same time, this information generates a huge economic value for the ones that own them without our full knowledge.",
+    "text4": "How much worth do you think you are?"
   },
   "about": {
     "title": "About the project",
