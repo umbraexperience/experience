@@ -16,22 +16,66 @@
             <h3>{{ $t("experience.pauseMenu.languagesTitle2") }}</h3>
 
             <ul>
-              <li @click="changeLanguage('en')">
-                {{ $t("languageNames.english") }}
+              <li>
+                <input
+                  @click="changeLanguage('en')"
+                  type="radio"
+                  id="languageen"
+                  name="language"
+                  class="font-light"
+                  value="en"
+                  v-model="playerOptions.captions.language"
+                />
+                <label for="languageen">
+                  {{ $t("languageNames.english") }}
+                </label>
               </li>
-              <li @click="changeLanguage('es')">
-                {{ $t("languageNames.spanish") }}
+              <li>
+                <input
+                  @click="changeLanguage('es')"
+                  type="radio"
+                  id="languagees"
+                  name="language"
+                  class="font-light"
+                  value="es"
+                  v-model="playerOptions.captions.language"
+                />
+                <label for="languagees">
+                  {{ $t("languageNames.spanish") }}
+                </label>
               </li>
             </ul>
           </div>
           <div>
             <h3>{{ $t("experience.pauseMenu.languagesTitle") }}</h3>
             <ul>
-              <li @click="toggleCaptionsVisibility(false)">
-                {{ $t("experience.pauseMenu.off") }}
+              <li>
+                <input
+                  @click="toggleCaptionsVisibility(false)"
+                  type="radio"
+                  id="subtitleoff"
+                  name="subtitle"
+                  class="font-light"
+                  value="false"
+                  v-model="playerOptions.captions.active"
+                />
+                <label for="subtitleoff">
+                  {{ $t("experience.pauseMenu.off") }}
+                </label>
               </li>
-              <li @click="toggleCaptionsVisibility(true)">
-                {{ $t("experience.pauseMenu.on") }}
+              <li>
+                <input
+                  @click="toggleCaptionsVisibility(true)"
+                  type="radio"
+                  id="subtitleon"
+                  name="subtitle"
+                  class="font-light"
+                  value="true"
+                  v-model="playerOptions.captions.active"
+                />
+                <label for="subtitleon">
+                  {{ $t("experience.pauseMenu.on") }}
+                </label>
               </li>
             </ul>
           </div>
@@ -598,6 +642,22 @@ export default {
   margin: 0 1rem;
   filter: blur(0.05rem);
   display: inline;
+}
+
+.pause-section input {
+  display: none;
+}
+
+.pause-section input:checked + label {
+  color: white;
+  text-shadow: 0.5px 0 0 currentColor;
+}
+
+.pause-section li button {
+  background-color: transparent;
+  border: none;
+  color: #b4b4b4;
+  font-size: 1rem;
 }
 
 .pause-section li:hover {
