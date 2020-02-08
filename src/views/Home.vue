@@ -38,6 +38,7 @@
               <input
                 type="text"
                 :placeholder="$t('home.register.name')"
+                class="font-light"
                 v-model="name"
                 minlength="2"
                 maxlength="15"
@@ -49,6 +50,7 @@
                 type="number"
                 min="13"
                 max="95"
+                class="font-light"
                 :placeholder="$t('home.register.age')"
                 v-model="age"
                 required
@@ -59,24 +61,26 @@
               <div>
                 <input
                   type="radio"
-                  id="contactChoice1"
-                  name="contact"
+                  id="languagees"
+                  name="language"
+                  class="font-light"
                   value="es"
                   v-model="language"
                 />
-                <label for="contactChoice1">ES</label>
+                <label for="languagees">ES</label>
               </div>
 
               <div class="language-right">
                 <div>
                   <input
                     type="radio"
-                    id="contactChoice2"
-                    name="contact"
+                    id="languageen"
+                    name="language"
+                    class="font-light"
                     value="en"
                     v-model="language"
                   />
-                  <label for="contactChoice2">EN</label>
+                  <label for="languageen">EN</label>
                 </div>
               </div>
             </div>
@@ -575,19 +579,15 @@ input[type="number"] {
 }
 
 .input-language > div:nth-child(2) {
-  margin-left: 2rem;
+  margin-left: 1.5rem;
 }
 
 .input-language input {
   display: none;
 }
 
-.select-language .language-right {
-  margin-left: 1.5rem;
-}
-
 .input-language input:checked + label {
   color: white;
-  text-shadow: 1px 0 0 currentColor;
+  text-shadow: 0.5px 0 0 currentColor;
 }
 </style>
