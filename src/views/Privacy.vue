@@ -5,9 +5,7 @@
         <p v-html="$t('privacy.title')" class="title"></p>
       </h1>
       <div class="textspace">
-        <div class="text font-regular">
-          <p v-html="$t('privacy.description')"></p>
-        </div>
+        <div class="text font-regular" v-html="$t('privacy.description')"></div>
       </div>
     </div>
   </div>
@@ -45,7 +43,6 @@ p {
   margin-left: 10%;
   margin-right: 10%;
 
-  font-size: 1.3rem;
   text-align: left;
   line-height: 1.4rem;
   filter: blur(0.04rem);
@@ -69,7 +66,7 @@ p {
   justify-content: left;
   align-items: left;
   padding: 0 1rem;
-  margin:0 auto;
+  margin: 0 auto;
 }
 
 @media screen and (max-width: 399px) {
@@ -78,7 +75,7 @@ p {
   }
 
   .text {
-    font-size: 1.1rem;
+    font-size: 1rem;
     margin-left: 1rem;
     margin-right: 1rem;
   }
