@@ -54,7 +54,7 @@ p {
 .title {
   font-size: 3.15rem;
   font-weight: 500;
-  text-align: left !important;
+  text-align: left;
 
   margin-left: 0;
   color: #f5f9fb;
@@ -69,6 +69,7 @@ p {
   justify-content: left;
   align-items: left;
   padding: 0 1rem;
+  margin:0 auto;
 }
 
 @media screen and (max-width: 399px) {

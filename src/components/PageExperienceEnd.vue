@@ -7,20 +7,7 @@
         </video>
       </div>
       <div class="explanation-text">
-        <p>
-          Este es el precio que generarán tus datos. En función de tus
-          interacciones, tu edad y geolocalización hemos podido hacer una
-          estimación del valor que tendrán tus datos a lo largo de tu vida.
-          Pongámonos en esa situación, imagínate que estás en ese futuro
-          hipotético,.
-        </p>
-        <p>
-          donde las empresas quieren saber todo lo que hacemos, decidimos,
-          consumimos, Si una de estas compañías te ofreciera esta cantidad de
-          dinero, a cambio de saber todo lo que haces en cualquier momento de tu
-          vida, ¿estarías dispuesto a deshacerte de tu privacidad a cambio de
-          este dinero?
-        </p>
+       {{ $t("end.firsttext") }}
       </div>
       <div class="text-container">
         <p class="font-light">
@@ -73,7 +60,7 @@ video {
   bottom: 0;
   display: flex;
   justify-content: space-between;
-  padding: 0 5%;
+  padding: 0 29%;
   align-items: center;
 }
 .explanation-text p {
