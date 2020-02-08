@@ -11,28 +11,34 @@
     <transition name="pause">
       <div class="pause-section" v-show="videoPaused">
         <img src="@/assets/logo.png" alt="umbra logo" />
-        <div class ="grid-container">
-          <h3>{{ $t("experience.pauseMenu.languagesTitle2") }}</h3>
-          <h3>{{ $t("experience.pauseMenu.languagesTitle") }}</h3>
+        <div class="grid-container">
+          <div>
+            <h3>{{ $t("experience.pauseMenu.languagesTitle2") }}</h3>
+
             <ul>
-              <li>
+              <li @click="changeLanguage('en')">
                 {{ $t("languageNames.english") }}
               </li>
-              <li>
+              <li @click="changeLanguage('es')">
                 {{ $t("languageNames.spanish") }}
               </li>
             </ul>
-
-            <ul>  
-              <li>
+          </div>
+          <div>
+            <h3>{{ $t("experience.pauseMenu.languagesTitle") }}</h3>
+            <ul>
+              <li @click="toggleCaptionsVisibility(false)">
                 {{ $t("experience.pauseMenu.off") }}
               </li>
-              <li>
+              <li @click="toggleCaptionsVisibility(true)">
                 {{ $t("experience.pauseMenu.on") }}
               </li>
             </ul>
+          </div>
         </div>
-          <p class="instruccions">{{ $t("experience.pauseMenu.circleAdvice") }}</p>
+        <p class="instruccions">
+          {{ $t("experience.pauseMenu.circleAdvice") }}
+        </p>
       </div>
     </transition>
 
@@ -236,6 +242,7 @@ export default {
     }
   },
   mounted() {
+    console.log(this.$root.$i18n.locale);
     this.playVideo();
 
     // console.log((this.currentPlayer.language = "es"));
@@ -397,6 +404,20 @@ export default {
         }, 100);
       }
     },
+    toggleCaptionsVisibility(toState) {
+      this.currentPlayer.toggleCaptions(toState);
+
+      if (this.$refs["video" + (this.videoPlaying + 1)] != undefined) {
+        this.nextPlayer.toggleCaptions(toState);
+      }
+    },
+    changeLanguage(lang) {
+      this.$root.$i18n.locale = lang;
+      this.currentPlayer.language = lang;
+      if (this.$refs["video" + (this.videoPlaying + 1)] != undefined) {
+        this.nextPlayer.language = lang;
+      }
+    },
     timeCheck(video) {
       // console.log("timecheck", video);
       if (
@@ -526,6 +547,7 @@ export default {
 }
 
 .pause-section {
+  padding: 0 2rem;
   position: absolute;
   top: 0;
   left: 0;
@@ -538,7 +560,6 @@ export default {
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  
 }
 
 .grid-container {
@@ -548,17 +569,20 @@ export default {
   align-self: auto;
   margin: 0 auto;
   align-items: center;
-  grid-template-columns: repeat(2, 1fr);
- 
+  grid-template-columns: 1fr;
+}
+
+@media screen and (min-width: 640px) {
+  .grid-container {
+    grid-template-columns: repeat(2, 1fr);
+  }
 }
 
 .pause-section img {
+  width: 100%;
   max-width: 20rem;
-  height:auto;
+  height: auto;
   opacity: 0.9;
-  padding-top: 12rem;
-  
-  
 }
 .pause-section ul {
   padding: 0;
@@ -566,7 +590,6 @@ export default {
   display: grid;
   justify-content: center;
   display: inline;
-
 }
 .pause-section li {
   list-style-type: none;
@@ -574,7 +597,6 @@ export default {
   margin: 0 1rem;
   filter: blur(0.05rem);
   display: inline;
-
 }
 
 .pause-section li:hover {
@@ -588,14 +610,14 @@ export default {
 
 .pause-section h3 {
   filter: blur(0.06rem);
-  padding-top:1rem;
-  
+  padding-top: 1rem;
 }
 
-.instruccions {  
-  padding-top: 10rem;
-  
-  
+.pause-section .instruccions {
+  position: absolute;
+  bottom: 2.9rem;
+  left: 0;
+  right: 0;
 }
 
 .heightfull {
