@@ -1,8 +1,6 @@
 <template>
   <div>
     <div class="container">
-      <button @click="state++">NEXT</button>
-
       <div class="explanation-text">
         <p class="text1">{{ $t("end.text1") }}</p>
 
@@ -14,7 +12,7 @@
       </div>
 
       <div class="world-end">
-        <div class="video-container">
+        <div class="video-container-end">
           <video autoplay loop preload="auto" autobuffer muted>
             <source src="/videos/worldend.mp4" type="video/mp4" />
           </video>
@@ -35,11 +33,7 @@
 
 <script>
 export default {
-  data() {
-    return {
-      state: 1
-    };
-  },
+  data() {},
   mounted() {
     this.$anime
       .timeline()
@@ -83,13 +77,6 @@ export default {
   /* border: 2px solid red; */
 }
 
-button {
-  position: fixed;
-  top: 0;
-  left: 0;
-  z-index: 3;
-}
-
 video {
   object-fit: cover;
   height: 75%;
@@ -101,7 +88,7 @@ video {
   flex-direction: column;
 }
 
-.video-container {
+.video-container-end {
   display: flex;
   justify-content: center;
   align-items: center;
@@ -119,13 +106,20 @@ video {
   display: flex;
   justify-content: center;
   align-items: center;
-  max-width: 45%;
+  max-width: 85%;
   margin: 0 auto;
 
   line-height: 1.5rem;
   font-size: 1.1rem;
   filter: blur(0.06rem);
 }
+
+@media screen and (min-width: 640px) {
+  .explanation-text p {
+    max-width: 45%;
+  }
+}
+
 .explanation-text .text1,
 .explanation-text .text2,
 .explanation-text .text3,
@@ -143,8 +137,15 @@ video {
   font-size: 2.4rem;
 }
 
+.world-end {
+  margin-top: 2rem;
+}
+
 @media screen and (min-width: 900px) {
-  .video-container {
+  .world-end {
+    margin-top: 0;
+  }
+  .video-container-end {
     height: 100vh;
   }
   .text-container {
