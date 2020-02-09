@@ -31,6 +31,7 @@
         <img class="logo" src="@/assets/logo3.png" alt="Doctor Says" />
         <img class="logo" src="@/assets/logo6.png" alt="BM" />
         <img class="logo" src="@/assets/logo4.png" alt="Desfilart" />
+        <img class="logo" src="@/assets/logo7.png" alt="ERAM" />
       </div>
     </div>
   </div>
@@ -189,7 +190,7 @@ h1 {
 
 .patrocinadors {
   display: grid;
-  grid-template-columns: repeat(6, 1fr);
+  grid-template-columns: repeat(7, 2fr);
   justify-content: center;
   margin: 0 auto;
   width: 70%;
@@ -199,7 +200,7 @@ h1 {
 }
 
 .logo {
-  width: 120px;
+  width: 6.45rem;
   object-fit: contain;
   opacity: 0%;
   filter: blur(0.03rem);
