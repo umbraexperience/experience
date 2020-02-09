@@ -111,7 +111,7 @@ export default {
       name: "Santi",
       age: "22",
       language: "en",
-      state: { screen: "experienceEnd" },
+      state: { screen: "home" },
       holdSound: "",
       city: "",
       test: process.env

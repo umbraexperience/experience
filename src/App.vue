@@ -1,5 +1,8 @@
 <template>
-  <div id="app">
+  <div id="app" @mousemove="editCursor">
+    <div class="cursor2" ref="cursor2"></div>
+    <div class="cursor" ref="cursor"></div>
+
     <div id="nav" v-if="$route.meta.showNav === true">
       <router-link to="/about">About</router-link>
       <router-link to="/credits">Credits</router-link>
@@ -9,6 +12,34 @@
   </div>
 </template>
 
+<script>
+export default {
+  computed: {
+    cursor() {
+      return this.$refs.cursor;
+    },
+    cursor2() {
+      return this.$refs.cursor2;
+    }
+  },
+  methods: {
+    editCursor(e) {
+      this.cursor.style.display = "block";
+      this.cursor2.style.display = "block";
+      const { clientX: x, clientY: y } = e;
+
+      this.cursor.style.left = x + "px";
+      this.cursor.style.top = y + "px";
+
+      this.cursor2.style.left = x + "px";
+      this.cursor2.style.top = y + "px";
+
+      requestAnimationFrame(this.editCursor);
+    }
+  }
+};
+</script>
+
 <style>
 html,
 body {
@@ -17,7 +48,7 @@ body {
   height: 100%;
   background-color: black;
   color: #b4b4b4;
-  cursor: url("./assets/cursor.svg"), pointer;
+  cursor: none;
   -webkit-tap-highlight-color: rgba(0, 0, 0, 0);
   -webkit-tap-highlight-color: transparent;
 }
@@ -26,7 +57,43 @@ body {
 }
 
 * {
-  cursor: url("./assets/cursor.svg"), pointer;
+  cursor: none;
+}
+
+.cursor {
+  display: none;
+  filter: blur(1px);
+  position: fixed;
+
+  pointer-events: none;
+  z-index: 100;
+  width: 6px;
+  height: 6px;
+  transform: translate(-50%, -50%);
+  background-color: rgb(218, 218, 218);
+  border-radius: 50%;
+
+  transition: transform 0.3s ease;
+}
+.cursor2 {
+  display: none;
+  filter: blur(10px);
+
+  position: fixed;
+
+  pointer-events: none;
+  z-index: 99;
+  width: 14px;
+  height: 14px;
+  transform: translate(-50%, -50%);
+  background-color: rgb(223, 223, 223);
+  border-radius: 50%;
+
+  transition: transform 0.3s ease;
+}
+
+.hover-this:hover ~ .cursor {
+  transform: scale(8);
 }
 
 #app {
