@@ -26,10 +26,11 @@
       </div>
       <div class="patrocinadors">
         <img class="logo" src="@/assets/logo1.png" alt="Cinema Truffaut" />
+        <img class="logo" src="@/assets/logo5.png" alt="Teatre Bescanó" />
         <img class="logo" src="@/assets/logo2.png" alt="BTM" />
         <img class="logo" src="@/assets/logo3.png" alt="Doctor Says" />
+        <img class="logo" src="@/assets/logo6.png" alt="BM" />
         <img class="logo" src="@/assets/logo4.png" alt="Desfilart" />
-        <img class="logo" src="@/assets/logo4.png" alt="Teatre Bescanó" />
       </div>
     </div>
   </div>
@@ -188,20 +189,21 @@ h1 {
 
 .patrocinadors {
   display: grid;
-  grid-template-columns: repeat(5, 1fr);
-  justify-content: space-around;
-  width: 70%;
+  grid-template-columns: repeat(6, 1fr);
+  justify-content: center;
   margin: 0 auto;
-  margin-top: 3rem;
+  width: 70%;
+  margin-top: 2rem;
   margin-bottom: 5rem;
+
 }
 
 .logo {
-  width: 140px;
+  width: 120px;
   object-fit: contain;
-  height: 8rem;
   opacity: 0%;
-  filter: blur(0.04rem);
+  filter: blur(0.03rem);
+ 
 }
 
 @keyframes color-change {
