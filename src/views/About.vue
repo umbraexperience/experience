@@ -1,7 +1,7 @@
 <template>
   <div class="about">
     <div class="container">
-      <h1 class="title">{{ $t("about.title") }}</h1>
+      <h1 class="title text-xl filter-xl">{{ $t("about.title") }}</h1>
     </div>
     <flickity class="flickity" ref="flickity" :options="flickityOptions">
       <div class="carousel-cell">
@@ -132,13 +132,10 @@ export default {
 }
 
 .title {
-  font-size: 3.15rem;
-  font-weight: 500;
   text-align: left;
   margin-top: 5.1rem;
   /* margin-left: 13.5rem; */
   color: #f5f9fb;
-  filter: blur(0.07rem);
   width: 30rem;
   white-space: normal;
   word-wrap: break-word;
@@ -177,7 +174,7 @@ export default {
   font-size: 4.2rem;
   font-weight: 500;
   opacity: 80%;
-  filter: blur(0.17rem);
+  filter: blur(0.14rem);
   text-align: left;
   max-width: 30rem;
   padding-left: 1rem;
@@ -199,7 +196,7 @@ export default {
   font-size: 4.2rem;
   font-weight: 500;
   opacity: 70%;
-  filter: blur(0.17rem);
+  filter: blur(0.14rem);
   text-align: right;
   padding-left: 1rem;
   padding-right: 1rem;
@@ -215,11 +212,7 @@ export default {
   padding-right: 1rem;
 }
 
-@media screen and (max-width: 650px) {
-  .title {
-    font-size: 2.2rem;
-  }
-
+@media screen and (max-width: 640px) {
   .apartat {
     font-size: 1.85rem;
     filter: blur(0.1rem);

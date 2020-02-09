@@ -71,6 +71,20 @@ body {
   font-weight: 500;
 }
 
+.text-xl {
+  font-size: 2.2rem;
+}
+
+@media screen and (min-width: 640px) {
+  .text-xl {
+    font-size: 3.15rem;
+  }
+}
+
+.filter-xl {
+  filter: blur(0.07rem);
+}
+
 .noselect {
   -webkit-touch-callout: none; /* iOS Safari */
   -webkit-user-select: none; /* Safari */

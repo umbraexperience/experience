@@ -1,8 +1,8 @@
 <template>
   <div class="privacy">
     <div class="container">
-      <h1 class="title font-regular">
-        <p v-html="$t('privacy.title')" class="title"></p>
+      <h1 class="title text-xl filter-xl">
+        {{ $t("privacy.title") }}
       </h1>
       <div class="textspace">
         <div class="text font-regular" v-html="$t('privacy.description')"></div>
@@ -49,13 +49,9 @@ p {
 }
 
 .title {
-  font-size: 3.15rem;
-  font-weight: 500;
   text-align: left;
-
   margin-left: 0;
   color: #f5f9fb;
-  filter: blur(0.07rem);
   margin: 0;
   margin-bottom: 2rem;
   padding: 0;
@@ -70,10 +66,6 @@ p {
 }
 
 @media screen and (max-width: 399px) {
-  .title {
-    font-size: 2.2rem;
-  }
-
   .text {
     font-size: 1rem;
     margin-left: 1rem;
