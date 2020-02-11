@@ -12,6 +12,11 @@
       </div>
 
       <div class="world-end">
+        <div class="text-expl">
+          <p class="">{{ $t("end.text5") }}</p>
+          <p class="">{{ $t("end.text6") }}</p>
+        </div>
+
         <div class="video-container-end">
           <video autoplay loop preload="auto" autobuffer muted>
             <source src="/videos/worldend.mp4" type="video/mp4" />
@@ -33,7 +38,6 @@
 
 <script>
 export default {
-  data() {},
   mounted() {
     this.$anime
       .timeline()
@@ -139,6 +143,15 @@ video {
 
 .world-end {
   margin-top: 2rem;
+}
+
+.world-end .text-expl {
+  position: absolute;
+  top: 3.5rem;
+  left: 0;
+  right: 0;
+
+  filter: blur(0.06rem);
 }
 
 @media screen and (min-width: 900px) {
