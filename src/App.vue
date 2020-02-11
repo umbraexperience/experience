@@ -22,6 +22,9 @@ export default {
       return this.$refs.cursor2;
     }
   },
+  mounted() {
+    this.createCursor;
+  },
   methods: {
     editCursor(e) {
       this.cursor.style.display = "block";
@@ -62,8 +65,9 @@ body {
 
 .cursor {
   display: none;
-  filter: blur(1px);
+  /* filter: blur(1px); */
   position: fixed;
+  opacity: 0.8;
 
   pointer-events: none;
   z-index: 100;
@@ -77,14 +81,15 @@ body {
 }
 .cursor2 {
   display: none;
-  filter: blur(10px);
+  filter: blur(3px);
 
   position: fixed;
+  opacity: 0.2;
 
   pointer-events: none;
   z-index: 99;
-  width: 14px;
-  height: 14px;
+  width: 18px;
+  height: 18px;
   transform: translate(-50%, -50%);
   background-color: rgb(223, 223, 223);
   border-radius: 50%;
