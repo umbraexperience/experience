@@ -354,9 +354,7 @@ export default {
     async playVideo() {
       try {
         await this.currentPlayer.play();
-        setTimeout(() => {
-          this.$emit("experience-started");
-        }, 100);
+        this.$emit("experience-started");
         // console.log("PLAY STARTED");
       } catch (error) {
         // console.log("AUTOPLAY PREVENTED", error);
