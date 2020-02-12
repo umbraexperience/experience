@@ -83,7 +83,7 @@ body {
 }
 .cursor2 {
   display: none;
-  filter: blur(3px);
+  /* filter: blur(3px); */
 
   position: fixed;
   opacity: 0.2;

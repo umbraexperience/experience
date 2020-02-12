@@ -4,7 +4,8 @@
       <button @click="videoEnd()">NEXT VIDEO</button>
 
       <div v-if="interactionNum !== null" class="titol-interaccio">
-        INTERACCIÓ {{ interactionNum }}
+        <p>VIDEO {{ videoPlaying }}</p>
+        <p>INTERACCIÓ {{ interactionNum }}</p>
       </div>
     </div>
 
@@ -101,13 +102,13 @@
     </div>
 
     <div class="interaction3-zone" v-if="interactionNum === 3">
-      <div @mousemove="verticalScroll('up')">ZONE 1 UP</div>
-      <div @mousemove="verticalScroll('down')">ZONE 3 DOWN</div>
+      <div @mousemove="verticalScroll('up')"></div>
+      <div @mousemove="verticalScroll('down')"></div>
     </div>
 
     <div class="interaction4-zone" v-if="interactionNum === 4">
-      <div @mousemove="horizontalScroll('left')">LEFT</div>
-      <div @mousemove="horizontalScroll('right')">RIGHT</div>
+      <div @mousemove="horizontalScroll('left')"></div>
+      <div @mousemove="horizontalScroll('right')"></div>
     </div>
 
     <div class="explanation-interaction">
@@ -200,7 +201,7 @@
       </vue-plyr>
       <vue-plyr
         @ended="videoEnd()"
-        @play="playnowVideo()"
+        @play="videoPaused = false"
         @timeupdate="timeCheck(1)"
         ref="video1"
         :options="playerOptions"
@@ -286,10 +287,7 @@ export default {
     }
   },
   mounted() {
-    this.$emit("experience-started");
     this.playVideo();
-
-    // console.log((this.currentPlayer.language = "es"));
 
     // /videos/002_Video.mp4
     // https://umbraexperience.s3.eu-west-3.amazonaws.com/videos/002_Video.mp4
@@ -344,16 +342,21 @@ export default {
   methods: {
     pauseButton() {
       this.currentPlayer.togglePlay();
+
+      if (this.videoPaused) {
+        setTimeout(() => {
+          this.$emit("experience-started");
+        }, 100);
+      }
       this.videoPaused = true;
       this.$emit("experience-paused");
-    },
-    playnowVideo() {
-      this.videoPaused = false;
-      this.$emit("experience-started");
     },
     async playVideo() {
       try {
         await this.currentPlayer.play();
+        setTimeout(() => {
+          this.$emit("experience-started");
+        }, 100);
         // console.log("PLAY STARTED");
       } catch (error) {
         // console.log("AUTOPLAY PREVENTED", error);
@@ -471,41 +474,44 @@ export default {
     },
     timeCheck(video) {
       // console.log("timecheck", video);
-      if (
-        video === 1 &&
-        this.currentPlayer.currentTime >= 46 &&
-        this.currentPlayer.currentTime <= 50.5
-      ) {
-        this.interactionNum = 1;
-        this.intExplanationNum = 1;
+      if (video === 1) {
+        if (
+          this.videoPlaying === 1 &&
+          this.currentPlayer.currentTime >= 46 &&
+          this.currentPlayer.currentTime <= 50.5
+        ) {
+          this.interactionNum = 1;
+          this.intExplanationNum = 1;
 
-        this.soundIntExplanation.play();
+          this.soundIntExplanation.play();
 
-        if (this.currentPlayer.currentTime > 49) {
-          this.intExplanationNum = null;
+          if (this.currentPlayer.currentTime > 49) {
+            this.intExplanationNum = null;
+          }
         }
-      } else if (video === 4 && this.currentPlayer.currentTime <= 9) {
-        this.interactionNum = 3;
-        this.intExplanationNum = 3;
+      } else if (video === 4) {
+        if (this.videoPlaying === 4 && this.currentPlayer.currentTime <= 9) {
+          this.interactionNum = 3;
+          this.intExplanationNum = 3;
 
-        if (this.currentPlayer.currentTime > 5) {
-          this.intExplanationNum = null;
+          if (this.currentPlayer.currentTime > 5) {
+            this.intExplanationNum = null;
+          }
         }
-      } else if (
-        video === 6 &&
-        this.currentPlayer.currentTime >= 19 &&
-        this.currentPlayer.currentTime <= 23
-      ) {
-        this.interactionNum = 5;
-      } else if (
-        video === 6 &&
-        this.currentPlayer.currentTime >= 54 &&
-        this.currentPlayer.currentTime <= 67
-      ) {
-        this.interactionNum = 6;
-      } else {
-        this.interactionNum = null;
-        this.intExplanationNum = null;
+      } else if (video === 6) {
+        if (
+          this.videoPlaying === 6 &&
+          this.currentPlayer.currentTime >= 19 &&
+          this.currentPlayer.currentTime <= 23
+        ) {
+          this.interactionNum = 5;
+        } else if (
+          this.videoPlaying === 6 &&
+          this.currentPlayer.currentTime >= 54 &&
+          this.currentPlayer.currentTime <= 67
+        ) {
+          this.interactionNum = 6;
+        }
       }
     },
     mousePosition(soundNum) {

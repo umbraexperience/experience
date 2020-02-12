@@ -121,7 +121,8 @@ export default {
       state: { screen: "home" },
       holdSound: "",
       city: "",
-      test: process.env
+      test: process.env,
+      position: 0
     };
   },
   components: {
@@ -271,11 +272,13 @@ export default {
       }
     },
     startExperience() {
-      soundExperienceBg.seek(40);
-      soundExperienceBg.play();
+      this.id = soundExperienceBg.play();
+      soundExperienceBg.seek(this.position, this.id);
     },
+
     pauseExperience() {
       soundExperienceBg.pause();
+      this.position = soundExperienceBg.seek(this.id);
     },
     endExperience() {
       this.soundEnd.play();
