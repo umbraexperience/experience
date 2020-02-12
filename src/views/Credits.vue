@@ -3,9 +3,8 @@
     <div class="flex-container">
       <div v-for="member in team" :key="member.id" class="person">
         <div class="photo">
-          <img :src="'/images/' + member.img + '-02.jpg'" class="clar"/>
-          <img :src="'/images/' + member.img + '-01.jpg'" class="fosc"/>
-
+          <img :src="'/images/' + member.img + '-02.jpg'" class="clar" />
+          <img :src="'/images/' + member.img + '-01.jpg'" class="fosc" />
         </div>
         <h2 class="name font-medium">{{ member.name }}</h2>
         <h2 class="role font-medium">{{ member.role }}</h2>
@@ -14,11 +13,11 @@
 
     <div class="crowfunding">
       <h1 class="gracies">{{ $t("credits.acknowledgements") }}</h1>
-       <div class="grid-container2">
+      <div class="grid-container2">
         <div v-for="special in specials" :key="special.id" class="especials">
           {{ special.name }}
         </div>
-      </div>     
+      </div>
       <div class="grid-container">
         <div v-for="mecena in mecenes" :key="mecena.id" class="paypal">
           {{ mecena.name }}
@@ -40,15 +39,31 @@
 <script>
 export default {
   name: "credits",
+
   data() {
     return {
       team: [
         { id: 0, name: "Marc Vila", role: "Dir & VFX Lead", img: "Marc" },
-        { id: 1, name: "Santi Cros", role: "Dir & Lead Developer", img: "Santi" },
+        {
+          id: 1,
+          name: "Santi Cros",
+          role: "Dir & Lead Developer",
+          img: "Santi"
+        },
         { id: 2, name: "Abel Martínez", role: "VFX & Design", img: "Abel" },
-        { id: 3, name: "Adrià Crehuet", role: "Producer & Developer", img: "Adria" },
+        {
+          id: 3,
+          name: "Adrià Crehuet",
+          role: "Producer & Developer",
+          img: "Adria"
+        },
         { id: 4, name: "Afra Ramió", role: "Sound Director", img: "Afra" },
-        { id: 5, name: "Aniol Maeso", role: "Audiovisual Director", img: "Aniol" },
+        {
+          id: 5,
+          name: "Aniol Maeso",
+          role: "Audiovisual Director",
+          img: "Aniol"
+        },
         { id: 6, name: "Marta Gallego", role: "Graphic Designer", img: "Marta" }
       ],
 
@@ -109,6 +124,13 @@ export default {
 <style scoped>
 * {
 }
+
+.carousel-cell {
+  height: 10rem;
+  background: red;
+  width: 10rem;
+}
+
 .credits {
   height: 100%;
   overflow-y: auto;
@@ -145,7 +167,7 @@ export default {
   font-weight: 500;
   filter: blur(0.04rem);
   font-size: 1.1rem;
-  opacity:0;
+  opacity: 0;
 }
 
 .paypal {
@@ -196,7 +218,6 @@ h1 {
   width: 70%;
   margin-top: 2rem;
   margin-bottom: 5rem;
-
 }
 
 .logo {
@@ -204,7 +225,6 @@ h1 {
   object-fit: contain;
   opacity: 0%;
   filter: blur(0.03rem);
- 
 }
 
 @keyframes color-change {
@@ -243,32 +263,29 @@ h1 {
 .person .photo img {
   max-width: 100%;
   position: absolute;
-  top:0;
+  top: 0;
   left: 0;
   bottom: 0;
   right: 0;
-  transition:all 1s ease-in-out;
-
+  transition: all 1s ease-in-out;
 }
 
 .person .photo img.clar {
-  opacity:0;
+  opacity: 0;
 }
 
 .person .photo:hover img.fosc {
-  opacity:0;
-
+  opacity: 0;
 }
 
 .person .photo:hover img.clar {
-  opacity:1;
+  opacity: 1;
 }
 
 .person .name {
   margin-top: -20.5rem;
   margin-left: 3.5rem;
   font-size: 2.2rem;
-
 }
 
 .person .role {
@@ -276,7 +293,6 @@ h1 {
   margin-left: -16.4rem;
   font-size: 1.5rem;
   transform: rotate(-90deg);
-
 }
 
 .person:nth-child(even) .role {

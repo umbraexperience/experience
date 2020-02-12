@@ -50,6 +50,7 @@
 
 <script>
 import Flickity from "vue-flickity";
+Flickity.beforeDestroy = undefined;
 
 export default {
   name: "about",

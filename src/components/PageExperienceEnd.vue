@@ -13,8 +13,17 @@
 
       <div class="world-end">
         <div class="text-expl">
-          <p class="">{{ $t("end.text5") }}</p>
-          <p class="">{{ $t("end.text6") }}</p>
+          <p class="text5 font-regular">{{ $t("end.text5") }}</p>
+          <p class="text6">{{ $t("end.text6") }}</p>
+        </div>
+        <div class="text-options">
+          <button class="font-light" @click="answered(1)">
+            <p class="option1">{{ $t("end.option1") }}</p>
+          </button>
+
+          <button class="font-light" @click="answered(2)">
+            <p class="option2">{{ $t("end.option2") }}</p>
+          </button>
         </div>
 
         <div class="video-container-end">
@@ -23,7 +32,7 @@
           </video>
         </div>
 
-        <div class="text-container">
+        <div class="text-container data-price">
           <p class="font-light">
             <span><slot name="name"></slot></span>
             <span>, <slot name="age"></slot>{{ $t("end.years") }}</span>
@@ -41,7 +50,7 @@ export default {
   mounted() {
     this.$anime
       .timeline()
-      .add({
+      /*       .add({
         targets: ".text1",
         duration: 4550,
         opacity: [{ value: 1 }, { value: 0, delay: 2000 }],
@@ -58,7 +67,7 @@ export default {
         duration: 4550,
         opacity: [{ value: 1 }, { value: 0, delay: 4000 }],
         easing: "easeInOutQuad"
-      })
+      })*/
       .add({
         targets: ".text4",
         duration: 4550,
@@ -67,11 +76,73 @@ export default {
       })
       .add({
         targets: ".world-end",
-        duration: 4550,
+        duration: 2550,
         opacity: 1,
-        delay: 2000,
+        delay: 1000,
+        easing: "easeInOutQuad"
+      })
+      .add({
+        targets: ".text5, .data-price",
+        duration: 2550,
+        opacity: 1,
+        easing: "easeInOutQuad"
+      })
+      .add({
+        targets: ".text6",
+        duration: 2550,
+        opacity: 1,
+        delay: 2500,
+        easing: "easeInOutQuad"
+      })
+      .add({
+        targets: ".option1, .option2",
+        duration: 2550,
+        opacity: 1,
         easing: "easeInOutQuad"
       });
+  },
+  methods: {
+    answered(option) {
+      if (option === 1) {
+        this.$anime
+          .timeline()
+          .add({
+            targets: ".option2, .text5, .text6, .data-price",
+            duration: 1500,
+            opacity: 0,
+            easing: "easeInOutQuad"
+          })
+          .add({
+            targets: ".world-end",
+            duration: 2800,
+            delay: 1000,
+            opacity: 0,
+            easing: "easeInOutQuad"
+          })
+          .finished.then(() => {
+            this.$router.push("about");
+          });
+      } else if (option === 2) {
+        this.$anime
+          .timeline()
+          .add({
+            targets: ".option1, .text5, .text6, .data-price",
+            duration: 1500,
+            opacity: 0,
+            easing: "easeInOutQuad"
+          })
+          .add({
+            targets: ".world-end",
+            duration: 2800,
+            delay: 1000,
+            opacity: 0,
+            easing: "easeInOutQuad"
+          })
+          .finished.then(() => {
+            this.$router.push("about");
+          });
+      }
+    }
   }
 };
 </script>
@@ -128,7 +199,13 @@ video {
 .explanation-text .text2,
 .explanation-text .text3,
 .explanation-text .text4,
-.world-end {
+.explanation-text .text6,
+.world-end,
+.world-end .text5,
+.world-end .text6,
+.world-end .option1,
+.world-end .option2,
+.world-end .data-price {
   opacity: 0;
 }
 
@@ -147,11 +224,49 @@ video {
 
 .world-end .text-expl {
   position: absolute;
-  top: 3.5rem;
+  top: 1rem;
   left: 0;
   right: 0;
+  font-size: 1.05rem;
+  filter: blur(0.06rem);
+  max-width: 25rem;
+
+  margin: 0 auto;
+  line-height: 1.5rem;
+}
+
+.world-end .text-expl .text5 {
+  font-size: 1.5rem;
+}
+
+.world-end .text-options {
+  padding: 0 5%;
+  position: absolute;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  left: 0;
+  right: 0;
+  top: 0;
+  bottom: 0;
 
   filter: blur(0.06rem);
+}
+
+.world-end .text-options button {
+  font-size: 0.95rem;
+  line-height: 1.4rem;
+  background-color: transparent;
+  border: none;
+  color: white;
+  max-width: 25%;
+  opacity: 0.6;
+  padding: 5rem 1rem;
+  transition: opacity 1s ease-in-out;
+}
+
+.world-end .text-options button:hover {
+  opacity: 1;
 }
 
 @media screen and (min-width: 900px) {

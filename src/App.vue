@@ -8,7 +8,9 @@
       <router-link to="/credits">Credits</router-link>
       <router-link to="/privacy">Privacy</router-link>
     </div>
-    <router-view />
+    <transition name="page-fade" appear mode="out-in">
+      <router-view></router-view>
+    </transition>
   </div>
 </template>
 
@@ -200,6 +202,14 @@ body {
   transition-delay: 0.4s;
 }
 .fade-enter, .fade-leave-to /* .fade-leave-active below version 2.1.8 */ {
+  opacity: 0;
+}
+
+.page-fade-enter-active,
+.page-fade-leave-active {
+  transition: opacity 1.3s ease-in-out;
+}
+.page-fade-enter, .page-fade-leave-to /* .fade-leave-active below version 2.1.8 */ {
   opacity: 0;
 }
 </style>
