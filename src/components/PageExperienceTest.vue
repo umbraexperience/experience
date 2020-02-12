@@ -406,10 +406,10 @@ export default {
             .getElementsByTagName("video")[0].style.transform =
             "translateX(" + -(video5Width - containerWidth) / 2 + "px)";
 
-          console.log(this.interactionNum);
+          //console.log(this.interactionNum);
 
           setTimeout(() => {
-            console.log(this.interactionNum);
+            //console.log(this.interactionNum);
           }, 2000);
 
           setTimeout(() => {
@@ -461,7 +461,7 @@ export default {
         this.nextPlayer.toggleCaptions(toState);
       }
 
-      console.log(window.localStorage.getItem("plyr"));
+      //console.log(window.localStorage.getItem("plyr"));
     },
     changeLanguage(lang) {
       this.$root.$i18n.locale = lang;
