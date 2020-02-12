@@ -210,7 +210,11 @@
         v-if="this.videoPlaying <= 2"
       >
         <video preload="auto" class="heightfull">
-          <source src="/videos/001_Video.webm" type="video/webm" size="1080" />
+          <source
+            :src="this.mediaUrl + '/videos/001_Video.webm'"
+            type="video/webm"
+            size="1080"
+          />
           <track
             label="English"
             kind="subtitles"
@@ -424,7 +428,11 @@ export default {
             title: "Video" + (this.videoPlaying + 1),
             sources: [
               {
-                src: "/videos/00" + (this.videoPlaying + 1) + "_Video.webm",
+                src:
+                  this.mediaUrl +
+                  "/videos/00" +
+                  (this.videoPlaying + 1) +
+                  "_Video.webm",
                 type: "video/webm",
                 size: 1080
               }
