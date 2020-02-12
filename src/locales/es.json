@@ -32,7 +32,14 @@
   },
   "end": {
     "years": "años",
-    "text1": "Mientras has estado realizando la experiencia, hemos recolectado información sobre ti. Hoy en día es una práctica habitual analizar todos tus comportamientos, ya que estos proporcionan unos datos muy valiosos que permiten personalizar los servicios. Al mismo tiempo, estos generan un enorme valor económico para las empresas que los poseen sin nuestro total conocimiento. "
+    "text1": "Mientras has estado realizando la experiencia, hemos recolectado información sobre ti.",
+    "text2": "Hoy en día es una práctica habitual analizar todos tus comportamientos, ya que estos proporcionan a las empresas unos datos muy valiosos que permiten personalizar sus servicios.",
+    "text3": "Sin embargo, al mismo tiempo, esta información genera un enorme valor económico para las que los poseen sin nuestro total conocimiento.",
+    "text4": "¿Cuánto valor crees que tienes realmente?",
+    "text5": "Este es el precio de todos tus datos",
+    "text6": "Si una empresa te ofreciera tal cantidad de dinero a cambio de saber todo sobre ti, ¿qué harías?",
+    "option1": "Esta cantidad de dinero no puede ser comparada con el valor que tienen todos mis datos",
+    "option2": "Preferiría perder toda la privacidad por el resto de mi vida y adquirir el dinero."
   },
   "about": {
     "title": "Sobre el proyecto",
