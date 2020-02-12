@@ -1,7 +1,7 @@
 <template>
   <div>
     <div class="DEBUG">
-      <button @click="videoEnd()">NEXT VIDEO</button>
+      <!-- <button @click="videoEnd()">NEXT VIDEO</button> -->
 
       <div v-if="interactionNum !== null" class="titol-interaccio">
         <p>VIDEO {{ videoPlaying }}</p>
@@ -494,6 +494,8 @@ export default {
           if (this.currentPlayer.currentTime > 49) {
             this.intExplanationNum = null;
           }
+        } else {
+          this.interactionNum = null;
         }
       } else if (video === 4) {
         if (this.videoPlaying === 4 && this.currentPlayer.currentTime <= 9) {
@@ -517,6 +519,8 @@ export default {
           this.currentPlayer.currentTime <= 67
         ) {
           this.interactionNum = 6;
+        } else {
+          this.interactionNum = null;
         }
       }
     },

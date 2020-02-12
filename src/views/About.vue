@@ -172,10 +172,9 @@ export default {
 }
 
 .apartat {
-  color: #2e2e31;
+  color: #202022;
   font-size: 4.2rem;
   font-weight: 500;
-  opacity: 80%;
   filter: blur(0.14rem);
   text-align: left;
   max-width: 30rem;
@@ -194,10 +193,9 @@ export default {
 }
 
 .apartat2 {
-  color: #2e2e31;
+  color: #202022;
   font-size: 4.2rem;
   font-weight: 500;
-  opacity: 70%;
   filter: blur(0.14rem);
   text-align: right;
   padding-left: 1rem;

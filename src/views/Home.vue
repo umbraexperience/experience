@@ -115,8 +115,8 @@ export default {
   name: "home",
   data: function() {
     return {
-      name: "Santi",
-      age: "22",
+      name: "",
+      age: "",
       language: "en",
       state: { screen: "home" },
       holdSound: "",
@@ -273,6 +273,7 @@ export default {
     },
     startExperience() {
       this.id = soundExperienceBg.play();
+      soundExperienceBg.volume(0.85);
       soundExperienceBg.seek(this.position, this.id);
     },
 
