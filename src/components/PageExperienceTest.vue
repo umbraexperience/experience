@@ -200,7 +200,7 @@
       </vue-plyr>
       <vue-plyr
         @ended="videoEnd()"
-        @play="videoPaused = false"
+        @play="playnowVideo()"
         @timeupdate="timeCheck(1)"
         ref="video1"
         :options="playerOptions"
@@ -209,7 +209,7 @@
         v-if="this.videoPlaying <= 2"
       >
         <video preload="auto" class="heightfull">
-          <source src="/videos/001_Video.mp4" type="video/mp4" size="1080" />
+          <source src="/videos/001_Video.webm" type="video/webm" size="1080" />
           <track
             label="English"
             kind="subtitles"
@@ -286,6 +286,7 @@ export default {
     }
   },
   mounted() {
+    this.$emit("experience-started");
     this.playVideo();
 
     // console.log((this.currentPlayer.language = "es"));
@@ -302,8 +303,8 @@ export default {
       title: "Video2",
       sources: [
         {
-          src: this.mediaUrl + "/videos/002_Video.mp4",
-          type: "video/mp4",
+          src: this.mediaUrl + "/videos/002_Video.webm",
+          type: "video/webm",
           size: 1080
         }
       ],
@@ -328,8 +329,8 @@ export default {
       title: "Video2",
       sources: [
         {
-          src: this.mediaUrl + "/videos/002_Video_2.mp4",
-          type: "video/mp4",
+          src: this.mediaUrl + "/videos/002_Video_2.webm",
+          type: "video/webm",
           size: 1080
         }
       ]
@@ -344,6 +345,11 @@ export default {
     pauseButton() {
       this.currentPlayer.togglePlay();
       this.videoPaused = true;
+      this.$emit("experience-paused");
+    },
+    playnowVideo() {
+      this.videoPaused = false;
+      this.$emit("experience-started");
     },
     async playVideo() {
       try {
@@ -417,8 +423,8 @@ export default {
             title: "Video" + (this.videoPlaying + 1),
             sources: [
               {
-                src: "/videos/00" + (this.videoPlaying + 1) + "_Video.mp4",
-                type: "video/mp4",
+                src: "/videos/00" + (this.videoPlaying + 1) + "_Video.webm",
+                type: "video/webm",
                 size: 1080
               }
             ],

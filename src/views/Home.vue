@@ -16,6 +16,8 @@
           ref="experience"
           v-on:interaction-sound="playInteractionSound"
           v-on:experience-ended="endExperience()"
+          v-on:experience-started="startExperience()"
+          v-on:experience-paused="pauseExperience()"
           v-else-if="state.screen === 'experience'"
         ></PageExperienceTest>
         <PageExperienceEnd v-else-if="state.screen === 'experienceEnd'">
@@ -104,6 +106,11 @@ document.oncontextmenu = function() {
   return false;
 };
 
+var soundExperienceBg = new Howl({
+  src: ["sounds/experience_bg_sound.webm"],
+  preload: true
+});
+
 export default {
   name: "home",
   data: function() {
@@ -111,7 +118,7 @@ export default {
       name: "Santi",
       age: "22",
       language: "en",
-      state: { screen: "experienceEnd" },
+      state: { screen: "home" },
       holdSound: "",
       city: "",
       test: process.env
@@ -262,6 +269,13 @@ export default {
         // console.log("PARENT INTERACTION" + soundNum);
         this.soundEmpty4.play();
       }
+    },
+    startExperience() {
+      soundExperienceBg.seek(40);
+      soundExperienceBg.play();
+    },
+    pauseExperience() {
+      soundExperienceBg.pause();
     },
     endExperience() {
       this.soundEnd.play();

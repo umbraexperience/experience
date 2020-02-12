@@ -47,11 +47,6 @@
 
 <script>
 export default {
-  data() {
-    return {
-      state: 2
-    };
-  },
   mounted() {
     this.$anime
       .timeline()
