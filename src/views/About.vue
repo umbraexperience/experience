@@ -85,6 +85,7 @@ export default {
   background: transparent;
   border: 1px solid white;
   filter: blur(0.07rem);
+  cursor: inherit;
 }
 /* fill-in selected dot */
 .flickity-page-dots .dot.is-selected {

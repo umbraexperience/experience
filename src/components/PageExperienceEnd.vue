@@ -47,54 +47,97 @@
 
 <script>
 export default {
+  data() {
+    return {
+      state: 2
+    };
+  },
   mounted() {
     this.$anime
       .timeline()
-      /*       .add({
+      .add({
+        begin: function(anim) {
+          document.getElementsByClassName("text1")[0].style.display = "flex";
+        },
         targets: ".text1",
         duration: 4550,
         opacity: [{ value: 1 }, { value: 0, delay: 2000 }],
-        easing: "easeInOutQuad"
+        easing: "easeInOutQuad",
+        complete: function(anim) {
+          document.getElementsByClassName("text1")[0].style.display = "none";
+        }
       })
       .add({
+        begin: function(anim) {
+          document.getElementsByClassName("text2")[0].style.display = "flex";
+        },
         targets: ".text2",
         duration: 4550,
         opacity: [{ value: 1 }, { value: 0, delay: 4000 }],
-        easing: "easeInOutQuad"
+        easing: "easeInOutQuad",
+        complete: function(anim) {
+          document.getElementsByClassName("text2")[0].style.display = "none";
+        }
       })
       .add({
+        begin: function(anim) {
+          document.getElementsByClassName("text3")[0].style.display = "flex";
+        },
         targets: ".text3",
         duration: 4550,
         opacity: [{ value: 1 }, { value: 0, delay: 4000 }],
-        easing: "easeInOutQuad"
-      })*/
+        easing: "easeInOutQuad",
+        complete: function(anim) {
+          document.getElementsByClassName("text3")[0].style.display = "none";
+        }
+      })
       .add({
+        begin: function(anim) {
+          document.getElementsByClassName("text4")[0].style.display = "flex";
+        },
         targets: ".text4",
         duration: 4550,
         opacity: [{ value: 1 }, { value: 0, delay: 2000 }],
         easing: "easeInOutQuad"
       })
       .add({
+        begin: function(anim) {
+          document.getElementsByClassName("world-end")[0].style.display =
+            "block";
+        },
         targets: ".world-end",
         duration: 2550,
         opacity: 1,
         delay: 1000,
         easing: "easeInOutQuad"
       })
+
       .add({
+        begin: function(anim) {
+          document.getElementsByClassName("text5")[0].style.display = "block";
+          document.getElementsByClassName("data-price")[0].style.display =
+            "block";
+        },
         targets: ".text5, .data-price",
         duration: 2550,
         opacity: 1,
         easing: "easeInOutQuad"
       })
       .add({
+        begin: function(anim) {
+          document.getElementsByClassName("text6")[0].style.display = "block";
+        },
         targets: ".text6",
         duration: 2550,
         opacity: 1,
-        delay: 2500,
+        delay: 1500,
         easing: "easeInOutQuad"
       })
       .add({
+        begin: function(anim) {
+          document.getElementsByClassName("option1")[0].style.display = "block";
+          document.getElementsByClassName("option2")[0].style.display = "block";
+        },
         targets: ".option1, .option2",
         duration: 2550,
         opacity: 1,
@@ -154,7 +197,7 @@ export default {
 
 video {
   object-fit: cover;
-  height: 75%;
+  height: 100%;
   max-width: 100%;
   margin-bottom: 1rem;
 }
@@ -167,8 +210,9 @@ video {
   display: flex;
   justify-content: center;
   align-items: center;
-  height: 50vh;
+  height: 40vh;
   max-width: 100vw;
+  margin-top: -1rem;
 }
 
 .explanation-text p {
@@ -207,6 +251,7 @@ video {
 .world-end .option2,
 .world-end .data-price {
   opacity: 0;
+  display: none;
 }
 
 .text-container {
@@ -219,7 +264,7 @@ video {
 }
 
 .world-end {
-  margin-top: 2rem;
+  margin-top: 10rem;
 }
 
 .world-end .text-expl {
@@ -227,7 +272,7 @@ video {
   top: 1rem;
   left: 0;
   right: 0;
-  font-size: 1.05rem;
+  font-size: 1rem;
   filter: blur(0.06rem);
   max-width: 25rem;
 
@@ -236,12 +281,12 @@ video {
 }
 
 .world-end .text-expl .text5 {
-  font-size: 1.5rem;
+  font-size: 1.2rem;
 }
 
 .world-end .text-options {
   padding: 0 5%;
-  position: absolute;
+
   display: flex;
   justify-content: space-between;
   align-items: center;
@@ -254,15 +299,17 @@ video {
 }
 
 .world-end .text-options button {
+  z-index: 10;
   font-size: 0.95rem;
   line-height: 1.4rem;
   background-color: transparent;
   border: none;
   color: white;
-  max-width: 25%;
+
   opacity: 0.6;
-  padding: 5rem 1rem;
+  padding: 1rem 1rem;
   transition: opacity 1s ease-in-out;
+  outline: none;
 }
 
 .world-end .text-options button:hover {
@@ -275,6 +322,7 @@ video {
   }
   .video-container-end {
     height: 100vh;
+    margin-top: 0;
   }
   .text-container {
     position: absolute;
@@ -282,6 +330,17 @@ video {
     left: 0;
     right: 0;
     margin-bottom: 1.5rem;
+  }
+
+  .world-end .text-options {
+    position: absolute;
+  }
+  .world-end .text-options button {
+    max-width: 25%;
+    padding: 5rem 1rem;
+  }
+  video {
+    height: 75%;
   }
 }
 
