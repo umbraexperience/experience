@@ -28,7 +28,7 @@
 
         <div class="video-container-end">
           <video autoplay loop preload="auto" autobuffer muted>
-            <source src="/videos/worldend.mp4" type="video/mp4" />
+            <source :src="mediaUrl + '/videos/worldend.mp4'" type="video/mp4" />
           </video>
         </div>
 
@@ -47,7 +47,16 @@
 
 <script>
 export default {
+  data() {
+    return {
+      mediaUrl: ""
+    };
+  },
   mounted() {
+    if (process.env.VUE_APP_MEDIA === "online") {
+      this.mediaUrl = process.env.VUE_APP_MEDIA_URL;
+    }
+
     this.$anime
       .timeline()
       .add({

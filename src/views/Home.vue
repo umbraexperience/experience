@@ -163,7 +163,8 @@ export default {
     });
     this.soundEnd = new Howl({
       src: ["sounds/final.webm", "sounds/final.mp3"],
-      preload: true
+      preload: true,
+      loop: true
     });
 
     this.soundEmpty1 = new Howl({
