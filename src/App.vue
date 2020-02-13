@@ -40,8 +40,6 @@ export default {
 
     this.isMobile = isMobileDevice();
 
-    console.log(isMobileDevice());
-
     if (!this.isMobile) {
       this.createCursor;
     }
