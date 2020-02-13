@@ -26,7 +26,7 @@
             {{ age }}
           </template>
           <template v-slot:city> {{ city || "Girona" }}</template>
-          <template v-slot:price>{{ (85 - 22) * 5000 }} €</template>
+          <template v-slot:price>{{ (85 - age) * 5000 }} €</template>
         </PageExperienceEnd>
       </transition>
 
