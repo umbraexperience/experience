@@ -228,7 +228,7 @@ export default {
 
         setTimeout(() => {
           this.state.screen = "experience";
-        }, 7000);
+        }, 8500);
       }
     },
     async getLocation() {
