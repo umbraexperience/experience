@@ -16,6 +16,12 @@
 
 <script>
 export default {
+  data() {
+    return {
+      check: false,
+      isMobile: true
+    };
+  },
   computed: {
     cursor() {
       return this.$refs.cursor;
@@ -25,21 +31,36 @@ export default {
     }
   },
   mounted() {
-    this.createCursor;
+    function isMobileDevice() {
+      return (
+        typeof window.orientation !== "undefined" ||
+        navigator.userAgent.indexOf("IEMobile") !== -1
+      );
+    }
+
+    this.isMobile = isMobileDevice();
+
+    console.log(isMobileDevice());
+
+    if (!this.isMobile) {
+      this.createCursor;
+    }
   },
   methods: {
     editCursor(e) {
-      this.cursor.style.display = "block";
-      this.cursor2.style.display = "block";
-      const { clientX: x, clientY: y } = e;
+      if (!this.isMobile) {
+        this.cursor.style.display = "block";
+        this.cursor2.style.display = "block";
+        const { clientX: x, clientY: y } = e;
 
-      this.cursor.style.left = x + "px";
-      this.cursor.style.top = y + "px";
+        this.cursor.style.left = x + "px";
+        this.cursor.style.top = y + "px";
 
-      this.cursor2.style.left = x + "px";
-      this.cursor2.style.top = y + "px";
+        this.cursor2.style.left = x + "px";
+        this.cursor2.style.top = y + "px";
 
-      requestAnimationFrame(this.editCursor);
+        requestAnimationFrame(this.editCursor);
+      }
     }
   }
 };
