@@ -1,14 +1,14 @@
 <template>
   <div>
-    <div class="DEBUG">
-      <!-- <button @click="videoEnd()">NEXT VIDEO</button> -->
+    <!--     <div class="DEBUG">
+     <button @click="videoEnd()">NEXT VIDEO</button> 
 
       <div v-if="interactionNum !== null" class="titol-interaccio">
         <p>VIDEO {{ videoPlaying }}</p>
         <p>INTERACCIÓ {{ interactionNum }}</p>
       </div>
     </div>
-
+-->
     <transition name="pause">
       <div class="pause-section" v-show="videoPaused">
         <img src="@/assets/logo.png" alt="umbra logo" />
