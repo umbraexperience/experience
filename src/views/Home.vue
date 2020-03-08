@@ -274,7 +274,7 @@ export default {
     },
     startExperience() {
       this.id = soundExperienceBg.play();
-      soundExperienceBg.volume(0.85);
+      soundExperienceBg.volume(0.70);
       soundExperienceBg.seek(this.position, this.id);
     },
 
