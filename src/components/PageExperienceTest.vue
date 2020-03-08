@@ -714,6 +714,13 @@ export default {
   font-weight: 300;
   padding: 20px !important;
   transform: translateY(-35px) !important;
+  text-shadow: rgb(10, 10, 10) 1px 0px 0px,
+    rgb(10, 10, 10) 0.540302px 0.841471px 0px,
+    rgb(10, 10, 10) -0.416147px 0.909297px 0px,
+    rgb(10, 10, 10) -0.989992px 0.14112px 0px,
+    rgb(10, 10, 10) -0.653644px -0.756802px 0px,
+    rgb(10, 10, 10) 0.283662px -0.958924px 0px,
+    rgb(10, 10, 10) 0.96017px -0.279415px 0px !important;
 }
 
 .plyr__captions .plyr__caption {

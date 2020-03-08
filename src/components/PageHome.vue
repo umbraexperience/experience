@@ -77,11 +77,7 @@ export default {
     });
     this.$anime({
       targets: ".animation3 .letter",
-      keyframes: [{ opacity: 1 }, { opacity: 0 }],
-      easing: "easeInOutQuad",
-      duration: 12500,
-      delay: this.$anime.stagger(220, { start: 2200 }),
-      loop: true
+      opacity: 1
     });
   }
 };
